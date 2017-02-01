@@ -117,6 +117,8 @@ public class PlayerMove : MonoBehaviour
         if (col.gameObject.tag == "Spike")
         {
             print("Spike");
+
+            gMaster.isGameOver = true;
         }
 
     }
