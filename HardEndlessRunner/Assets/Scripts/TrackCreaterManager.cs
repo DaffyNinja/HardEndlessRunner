@@ -2,11 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class TrackNumList
+{
+    public int trackNum1;
+    public int trackNum2;
+    public int trackNum3;
+    public int trackNum4;
+
+}
+
 public class TrackCreaterManager : MonoBehaviour
 {
 
     public List<GameObject> tracksList;
+    [Space(15)]
+    public TrackNumList[] tNumListEasy;
     [Space(10)]
+    public TrackNumList[] tNumListMedium;
+    [Space(10)]
+    public TrackNumList[] tNumListHard;
+    [Space(15)]
     public float trackDis;
     public float spawnDis;
     public float trackYPos;
@@ -18,9 +34,24 @@ public class TrackCreaterManager : MonoBehaviour
 
     GameObject[] tracksObjs;
 
-    [Space(5)]
-    public Transform playerTrans;
-    Vector2 playerPos;
+    [Header("Difficulty")]
+    [Header("Easy")]
+    public int trackPieceEasy1;
+    public int trackPieceEasy2;
+    public int trackPieceEasy3;
+    public int trackPieceEasy4;
+
+    [Header("Medium")]
+    public int trackPieceMedium1;
+    public int trackPieceMedium2;
+    public int trackPieceMedium3;
+    public int trackPieceMedium4;
+
+    [Header("Hard")]
+    public int trackPieceHard1;
+    public int trackPieceHard2;
+    public int trackPieceHard3;
+    public int trackPieceHard4;
 
     GameObject tr1;
     GameObject tr2;
@@ -36,24 +67,27 @@ public class TrackCreaterManager : MonoBehaviour
     Vector2 tP5;
     Vector2 tP6;
 
-    GameObject testObj1;
-
+    [HideInInspector]
     public int trackPiece1;
+    [HideInInspector]
     public int trackPiece2;
+    [HideInInspector]
     public int trackPiece3;
+    [HideInInspector]
     public int trackPiece4;
 
+    [Header("Player")]
+    public Transform playerTrans;
+    Vector2 playerPos;
 
-
-
+    GameMaster gMaster;
 
     // Use this for initialization
     void Awake()
     {
         isStart = true;
+        gMaster = GetComponent<GameMaster>();
         playerPos = playerTrans.position;
-
-        testObj1 = tracksList[1];
 
     }
 
@@ -62,7 +96,9 @@ public class TrackCreaterManager : MonoBehaviour
     {
         // tracksObj = GameObject.FindGameObjectsWithTag("Track");
 
+        Difficulty();
         TrackMaintance();
+       
     }
 
     void TrackMaintance()
@@ -148,12 +184,14 @@ public class TrackCreaterManager : MonoBehaviour
             }
         }
 
-        if (create)
+        if (create)   
         {
             tr1 = Instantiate(tracksList[trackPiece1], trackPos1, Quaternion.identity);
 
             tr2 = Instantiate(tracksList[trackPiece2], trackPos2, Quaternion.identity);
+
             tr3 = Instantiate(tracksList[trackPiece3], trackPos3, Quaternion.identity);
+
             tr4 = Instantiate(tracksList[trackPiece4], trackPos4, Quaternion.identity);
 
             create = false;
@@ -161,5 +199,40 @@ public class TrackCreaterManager : MonoBehaviour
         }
 
     }
+
+    void Difficulty()
+    {
+        if (gMaster.distance < 15)   //Easy
+        {
+            print("Easy");
+
+            trackPiece1 = tNumListEasy[0].trackNum1;
+            trackPiece2 = tNumListEasy[0].trackNum2;
+            trackPiece3 = tNumListEasy[0].trackNum3;
+            trackPiece4 = tNumListEasy[0].trackNum4;
+
+        }
+        else if (gMaster.distance >= 15 && gMaster.distance < 25) // Medium
+        {
+            print("Medium");
+
+            trackPiece1 = tNumListMedium[0].trackNum1;
+            trackPiece2 = tNumListMedium[0].trackNum2;
+            trackPiece3 = tNumListMedium[0].trackNum3;
+            trackPiece4 = tNumListMedium[0].trackNum4;
+        }
+        else    // Hard
+        {
+            print("Hard");
+
+            trackPiece1 = tNumListHard[0].trackNum1;
+            trackPiece2 = tNumListHard[0].trackNum2;
+            trackPiece3 = tNumListHard[0].trackNum3;
+            trackPiece4 = tNumListHard[0].trackNum4;
+        }
+             
+    }
+
+   
 
 }

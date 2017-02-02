@@ -38,9 +38,13 @@ public class TrackTester : MonoBehaviour {
 
     GameObject testObj1;
 
+    [HideInInspector]
     public int trackPiece1;
+    [HideInInspector]
     public int trackPiece2;
+    [HideInInspector]
     public int trackPiece3;
+    [HideInInspector]
     public int trackPiece4;
 
     // Use this for initialization
