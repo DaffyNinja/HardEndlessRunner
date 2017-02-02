@@ -36,8 +36,6 @@ public class TrackTester : MonoBehaviour {
     Vector2 tP5;
     Vector2 tP6;
 
-    GameObject testObj1;
-
     [HideInInspector]
     public int trackPiece1;
     [HideInInspector]
@@ -53,7 +51,7 @@ public class TrackTester : MonoBehaviour {
         isStart = true;
         playerPos = playerTrans.position;
 
-        testObj1 = tracksList[1];
+
 
     }
 

@@ -35,23 +35,26 @@ public class TrackCreaterManager : MonoBehaviour
     GameObject[] tracksObjs;
 
     [Header("Difficulty")]
-    [Header("Easy")]
-    public int trackPieceEasy1;
-    public int trackPieceEasy2;
-    public int trackPieceEasy3;
-    public int trackPieceEasy4;
+    public int easyNum;
+    public int mediumNum;
+    public int hardNum;
+    //[Header("Easy")]
+    //public int trackPieceEasy1;
+    //public int trackPieceEasy2;
+    //public int trackPieceEasy3;
+    //public int trackPieceEasy4;
 
-    [Header("Medium")]
-    public int trackPieceMedium1;
-    public int trackPieceMedium2;
-    public int trackPieceMedium3;
-    public int trackPieceMedium4;
+    //[Header("Medium")]
+    //public int trackPieceMedium1;
+    //public int trackPieceMedium2;
+    //public int trackPieceMedium3;
+    //public int trackPieceMedium4;
 
-    [Header("Hard")]
-    public int trackPieceHard1;
-    public int trackPieceHard2;
-    public int trackPieceHard3;
-    public int trackPieceHard4;
+    //[Header("Hard")]
+    //public int trackPieceHard1;
+    //public int trackPieceHard2;
+    //public int trackPieceHard3;
+    //public int trackPieceHard4;
 
     GameObject tr1;
     GameObject tr2;
@@ -67,14 +70,10 @@ public class TrackCreaterManager : MonoBehaviour
     Vector2 tP5;
     Vector2 tP6;
 
-    [HideInInspector]
-    public int trackPiece1;
-    [HideInInspector]
-    public int trackPiece2;
-    [HideInInspector]
-    public int trackPiece3;
-    [HideInInspector]
-    public int trackPiece4;
+    int trackPiece1;
+    int trackPiece2;
+    int trackPiece3;
+    int trackPiece4;
 
     [Header("Player")]
     public Transform playerTrans;
@@ -98,7 +97,7 @@ public class TrackCreaterManager : MonoBehaviour
 
         Difficulty();
         TrackMaintance();
-       
+
     }
 
     void TrackMaintance()
@@ -184,7 +183,7 @@ public class TrackCreaterManager : MonoBehaviour
             }
         }
 
-        if (create)   
+        if (create)
         {
             tr1 = Instantiate(tracksList[trackPiece1], trackPos1, Quaternion.identity);
 
@@ -196,13 +195,18 @@ public class TrackCreaterManager : MonoBehaviour
 
             create = false;
 
+            if (tr1.name == "Track Saw Middle(Clone)" && tr3.name == "Track Saw Middle(Clone)")
+            {
+                print(tr2.name);
+            }
+
         }
 
     }
 
     void Difficulty()
     {
-        if (gMaster.distance < 15)   //Easy
+        if (gMaster.distance < mediumNum)   //Easy
         {
             print("Easy");
 
@@ -211,8 +215,10 @@ public class TrackCreaterManager : MonoBehaviour
             trackPiece3 = tNumListEasy[0].trackNum3;
             trackPiece4 = tNumListEasy[0].trackNum4;
 
+            
+
         }
-        else if (gMaster.distance >= 15 && gMaster.distance < 25) // Medium
+        else if (gMaster.distance >= mediumNum && gMaster.distance < hardNum) // Medium
         {
             print("Medium");
 
@@ -220,6 +226,8 @@ public class TrackCreaterManager : MonoBehaviour
             trackPiece2 = tNumListMedium[0].trackNum2;
             trackPiece3 = tNumListMedium[0].trackNum3;
             trackPiece4 = tNumListMedium[0].trackNum4;
+
+            
         }
         else    // Hard
         {
@@ -230,9 +238,9 @@ public class TrackCreaterManager : MonoBehaviour
             trackPiece3 = tNumListHard[0].trackNum3;
             trackPiece4 = tNumListHard[0].trackNum4;
         }
-             
+
     }
 
-   
+
 
 }

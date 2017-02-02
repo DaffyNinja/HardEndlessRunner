@@ -21,9 +21,7 @@ public class PlayerMove : MonoBehaviour
     bool inAir;
     bool fall;
 
-    bool touchJump;
-
-    Vector2 startPos;
+   
     Rigidbody2D rig;
 
     [Space(5)]
@@ -36,10 +34,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
-        touchJump = false;
-
-        startPos = transform.position;
-
+      
         gMaster = gMaster.GetComponent<GameMaster>();
 
     }

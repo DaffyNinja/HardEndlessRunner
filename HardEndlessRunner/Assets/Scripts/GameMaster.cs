@@ -15,27 +15,19 @@ public class GameMaster : MonoBehaviour {
     public GameObject gOverCanvas;
     public PlayerMove playMove;
 
-
-
     // Use this for initialization
     void Awake ()
     {
-     
-
         isGameOver = false;
 
         gOverCanvas.SetActive(false);
 
         distance = 0;
-
-
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-       
-
         if (isGameOver)
         {
             GameOver();
