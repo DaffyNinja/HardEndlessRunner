@@ -38,23 +38,6 @@ public class TrackCreaterManager : MonoBehaviour
     public int easyNum;
     public int mediumNum;
     public int hardNum;
-    //[Header("Easy")]
-    //public int trackPieceEasy1;
-    //public int trackPieceEasy2;
-    //public int trackPieceEasy3;
-    //public int trackPieceEasy4;
-
-    //[Header("Medium")]
-    //public int trackPieceMedium1;
-    //public int trackPieceMedium2;
-    //public int trackPieceMedium3;
-    //public int trackPieceMedium4;
-
-    //[Header("Hard")]
-    //public int trackPieceHard1;
-    //public int trackPieceHard2;
-    //public int trackPieceHard3;
-    //public int trackPieceHard4;
 
     GameObject tr1;
     GameObject tr2;
@@ -70,22 +53,28 @@ public class TrackCreaterManager : MonoBehaviour
     Vector2 tP5;
     Vector2 tP6;
 
-    int trackPiece1;
-    int trackPiece2;
-    int trackPiece3;
-    int trackPiece4;
+    [HideInInspector]
+    public int trackPiece1;
+    [HideInInspector]
+    public int trackPiece2;
+    [HideInInspector]
+    public int trackPiece3;
+    [HideInInspector]
+    public int trackPiece4;
 
     [Header("Player")]
     public Transform playerTrans;
     Vector2 playerPos;
 
     GameMaster gMaster;
+    TrackDifficultyManager trackDifficultyMan;
 
     // Use this for initialization
     void Awake()
     {
         isStart = true;
         gMaster = GetComponent<GameMaster>();
+        trackDifficultyMan = GetComponent<TrackDifficultyManager>();
         playerPos = playerTrans.position;
 
     }
@@ -195,10 +184,10 @@ public class TrackCreaterManager : MonoBehaviour
 
             create = false;
 
-            if (tr1.name == "Track Saw Middle(Clone)" && tr3.name == "Track Saw Middle(Clone)")
-            {
-                print(tr2.name);
-            }
+            //if (tr1.name == "Track Saw Middle(Clone)" && tr3.name == "Track Saw Middle(Clone)")
+            //{
+            //    print(tr2.name);
+            //}
 
         }
 
@@ -208,35 +197,38 @@ public class TrackCreaterManager : MonoBehaviour
     {
         if (gMaster.distance < mediumNum)   //Easy
         {
-            print("Easy");
+            //print("Easy");
 
-            trackPiece1 = tNumListEasy[0].trackNum1;
-            trackPiece2 = tNumListEasy[0].trackNum2;
-            trackPiece3 = tNumListEasy[0].trackNum3;
-            trackPiece4 = tNumListEasy[0].trackNum4;
+            //trackPiece1 = tNumListEasy[0].trackNum1;
+            //trackPiece2 = tNumListEasy[0].trackNum2;
+            //trackPiece3 = tNumListEasy[0].trackNum3;
+            //trackPiece4 = tNumListEasy[0].trackNum4;
 
-            
+
+            trackDifficultyMan.Easy();
 
         }
         else if (gMaster.distance >= mediumNum && gMaster.distance < hardNum) // Medium
         {
-            print("Medium");
+            //print("Medium");
 
-            trackPiece1 = tNumListMedium[0].trackNum1;
-            trackPiece2 = tNumListMedium[0].trackNum2;
-            trackPiece3 = tNumListMedium[0].trackNum3;
-            trackPiece4 = tNumListMedium[0].trackNum4;
+            //trackPiece1 = tNumListMedium[0].trackNum1;
+            //trackPiece2 = tNumListMedium[0].trackNum2;
+            //trackPiece3 = tNumListMedium[0].trackNum3;
+            //trackPiece4 = tNumListMedium[0].trackNum4;
 
-            
+            trackDifficultyMan.Medium();
         }
         else    // Hard
         {
-            print("Hard");
+            //print("Hard");
 
-            trackPiece1 = tNumListHard[0].trackNum1;
-            trackPiece2 = tNumListHard[0].trackNum2;
-            trackPiece3 = tNumListHard[0].trackNum3;
-            trackPiece4 = tNumListHard[0].trackNum4;
+            //trackPiece1 = tNumListHard[0].trackNum1;
+            //trackPiece2 = tNumListHard[0].trackNum2;
+            //trackPiece3 = tNumListHard[0].trackNum3;
+            //trackPiece4 = tNumListHard[0].trackNum4;
+
+            trackDifficultyMan.Hard();
         }
 
     }

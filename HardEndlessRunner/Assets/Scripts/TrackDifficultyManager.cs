@@ -22,21 +22,33 @@ public class TrackDifficultyManager : MonoBehaviour {
 
     public void Easy()
     {
+        print("Easy");
 
-
-        //trackPiece1 = tNumListEasy[0].trackNum1;
-        //trackPiece2 = tNumListEasy[0].trackNum2;
-        //trackPiece3 = tNumListEasy[0].trackNum3;
-        //trackPiece4 = tNumListEasy[0].trackNum4;
+        trackMan.trackPiece1 = trackMan.tNumListEasy[0].trackNum1;
+        trackMan.trackPiece2 = trackMan.tNumListEasy[0].trackNum2;
+        trackMan.trackPiece3 = trackMan.tNumListEasy[0].trackNum3;
+        trackMan.trackPiece4 = trackMan.tNumListEasy[0].trackNum4;
     }
 
     public void Medium()
     {
+        print("Medium");
+
+        trackMan.trackPiece1 = trackMan.tNumListMedium[0].trackNum1;
+        trackMan.trackPiece2 = trackMan.tNumListMedium[0].trackNum2;
+        trackMan.trackPiece3 = trackMan.tNumListMedium[0].trackNum3;
+        trackMan.trackPiece4 = trackMan.tNumListMedium[0].trackNum4;
 
     }
 
     public void Hard()
     {
+        print("Hard");
+
+        trackMan.trackPiece1 = trackMan.tNumListHard[0].trackNum1;
+        trackMan.trackPiece2 = trackMan.tNumListHard[0].trackNum2;
+        trackMan.trackPiece3 = trackMan.tNumListHard[0].trackNum3;
+        trackMan.trackPiece4 = trackMan.tNumListHard[0].trackNum4;
 
     }
 
