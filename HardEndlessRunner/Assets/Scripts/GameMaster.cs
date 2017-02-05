@@ -66,7 +66,7 @@ public class GameMaster : MonoBehaviour {
 
     public void RetryButton()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
 }

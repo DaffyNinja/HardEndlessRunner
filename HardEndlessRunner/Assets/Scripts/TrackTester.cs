@@ -36,13 +36,13 @@ public class TrackTester : MonoBehaviour {
     Vector2 tP5;
     Vector2 tP6;
 
-    [HideInInspector]
+    [Space(5)]
     public int trackPiece1;
-    [HideInInspector]
+
     public int trackPiece2;
-    [HideInInspector]
+
     public int trackPiece3;
-    [HideInInspector]
+
     public int trackPiece4;
 
     // Use this for initialization

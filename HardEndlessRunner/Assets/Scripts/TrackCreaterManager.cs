@@ -35,7 +35,7 @@ public class TrackCreaterManager : MonoBehaviour
     GameObject[] tracksObjs;
 
     [Header("Difficulty")]
-  //  public int easyNum;
+    //  public int easyNum;
     public int mediumNum;
     public int hardNum;
 
@@ -197,37 +197,15 @@ public class TrackCreaterManager : MonoBehaviour
     {
         if (gMaster.distance < mediumNum)   //Easy
         {
-            //print("Easy");
-
-            //trackPiece1 = tNumListEasy[0].trackNum1;
-            //trackPiece2 = tNumListEasy[0].trackNum2;
-            //trackPiece3 = tNumListEasy[0].trackNum3;
-            //trackPiece4 = tNumListEasy[0].trackNum4;
-
-
             trackDifficultyMan.Easy();
 
         }
         else if (gMaster.distance >= mediumNum && gMaster.distance < hardNum) // Medium
         {
-            //print("Medium");
-
-            //trackPiece1 = tNumListMedium[0].trackNum1;
-            //trackPiece2 = tNumListMedium[0].trackNum2;
-            //trackPiece3 = tNumListMedium[0].trackNum3;
-            //trackPiece4 = tNumListMedium[0].trackNum4;
-
             trackDifficultyMan.Medium();
         }
         else    // Hard
         {
-            //print("Hard");
-
-            //trackPiece1 = tNumListHard[0].trackNum1;
-            //trackPiece2 = tNumListHard[0].trackNum2;
-            //trackPiece3 = tNumListHard[0].trackNum3;
-            //trackPiece4 = tNumListHard[0].trackNum4;
-
             trackDifficultyMan.Hard();
         }
 
