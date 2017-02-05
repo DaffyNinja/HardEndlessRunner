@@ -35,7 +35,7 @@ public class TrackCreaterManager : MonoBehaviour
     GameObject[] tracksObjs;
 
     [Header("Difficulty")]
-    public int easyNum;
+  //  public int easyNum;
     public int mediumNum;
     public int hardNum;
 
