@@ -17,7 +17,7 @@ public class PlayerMoveFly : MonoBehaviour {
 	}
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         transform.Translate(hozSpeed, 0, 0);
 

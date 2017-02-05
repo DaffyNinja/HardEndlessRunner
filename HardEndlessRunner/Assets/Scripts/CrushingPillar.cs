@@ -27,7 +27,7 @@ public class CrushingPillar : MonoBehaviour
 
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         startPos = transform.position;
 
@@ -38,7 +38,7 @@ public class CrushingPillar : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // transform.position = new Vector2(transform.position.x, (Mathf.PingPong(Time.time * inOutSpeed, inOutDistance)));
 

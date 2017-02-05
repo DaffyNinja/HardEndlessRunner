@@ -14,7 +14,7 @@ public class CameraMove : MonoBehaviour {
     public GameMaster gMaster;
 
 	// Use this for initialization
-	void Start ()
+	void Awake ()
     {
         transform.position = new Vector3(playerTrans.position.x + xPos, playerTrans.position.y + yPos, transform.position.z);
     }

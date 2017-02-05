@@ -31,7 +31,7 @@ public class PlayerMove : MonoBehaviour
 
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         rig = GetComponent<Rigidbody2D>();
       

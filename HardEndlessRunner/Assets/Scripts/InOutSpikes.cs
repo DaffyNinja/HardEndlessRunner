@@ -26,7 +26,7 @@ public class InOutSpikes : MonoBehaviour
     public bool isDeactive;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         spikeTrans = new Transform[transform.childCount];
 
@@ -45,7 +45,7 @@ public class InOutSpikes : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (timer < inOutTime && isActive)  // Active
         {

@@ -13,14 +13,14 @@ public class SawArmRotate : MonoBehaviour {
     int ranNum;
 
     // Use this for initialization
-    void Start ()
+    void Awake ()
     {
         ranNum = Random.Range(0, 2);
 
     }
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
     {
         if (isRandom)
         {

@@ -12,12 +12,12 @@ public class TrackDifficultyManager : MonoBehaviour {
 
 
     // Use this for initialization
-    void Start ()
+    void Awake ()
     {
         trackMan = GetComponent<TrackCreaterManager>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         easyRanNum = Random.Range(0, trackMan.tNumListEasy.Length);
         mediumRanNum = Random.Range(0, trackMan.tNumListMedium.Length);
