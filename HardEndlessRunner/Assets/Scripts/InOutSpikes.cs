@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class InOutSpikes : MonoBehaviour
 {
-
-    public float inOutSpeed;
     public float inOutTime;
     float timer;
+
+    public bool isGround;
 
     Transform[] spikeTrans;
 
@@ -39,9 +39,18 @@ public class InOutSpikes : MonoBehaviour
         startPos2 = spikeTrans[1].transform.position;
         startPos3 = spikeTrans[2].transform.position;
 
-        deactivePos1 = new Vector2(spikeTrans[0].transform.position.x, spikeTrans[0].transform.position.y - 1);
-        deactivePos2 = new Vector2(spikeTrans[1].transform.position.x, spikeTrans[1].transform.position.y - 1);
-        deactivePos3 = new Vector2(spikeTrans[2].transform.position.x, spikeTrans[2].transform.position.y - 1);
+        if (isGround)
+        {
+            deactivePos1 = new Vector2(spikeTrans[0].transform.position.x, spikeTrans[0].transform.position.y - 1);
+            deactivePos2 = new Vector2(spikeTrans[1].transform.position.x, spikeTrans[1].transform.position.y - 1);
+            deactivePos3 = new Vector2(spikeTrans[2].transform.position.x, spikeTrans[2].transform.position.y - 1);
+        }
+        else
+        {
+            deactivePos1 = new Vector2(spikeTrans[0].transform.position.x, spikeTrans[0].transform.position.y + 1);
+            deactivePos2 = new Vector2(spikeTrans[1].transform.position.x, spikeTrans[1].transform.position.y + 1);
+            deactivePos3 = new Vector2(spikeTrans[2].transform.position.x, spikeTrans[2].transform.position.y + 1);
+        }
     }
 
     // Update is called once per frame
