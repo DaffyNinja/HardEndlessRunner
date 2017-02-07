@@ -19,9 +19,9 @@ public class TrackDifficultyManager : MonoBehaviour {
 
     private void FixedUpdate()
     {
-        easyRanNum = Random.Range(0, trackMan.tNumListEasy.Length);
-        mediumRanNum = Random.Range(0, trackMan.tNumListMedium.Length);
-        hardRanNum = Random.Range(0, trackMan.tNumListHard.Length);
+        easyRanNum = Random.Range(0, trackMan.tNumListEasy.Count);
+        mediumRanNum = Random.Range(0, trackMan.tNumListMedium.Count);
+        hardRanNum = Random.Range(0, trackMan.tNumListHard.Count);
     }
 
     public void Easy()

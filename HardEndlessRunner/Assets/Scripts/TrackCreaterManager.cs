@@ -17,11 +17,11 @@ public class TrackCreaterManager : MonoBehaviour
 
     public List<GameObject> tracksList;
     [Space(15)]
-    public TrackNumList[] tNumListEasy;
+    public List<TrackNumList> tNumListEasy;
     [Space(10)]
-    public TrackNumList[] tNumListMedium;
+    public List<TrackNumList> tNumListMedium;
     [Space(10)]
-    public TrackNumList[] tNumListHard;
+    public List<TrackNumList> tNumListHard;
     [Space(15)]
     public float trackDis;
     public float spawnDis;
