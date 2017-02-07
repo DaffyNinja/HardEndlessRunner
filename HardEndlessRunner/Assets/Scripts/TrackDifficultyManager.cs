@@ -93,7 +93,13 @@ public class TrackDifficultyManager : MonoBehaviour {
                 trackMan.trackPiece2 = trackMan.tNumListMedium[2].trackNum2;
                 trackMan.trackPiece3 = trackMan.tNumListMedium[2].trackNum3;
                 trackMan.trackPiece4 = trackMan.tNumListMedium[2].trackNum4;
-                break;  
+                break;
+            case 3:
+                trackMan.trackPiece1 = trackMan.tNumListMedium[3].trackNum1;
+                trackMan.trackPiece2 = trackMan.tNumListMedium[3].trackNum2;
+                trackMan.trackPiece3 = trackMan.tNumListMedium[3].trackNum3;
+                trackMan.trackPiece4 = trackMan.tNumListMedium[3].trackNum4;
+                break;
             default:
                 print("MEDIUM ERROR!!");
                 break;
@@ -126,7 +132,13 @@ public class TrackDifficultyManager : MonoBehaviour {
 
                 trackMan.trackPiece3 = trackMan.tNumListHard[2].trackNum3;
                 trackMan.trackPiece4 = trackMan.tNumListHard[2].trackNum4;
-                break; 
+                break;
+            case 3:
+                trackMan.trackPiece1 = trackMan.tNumListHard[3].trackNum1;
+                trackMan.trackPiece2 = trackMan.tNumListHard[3].trackNum2;
+                trackMan.trackPiece3 = trackMan.tNumListHard[3].trackNum3;
+                trackMan.trackPiece4 = trackMan.tNumListHard[3].trackNum4;
+                break;
             default:
                 print("HARD ERROR!!!");
                 break;

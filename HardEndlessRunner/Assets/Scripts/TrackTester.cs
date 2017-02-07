@@ -77,6 +77,15 @@ public class TrackTester : MonoBehaviour {
 
         }
 
+        GameObject[] dartObjs = GameObject.FindGameObjectsWithTag("Dart");
+
+        foreach (GameObject d in dartObjs)
+        {
+            if (d.transform.position.x < playerTrans.position.x - destroyNum)
+            {
+                Destroy(d);
+            }
+        }
     }
 
     void SpawnTracks()

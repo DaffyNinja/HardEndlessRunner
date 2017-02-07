@@ -116,7 +116,26 @@ public class PlayerMove : MonoBehaviour
             gMaster.isGameOver = true;
         }
 
+        if (col.gameObject.tag == "Pillar")
+        {
+            print("Pillar");
+
+            //gMaster.isGameOver = true;
+        }
     }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.tag == "Dart")
+        {
+            print("Dart");
+
+            gMaster.isGameOver = true;
+        }
+
+    }
+
+
 
     void Jump()
     {
