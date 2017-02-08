@@ -24,8 +24,12 @@ public class PlayerMove : MonoBehaviour
 
     [Header("Special Abilities")]
     public float boostSpeed;
+    public float boostTime;
+    float boostTimer;
     public bool obtainedBoost;
     [Space(5)]
+    public float shieldTime;
+    float shieldTimer;
     public bool obtainedShield;
 
 
@@ -42,7 +46,7 @@ public class PlayerMove : MonoBehaviour
     void Awake()
     {
         rig = GetComponent<Rigidbody2D>();
-      
+
         gMaster = gMaster.GetComponent<GameMaster>();
 
         startingRightSpeed = rightSpeed;
@@ -76,7 +80,7 @@ public class PlayerMove : MonoBehaviour
             // Slide
         }
         else      // Mobile  
-        {         
+        {
 
             if (Input.touchCount > 0 && grounded)
             {
@@ -118,18 +122,26 @@ public class PlayerMove : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Saw")   // game Over
+        if (col.gameObject.tag == "Saw" && obtainedShield == false)   // game Over
         {
             print("Dead");
 
             gMaster.isGameOver = true;
         }
+        else if (col.gameObject.tag == "Saw" && obtainedShield == true)
+        {
+            Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
 
-        if (col.gameObject.tag == "Spike")
+        if (col.gameObject.tag == "Spike" && obtainedShield == false)
         {
             print("Spike");
 
             gMaster.isGameOver = true;
+        }
+        else if (col.gameObject.tag == "Spike" && obtainedShield == true)
+        {
+            Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
 
         if (col.gameObject.tag == "Pillar")
@@ -142,17 +154,19 @@ public class PlayerMove : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Dart")
+        if (col.gameObject.tag == "Dart" && obtainedShield == false)
         {
             print("Dart");
 
             gMaster.isGameOver = true;
         }
-
-        if (obtainedShield == true && col.gameObject.layer != 5)
+        else if (col.gameObject.tag == "Dart" && obtainedShield == true)
         {
-            Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>()); 
+            Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
+
+
+        //print(col.gameObject.layer);
 
     }
 
@@ -178,14 +192,39 @@ public class PlayerMove : MonoBehaviour
 
     void SpecialAbilities()
     {
-                  
+        // Boost
         if (obtainedBoost)
         {
             rightSpeed = boostSpeed;
+
+            boostTimer += Time.deltaTime;
+
+            if (boostTimer >= boostTime)
+            {
+                obtainedBoost = false;
+            }
+
         }
         else if (obtainedBoost == false)
         {
             rightSpeed = startingRightSpeed;
+
+            boostTimer = 0;
+        }
+
+        // Shield
+        if (obtainedShield)
+        {
+            shieldTimer += Time.deltaTime;
+
+            if (shieldTimer >= shieldTime)
+            {
+                obtainedShield = false;
+            }
+        }
+        else if (obtainedShield == false)
+        {
+            shieldTimer = 0;
         }
 
 
