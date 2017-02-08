@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     public float rightSpeed;
+    float startingRightSpeed;
 
     [Header("Jump")]
     public float timeForFullJump = 2.0f;
@@ -21,7 +22,14 @@ public class PlayerMove : MonoBehaviour
     bool inAir;
     bool fall;
 
-   
+    [Header("Special Abilities")]
+    public float boostSpeed;
+    public bool obtainedBoost;
+    [Space(5)]
+    public bool obtainedShield;
+
+
+
     Rigidbody2D rig;
 
     [Space(5)]
@@ -36,6 +44,8 @@ public class PlayerMove : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
       
         gMaster = gMaster.GetComponent<GameMaster>();
+
+        startingRightSpeed = rightSpeed;
 
     }
 
@@ -62,9 +72,11 @@ public class PlayerMove : MonoBehaviour
             {
                 Jump();
             }
+
+            // Slide
         }
-        else
-        {
+        else      // Mobile  
+        {         
 
             if (Input.touchCount > 0 && grounded)
             {
@@ -81,6 +93,8 @@ public class PlayerMove : MonoBehaviour
 
                 Jump();
             }
+
+            // Slide
         }
 
         if (grounded)
@@ -97,6 +111,8 @@ public class PlayerMove : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().color = Color.white;
         }
+
+        SpecialAbilities();
 
     }
 
@@ -133,6 +149,11 @@ public class PlayerMove : MonoBehaviour
             gMaster.isGameOver = true;
         }
 
+        if (obtainedShield == true && col.gameObject.layer != 5)
+        {
+            Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>()); 
+        }
+
     }
 
 
@@ -152,6 +173,21 @@ public class PlayerMove : MonoBehaviour
         resolvedJump = new Vector2(rightJumpForce, verticalJumpForce);
 
         rig.AddForce(resolvedJump, ForceMode2D.Impulse);
+
+    }
+
+    void SpecialAbilities()
+    {
+                  
+        if (obtainedBoost)
+        {
+            rightSpeed = boostSpeed;
+        }
+        else if (obtainedBoost == false)
+        {
+            rightSpeed = startingRightSpeed;
+        }
+
 
     }
 
