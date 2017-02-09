@@ -31,8 +31,7 @@ public class PlayerMove : MonoBehaviour
     public float shieldTime;
     float shieldTimer;
     public bool obtainedShield;
-
-
+    GameObject shieldObj;
 
     Rigidbody2D rig;
 
@@ -48,6 +47,9 @@ public class PlayerMove : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
 
         gMaster = gMaster.GetComponent<GameMaster>();
+
+        shieldObj = transform.GetChild(0).gameObject;
+        shieldObj.SetActive(false);
 
         startingRightSpeed = rightSpeed;
 
@@ -227,6 +229,7 @@ public class PlayerMove : MonoBehaviour
         if (obtainedShield)
         {
             shieldTimer += Time.deltaTime;
+            shieldObj.SetActive(true);
 
             if (shieldTimer >= shieldTime)
             {
@@ -235,6 +238,7 @@ public class PlayerMove : MonoBehaviour
         }
         else if (obtainedShield == false)
         {
+            shieldObj.SetActive(false);
             shieldTimer = 0;
         }
 
