@@ -5,11 +5,13 @@ using UnityEngine;
 public class CameraMove : MonoBehaviour {
 
     public float moveSpeed;
+    public float boostSpeed;
 
     public float xPos;
     public float yPos;
 
     public Transform playerTrans;
+    PlayerMove pMove;
 
     public GameMaster gMaster;
 
@@ -17,11 +19,22 @@ public class CameraMove : MonoBehaviour {
 	void Awake ()
     {
         transform.position = new Vector3(playerTrans.position.x + xPos, playerTrans.position.y + yPos, transform.position.z);
+
+        pMove = playerTrans.GetComponent<PlayerMove>();
     }
 
     // Update is called once per frame
     void Update ()
     {
+        if (pMove.obtainedBoost == false)
+        {
+            transform.Translate(moveSpeed, 0, 0);
+        }
+        else
+        {
+            transform.Translate(boostSpeed, 0, 0);
+        }
+
         Vector3 viewPos = GetComponent<Camera>().WorldToViewportPoint(playerTrans.position);
 
         if (viewPos.x < 0)
@@ -31,9 +44,6 @@ public class CameraMove : MonoBehaviour {
             gMaster.isGameOver = true;
 
         }
-
-        transform.Translate(moveSpeed, 0, 0);
-
         if (gMaster.isGameOver)
         {
             moveSpeed = 0;

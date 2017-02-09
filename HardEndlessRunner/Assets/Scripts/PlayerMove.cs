@@ -157,10 +157,14 @@ public class PlayerMove : MonoBehaviour
         if (col.gameObject.tag == "Boost")
         {
             obtainedBoost = true;
+
+            Destroy(col.gameObject);
         }
         else if (col.gameObject.tag == "Shield")
         {
             obtainedShield = true;
+
+            Destroy(col.gameObject);
         }
 
     }
@@ -212,6 +216,8 @@ public class PlayerMove : MonoBehaviour
 
             boostTimer += Time.deltaTime;
 
+            GetComponent<SpriteRenderer>().color = Color.yellow;
+
             if (boostTimer >= boostTime)
             {
                 obtainedBoost = false;
@@ -221,6 +227,8 @@ public class PlayerMove : MonoBehaviour
         else if (obtainedBoost == false)
         {
             rightSpeed = startingRightSpeed;
+
+           // GetComponent<SpriteRenderer>().color = Color.white;
 
             boostTimer = 0;
         }
