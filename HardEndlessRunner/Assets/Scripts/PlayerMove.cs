@@ -150,6 +150,17 @@ public class PlayerMove : MonoBehaviour
 
             //gMaster.isGameOver = true;
         }
+
+        // Specials
+        if (col.gameObject.tag == "Boost")
+        {
+            obtainedBoost = true;
+        }
+        else if (col.gameObject.tag == "Shield")
+        {
+            obtainedShield = true;
+        }
+
     }
 
     void OnCollisionEnter2D(Collision2D col)
