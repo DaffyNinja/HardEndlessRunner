@@ -62,6 +62,11 @@ public class TrackCreaterManager : MonoBehaviour
     [HideInInspector]
     public int trackPiece4;
 
+    [Header("Special")]
+    public List<GameObject> specialObjs;
+    public float specialAppearNum;
+    float startSpecialNum;
+
     [Header("Player")]
     public Transform playerTrans;
     Vector2 playerPos;
@@ -76,6 +81,7 @@ public class TrackCreaterManager : MonoBehaviour
         gMaster = GetComponent<GameMaster>();
         trackDifficultyMan = GetComponent<TrackDifficultyManager>();
         playerPos = playerTrans.position;
+        startSpecialNum = specialAppearNum;
 
     }
 
@@ -127,6 +133,18 @@ public class TrackCreaterManager : MonoBehaviour
         else
         {
             TrackCreation2(pos7, pos8, pos9, pos10, pos11);
+        }
+
+        // Spawn Special
+        if (playerTrans.position.x >= playerPos.x + specialAppearNum)
+        {
+
+            GameObject[] specialSpawn = GameObject.FindGameObjectsWithTag("Special Spawn");
+
+            Instantiate(specialObjs[Random.Range(0, specialObjs.Count)], specialSpawn[0].transform.position, Quaternion.identity);
+
+            specialAppearNum = specialAppearNum + startSpecialNum;
+
         }
 
     }
