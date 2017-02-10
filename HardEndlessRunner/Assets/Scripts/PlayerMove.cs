@@ -73,6 +73,10 @@ public class PlayerMove : MonoBehaviour
             {
                 timeHeld += Time.deltaTime;
             }
+            else if (Input.GetKey(KeyCode.Space) && grounded && obtainedBoost == true)
+            {
+                timeHeld += Time.deltaTime * 3;
+            }
 
             if (Input.GetKeyUp(KeyCode.Space) && grounded)
             {
@@ -92,6 +96,7 @@ public class PlayerMove : MonoBehaviour
 
                 timeHeld += Time.deltaTime;
             }
+
 
             if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && grounded)
             {
@@ -154,13 +159,13 @@ public class PlayerMove : MonoBehaviour
         }
 
         // Specials
-        if (col.gameObject.tag == "Boost")
+        if (col.gameObject.tag == "Boost" && obtainedBoost == false)
         {
             obtainedBoost = true;
 
             Destroy(col.gameObject);
         }
-        else if (col.gameObject.tag == "Shield")
+        else if (col.gameObject.tag == "Shield" && obtainedShield == false)
         {
             obtainedShield = true;
 
@@ -218,6 +223,8 @@ public class PlayerMove : MonoBehaviour
 
             GetComponent<SpriteRenderer>().color = Color.yellow;
 
+            rig.gravityScale = 2;
+
             if (boostTimer >= boostTime)
             {
                 obtainedBoost = false;
@@ -228,7 +235,9 @@ public class PlayerMove : MonoBehaviour
         {
             rightSpeed = startingRightSpeed;
 
-           // GetComponent<SpriteRenderer>().color = Color.white;
+            rig.gravityScale = 1;
+
+            // GetComponent<SpriteRenderer>().color = Color.white;
 
             boostTimer = 0;
         }
