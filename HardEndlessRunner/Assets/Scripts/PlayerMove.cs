@@ -12,6 +12,11 @@ public class PlayerMove : MonoBehaviour
     public float minJumpForce = 0.5f;
     public float maxJumpForce = 2.0f;
     public float rightJumpForce = 1.0f;
+    [Space(5)]
+    public float boostJumpTime;
+    public float boostMinJumpForce;
+    public float boostMaxJumpForce;
+    public float boostRightJumpForc;
 
     float timeHeld = 0.0f;
     Vector2 resolvedJump;
@@ -76,6 +81,7 @@ public class PlayerMove : MonoBehaviour
             else if (Input.GetKey(KeyCode.Space) && grounded && obtainedBoost == true)
             {
                 timeHeld += Time.deltaTime * 3;
+
             }
 
             if (Input.GetKeyUp(KeyCode.Space) && grounded)
@@ -197,19 +203,36 @@ public class PlayerMove : MonoBehaviour
     void Jump()
     {
 
-        float verticalJumpForce = ((maxJumpForce - minJumpForce) * (timeHeld / timeForFullJump)) + minJumpForce;
-
-        if (verticalJumpForce > maxJumpForce)
+        if (obtainedBoost == false)
         {
-            verticalJumpForce = maxJumpForce;
+            float verticalJumpForce = ((maxJumpForce - minJumpForce) * (timeHeld / timeForFullJump)) + minJumpForce;
+
+            if (verticalJumpForce > maxJumpForce)
+            {
+                verticalJumpForce = maxJumpForce;
+            }
+
+            timeHeld = 0;
+
+            resolvedJump = new Vector2(rightJumpForce, verticalJumpForce);
+
+            rig.AddForce(resolvedJump, ForceMode2D.Impulse);
         }
+        else
+        {
+            float verticalJumpForce = ((boostMaxJumpForce - boostMinJumpForce) * (timeHeld / boostJumpTime)) + boostMinJumpForce;
 
-        timeHeld = 0;
+            if (verticalJumpForce > boostMaxJumpForce)
+            {
+                verticalJumpForce = boostMaxJumpForce;
+            }
 
-        resolvedJump = new Vector2(rightJumpForce, verticalJumpForce);
+            timeHeld = 0;
 
-        rig.AddForce(resolvedJump, ForceMode2D.Impulse);
+            resolvedJump = new Vector2(rightJumpForce, verticalJumpForce);
 
+            rig.AddForce(resolvedJump, ForceMode2D.Impulse);
+        }
     }
 
     void SpecialAbilities()
