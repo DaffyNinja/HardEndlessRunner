@@ -165,13 +165,13 @@ public class PlayerMove : MonoBehaviour
         }
 
         // Specials
-        if (col.gameObject.tag == "Boost" && obtainedBoost == false)
+        if (col.gameObject.tag == "Boost" && obtainedBoost == false && obtainedShield == false)
         {
             obtainedBoost = true;
 
             Destroy(col.gameObject);
         }
-        else if (col.gameObject.tag == "Shield" && obtainedShield == false)
+        else if (col.gameObject.tag == "Shield" && obtainedShield == false && obtainedBoost == false)
         {
             obtainedShield = true;
 
