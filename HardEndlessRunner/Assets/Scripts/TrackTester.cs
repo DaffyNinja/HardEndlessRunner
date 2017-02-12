@@ -6,6 +6,14 @@ public class TrackTester : MonoBehaviour {
 
 
     public List<GameObject> tracksList;
+    [Space(5)]
+    public int trackPiece1;
+
+    public int trackPiece2;
+
+    public int trackPiece3;
+
+    public int trackPiece4;
     [Space(10)]
     public float trackDis;
     public float spawnDis;
@@ -36,14 +44,7 @@ public class TrackTester : MonoBehaviour {
     Vector2 tP5;
     Vector2 tP6;
 
-    [Space(5)]
-    public int trackPiece1;
-
-    public int trackPiece2;
-
-    public int trackPiece3;
-
-    public int trackPiece4;
+ 
 
     // Use this for initialization
     void Awake()
@@ -160,7 +161,9 @@ public class TrackTester : MonoBehaviour {
             tr1 = Instantiate(tracksList[trackPiece1], trackPos1, Quaternion.identity);
 
             tr2 = Instantiate(tracksList[trackPiece2], trackPos2, Quaternion.identity);
+
             tr3 = Instantiate(tracksList[trackPiece3], trackPos3, Quaternion.identity);
+
             tr4 = Instantiate(tracksList[trackPiece4], trackPos4, Quaternion.identity);
 
             create = false;

@@ -26,42 +26,46 @@ public class TrackDifficultyManager : MonoBehaviour {
 
     public void Easy()
     {
-        print("Easy");
+        //print("Easy");
 
        
         switch (easyRanNum)
         {
             case 0:
-               // print(0);
-
                 trackMan.trackPiece1 = trackMan.tNumListEasy[0].trackNum1;
                 trackMan.trackPiece2 = trackMan.tNumListEasy[0].trackNum2;
                 trackMan.trackPiece3 = trackMan.tNumListEasy[0].trackNum3;
                 trackMan.trackPiece4 = trackMan.tNumListEasy[0].trackNum4;
                 break;
             case 1:
-               // print(1);
-
                 trackMan.trackPiece1 = trackMan.tNumListEasy[1].trackNum1;
                 trackMan.trackPiece2 = trackMan.tNumListEasy[1].trackNum2;
                 trackMan.trackPiece3 = trackMan.tNumListEasy[1].trackNum3;
                 trackMan.trackPiece4 = trackMan.tNumListEasy[1].trackNum4;
                 break;
             case 2:
-               // print(2);
-
                 trackMan.trackPiece1 = trackMan.tNumListEasy[2].trackNum1;
                 trackMan.trackPiece2 = trackMan.tNumListEasy[2].trackNum2;
                 trackMan.trackPiece3 = trackMan.tNumListEasy[2].trackNum3;
                 trackMan.trackPiece4 = trackMan.tNumListEasy[2].trackNum4;
                 break;
             case 3:
-                // print(2);
-
                 trackMan.trackPiece1 = trackMan.tNumListEasy[3].trackNum1;
                 trackMan.trackPiece2 = trackMan.tNumListEasy[3].trackNum2;
                 trackMan.trackPiece3 = trackMan.tNumListEasy[3].trackNum3;
                 trackMan.trackPiece4 = trackMan.tNumListEasy[3].trackNum4;
+                break;
+            case 4:
+                trackMan.trackPiece1 = trackMan.tNumListEasy[4].trackNum1;
+                trackMan.trackPiece2 = trackMan.tNumListEasy[4].trackNum2;
+                trackMan.trackPiece3 = trackMan.tNumListEasy[4].trackNum3;
+                trackMan.trackPiece4 = trackMan.tNumListEasy[4].trackNum4;
+                break;
+            case 5:
+                trackMan.trackPiece1 = trackMan.tNumListEasy[5].trackNum1;
+                trackMan.trackPiece2 = trackMan.tNumListEasy[5].trackNum2;
+                trackMan.trackPiece3 = trackMan.tNumListEasy[5].trackNum3;
+                trackMan.trackPiece4 = trackMan.tNumListEasy[5].trackNum4;
                 break;
             default:
                 print("EASY ERROR!!");
@@ -72,7 +76,7 @@ public class TrackDifficultyManager : MonoBehaviour {
 
     public void Medium()
     {
-        print("Medium");
+        //print("Medium");
 
         switch (mediumRanNum)
         {
@@ -108,7 +112,7 @@ public class TrackDifficultyManager : MonoBehaviour {
 
     public void Hard()
     {
-        print("Hard");
+       // print("Hard");
 
         switch (hardRanNum)
         {
@@ -126,10 +130,7 @@ public class TrackDifficultyManager : MonoBehaviour {
                 break;
             case 2:
                 trackMan.trackPiece1 = trackMan.tNumListHard[2].trackNum1;
-
                 trackMan.trackPiece2 = trackMan.tNumListHard[2].trackNum2;
-               // trackMan.trackPiece2 = trackMan.tNumListHard[2].trackNum2;
-
                 trackMan.trackPiece3 = trackMan.tNumListHard[2].trackNum3;
                 trackMan.trackPiece4 = trackMan.tNumListHard[2].trackNum4;
                 break;
@@ -138,6 +139,18 @@ public class TrackDifficultyManager : MonoBehaviour {
                 trackMan.trackPiece2 = trackMan.tNumListHard[3].trackNum2;
                 trackMan.trackPiece3 = trackMan.tNumListHard[3].trackNum3;
                 trackMan.trackPiece4 = trackMan.tNumListHard[3].trackNum4;
+                break;
+            case 4:
+                trackMan.trackPiece1 = trackMan.tNumListHard[4].trackNum1;
+                trackMan.trackPiece2 = trackMan.tNumListHard[4].trackNum2;
+                trackMan.trackPiece3 = trackMan.tNumListHard[4].trackNum3;
+                trackMan.trackPiece4 = trackMan.tNumListHard[4].trackNum4;
+                break;
+            case 5:
+                trackMan.trackPiece1 = trackMan.tNumListHard[5].trackNum1;
+                trackMan.trackPiece2 = trackMan.tNumListHard[5].trackNum2;
+                trackMan.trackPiece3 = trackMan.tNumListHard[5].trackNum3;
+                trackMan.trackPiece4 = trackMan.tNumListHard[5].trackNum4;
                 break;
             default:
                 print("HARD ERROR!!!");
