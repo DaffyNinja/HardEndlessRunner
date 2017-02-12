@@ -104,6 +104,12 @@ public class TrackDifficultyManager : MonoBehaviour {
                 trackMan.trackPiece3 = trackMan.tNumListMedium[3].trackNum3;
                 trackMan.trackPiece4 = trackMan.tNumListMedium[3].trackNum4;
                 break;
+            case 4:
+                trackMan.trackPiece1 = trackMan.tNumListMedium[4].trackNum1;
+                trackMan.trackPiece2 = trackMan.tNumListMedium[4].trackNum2;
+                trackMan.trackPiece3 = trackMan.tNumListMedium[4].trackNum3;
+                trackMan.trackPiece4 = trackMan.tNumListMedium[4].trackNum4;
+                break;
             default:
                 print("MEDIUM ERROR!!");
                 break;
