@@ -5,28 +5,43 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 
-public class GameMaster : MonoBehaviour {
+public class GameMaster : MonoBehaviour
+{
 
-    public float distance;
+    public float score;
+    public int highScore;
+    int currentHighScore;
+    string highScoreKey = "HighScore";
 
+    [Space(5)]
     public bool isGameOver;
 
-    public Text distanceUI;
+    public Text scoreUI;
+    public Text highScoreUI;
+
+
     public GameObject gOverCanvas;
-    public PlayerMove playMove;
+    public GameObject playerObj;
+
+    Vector2 playerObjStartPos;
 
     // Use this for initialization
-    void Awake ()
+    void Awake()
     {
         isGameOver = false;
 
         gOverCanvas.SetActive(false);
 
-        distance = 0;
+        score = 0;
+
+        playerObjStartPos = playerObj.transform.position;
+
+        currentHighScore = PlayerPrefs.GetInt("highScore");
+
     }
-	
-	// Update is called once per frame
-	void FixedUpdate ()
+
+    // Update is called once per frame
+    void FixedUpdate()
     {
         if (isGameOver)
         {
@@ -40,28 +55,57 @@ public class GameMaster : MonoBehaviour {
             }
 
         }
+        else if (isGameOver == false)
+        {
+            if (playerObj.transform.position.x > playerObjStartPos.x)
+            {
+                if (playerObj.GetComponent<PlayerMove>().obtainedBoost == false)
+                {
+                    score += Time.deltaTime;
+                }
+                else
+                {
+                    score += Time.deltaTime * 2;
+                }
+            }
+        }
 
         if (Input.GetKey(KeyCode.R))
         {
             SceneManager.LoadScene(0);
         }
 
-        if (isGameOver == false)
-        {
-            distance += 2 * Time.deltaTime;
-        }
-
-        distanceUI.text = Mathf.RoundToInt(distance).ToString();
 
 
-	}
+        scoreUI.text = Mathf.RoundToInt(score).ToString();
+        highScoreUI.text = currentHighScore.ToString();
+
+        PhoneInput();
+    }
 
     void GameOver()
     {
         gOverCanvas.SetActive(true);
 
-        playMove.rightSpeed = 0;
-        
+        // Highscore
+        if (score > currentHighScore)
+        {
+            //highScore = currentHighScore;
+            //highScore = Mathf.RoundToInt(score);
+
+            highScore = Mathf.RoundToInt(score);
+            PlayerPrefs.SetInt("highScore", highScore);
+            highScoreUI.text = currentHighScore.ToString();
+        }
+
+    }
+
+    void PhoneInput()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 
     public void RetryButton()

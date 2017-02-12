@@ -63,7 +63,14 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(rightSpeed, 0, 0);
+        if (gMaster.isGameOver == fall)
+        {
+            transform.Translate(rightSpeed, 0, 0);
+        }
+        else
+        {
+            transform.Translate(0, 0, 0);
+        }
 
         grounded = Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - groundCheck), 1 << LayerMask.NameToLayer("Ground"));
 

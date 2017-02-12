@@ -202,23 +202,18 @@ public class TrackCreaterManager : MonoBehaviour
 
             create = false;
 
-            //if (tr1.name == "Track Saw Middle(Clone)" && tr3.name == "Track Saw Middle(Clone)")
-            //{
-            //    print(tr2.name);
-            //}
-
         }
 
     }
 
     void Difficulty()
     {
-        if (gMaster.distance < mediumNum)   //Easy
+        if (gMaster.score < mediumNum)   //Easy
         {
             trackDifficultyMan.Easy();
 
         }
-        else if (gMaster.distance >= mediumNum && gMaster.distance < hardNum) // Medium
+        else if (gMaster.score >= mediumNum && gMaster.score < hardNum) // Medium
         {
             trackDifficultyMan.Medium();
         }
