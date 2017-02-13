@@ -41,6 +41,12 @@ public class PlayerMove : MonoBehaviour
     float shieldColourStartingAlpha;
     float alphaLerp;
 
+    public float minimum;
+    public float maximum;
+
+    float t = 0;
+
+
     Rigidbody2D rig;
 
     [Space(5)]
@@ -141,6 +147,20 @@ public class PlayerMove : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().color = Color.white;
         }
+
+
+        alphaLerp = Mathf.Lerp(minimum, maximum, t);
+
+        t += 2 * Time.deltaTime;
+
+        if (t > 1f)
+        {
+            float temp = maximum;
+            maximum = minimum;
+            minimum = temp;
+            t = 0.0f;
+        }
+
 
         SpecialAbilities();
 
@@ -251,22 +271,6 @@ public class PlayerMove : MonoBehaviour
     void SpecialAbilities()
     {
 
-        float minimum = 0.2f;
-        float maximum = 0.5F;
-
-        float t = 0;
-
-        alphaLerp = Mathf.Lerp(minimum, maximum, t);
-
-        t += 5f * Time.deltaTime;
-
-        if (t < 1f)
-        {
-            float temp = maximum;
-            maximum = minimum;
-            minimum = temp;
-            t = 0.0f;
-        }
 
         print(alphaLerp.ToString());
 
@@ -310,17 +314,8 @@ public class PlayerMove : MonoBehaviour
                 print("Stuter");
 
                 shieldColour = Color.red;
-               // shieldColour.a = 0.25f;
 
-
-
-                // lerp
-           
-                //
                 shieldObj.GetComponent<SpriteRenderer>().color = new Color(shieldColour.r, shieldColour.g, shieldColour.b, alphaLerp);
-
-
-
             }
 
             if (shieldTimer >= shieldTime)
@@ -332,8 +327,13 @@ public class PlayerMove : MonoBehaviour
         }
         else if (obtainedShield == false)
         {
+
+            shieldColour = Color.white;
+            shieldObj.GetComponent<SpriteRenderer>().color = new Color(shieldColour.r, shieldColour.g, shieldColour.b, shieldColourStartingAlpha);
             shieldObj.SetActive(false);
             shieldTimer = 0;
+
+
         }
 
 
