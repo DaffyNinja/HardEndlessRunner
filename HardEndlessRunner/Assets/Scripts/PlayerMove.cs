@@ -35,14 +35,16 @@ public class PlayerMove : MonoBehaviour
     [Space(5)]
     public float shieldTime;
     float shieldTimer;
+
+    public float shieldStutMin;
+    public float shieldStutMax;
+
     public bool obtainedShield;
     GameObject shieldObj;
     Color shieldColour;
     float shieldColourStartingAlpha;
     float alphaLerp;
 
-    public float minimum;
-    public float maximum;
 
     float t = 0;
 
@@ -147,20 +149,6 @@ public class PlayerMove : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().color = Color.white;
         }
-
-
-        alphaLerp = Mathf.Lerp(minimum, maximum, t);
-
-        t += 2 * Time.deltaTime;
-
-        if (t > 1f)
-        {
-            float temp = maximum;
-            maximum = minimum;
-            minimum = temp;
-            t = 0.0f;
-        }
-
 
         SpecialAbilities();
 
@@ -272,11 +260,13 @@ public class PlayerMove : MonoBehaviour
     {
 
 
-        print(alphaLerp.ToString());
+      //  print(alphaLerp.ToString());
 
         // Boost
         if (obtainedBoost)
         {
+
+
             rightSpeed = boostSpeed;
 
             boostTimer += Time.deltaTime;
@@ -309,13 +299,22 @@ public class PlayerMove : MonoBehaviour
             shieldObj.SetActive(true);
 
 
-            if (shieldTimer >= shieldTime / 3f)
+            alphaLerp = Mathf.Lerp(shieldStutMin, shieldStutMax, t);
+
+            t += 3 * Time.deltaTime;
+
+            if (t > 1f)
             {
-                print("Stuter");
+                float temp = shieldStutMax;
+                shieldStutMax = shieldStutMin;
+                shieldStutMin = temp;
+                t = 0.0f;
+            }
 
-                shieldColour = Color.red;
 
-                shieldObj.GetComponent<SpriteRenderer>().color = new Color(shieldColour.r, shieldColour.g, shieldColour.b, alphaLerp);
+            if (shieldTimer >= shieldTime / 1.5f)
+            {
+               shieldObj.GetComponent<SpriteRenderer>().color = new Color(shieldColour.r, shieldColour.g, shieldColour.b, alphaLerp);
             }
 
             if (shieldTimer >= shieldTime)
