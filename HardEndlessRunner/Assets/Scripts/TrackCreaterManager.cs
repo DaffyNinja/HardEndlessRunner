@@ -141,7 +141,7 @@ public class TrackCreaterManager : MonoBehaviour
 
             GameObject[] specialSpawn = GameObject.FindGameObjectsWithTag("Special Spawn");
 
-            Instantiate(specialObjs[Random.Range(0, specialObjs.Count)], specialSpawn[1].transform.position, Quaternion.identity);
+            Instantiate(specialObjs[Random.Range(0, specialObjs.Count)], specialSpawn[0].transform.position, Quaternion.identity);
 
             specialAppearNum = specialAppearNum + startSpecialNum;
 

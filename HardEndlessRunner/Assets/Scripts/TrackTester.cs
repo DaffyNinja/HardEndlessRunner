@@ -25,6 +25,13 @@ public class TrackTester : MonoBehaviour {
     bool isStart;
 
     GameObject[] tracksObjs;
+    [Space(5)]
+    public bool isSpecial;
+    public float specialAppearNum;
+    float startSpecialNum;
+    public GameObject[] specialObjs;
+    
+
 
     [Space(5)]
     public Transform playerTrans;
@@ -52,7 +59,7 @@ public class TrackTester : MonoBehaviour {
         isStart = true;
         playerPos = playerTrans.position;
 
-
+        startSpecialNum = specialAppearNum;
 
     }
 
@@ -111,6 +118,16 @@ public class TrackTester : MonoBehaviour {
         else
         {
             TrackCreation2(pos7, pos8, pos9, pos10, pos11);
+        }
+
+        if (playerTrans.position.x >= playerPos.x + specialAppearNum && isSpecial == true)
+        {
+            GameObject[] specialSpawn = GameObject.FindGameObjectsWithTag("Special Spawn");
+
+            Instantiate(specialObjs[Random.Range(0, specialObjs.Length)], specialSpawn[1].transform.position, Quaternion.identity);
+
+           specialAppearNum = specialAppearNum + startSpecialNum;
+
         }
 
     }

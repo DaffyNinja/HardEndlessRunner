@@ -37,6 +37,9 @@ public class PlayerMove : MonoBehaviour
     float shieldTimer;
     public bool obtainedShield;
     GameObject shieldObj;
+    Color shieldColour;
+    float shieldColourStartingAlpha;
+    float alphaLerp;
 
     Rigidbody2D rig;
 
@@ -55,6 +58,9 @@ public class PlayerMove : MonoBehaviour
 
         shieldObj = transform.GetChild(0).gameObject;
         shieldObj.SetActive(false);
+        shieldColour = shieldObj.GetComponent<SpriteRenderer>().color;
+        shieldColourStartingAlpha = shieldColour.a;
+
 
         startingRightSpeed = rightSpeed;
 
@@ -244,6 +250,26 @@ public class PlayerMove : MonoBehaviour
 
     void SpecialAbilities()
     {
+
+        float minimum = 0.2f;
+        float maximum = 0.5F;
+
+        float t = 0;
+
+        alphaLerp = Mathf.Lerp(minimum, maximum, t);
+
+        t += 5f * Time.deltaTime;
+
+        if (t < 1f)
+        {
+            float temp = maximum;
+            maximum = minimum;
+            minimum = temp;
+            t = 0.0f;
+        }
+
+        print(alphaLerp.ToString());
+
         // Boost
         if (obtainedBoost)
         {
@@ -278,10 +304,31 @@ public class PlayerMove : MonoBehaviour
             shieldTimer += Time.deltaTime;
             shieldObj.SetActive(true);
 
+
+            if (shieldTimer >= shieldTime / 3f)
+            {
+                print("Stuter");
+
+                shieldColour = Color.red;
+               // shieldColour.a = 0.25f;
+
+
+
+                // lerp
+           
+                //
+                shieldObj.GetComponent<SpriteRenderer>().color = new Color(shieldColour.r, shieldColour.g, shieldColour.b, alphaLerp);
+
+
+
+            }
+
             if (shieldTimer >= shieldTime)
             {
                 obtainedShield = false;
             }
+
+
         }
         else if (obtainedShield == false)
         {
