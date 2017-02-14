@@ -47,11 +47,16 @@ public class CameraMove : MonoBehaviour {
             //print("GO");
 
             gMaster.isGameOver = true;
-
         }
+
         if (gMaster.isGameOver)
         {
+            gameObject.isStatic = true;
             moveSpeed = 0;
+        }
+        else
+        {
+            gameObject.isStatic = false;
         }
 		
 	}

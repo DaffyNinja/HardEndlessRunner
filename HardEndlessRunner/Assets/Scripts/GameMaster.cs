@@ -96,6 +96,7 @@ public class GameMaster : MonoBehaviour
             highScore = Mathf.RoundToInt(score);
             PlayerPrefs.SetInt("highScore", highScore);
             highScoreUI.text = currentHighScore.ToString();
+
         }
 
     }

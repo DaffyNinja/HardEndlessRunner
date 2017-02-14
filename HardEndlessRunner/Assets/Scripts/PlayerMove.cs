@@ -77,7 +77,7 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gMaster.isGameOver == fall)
+        if (gMaster.isGameOver == false)
         {
             transform.Translate(rightSpeed, 0, 0);
         }
@@ -265,8 +265,6 @@ public class PlayerMove : MonoBehaviour
         // Boost
         if (obtainedBoost)
         {
-
-
             rightSpeed = boostSpeed;
 
             boostTimer += Time.deltaTime;
@@ -312,7 +310,7 @@ public class PlayerMove : MonoBehaviour
             }
 
 
-            if (shieldTimer >= shieldTime / 1.5f)
+            if (shieldTimer >= shieldTime / 1.75f)
             {
                shieldObj.GetComponent<SpriteRenderer>().color = new Color(shieldColour.r, shieldColour.g, shieldColour.b, alphaLerp);
             }

@@ -63,6 +63,7 @@ public class TrackCreaterManager : MonoBehaviour
     public int trackPiece4;
 
     [Header("Special")]
+    public bool spawnSpecials;
     public List<GameObject> specialObjs;
     public float specialAppearNum;
     float startSpecialNum;
@@ -136,12 +137,12 @@ public class TrackCreaterManager : MonoBehaviour
         }
 
         // Spawn Special
-        if (playerTrans.position.x >= playerPos.x + specialAppearNum)
+        if (playerTrans.position.x >= playerPos.x + specialAppearNum && spawnSpecials == true)
         {
 
             GameObject[] specialSpawn = GameObject.FindGameObjectsWithTag("Special Spawn");
 
-            Instantiate(specialObjs[Random.Range(0, specialObjs.Count)], specialSpawn[2].transform.position, Quaternion.identity);
+            Instantiate(specialObjs[Random.Range(0, specialObjs.Count)], specialSpawn[1].transform.position, Quaternion.identity);
 
             specialAppearNum = specialAppearNum + startSpecialNum;
 
@@ -202,6 +203,8 @@ public class TrackCreaterManager : MonoBehaviour
 
             create = false;
 
+            MediumTracksAdjust();
+
         }
 
     }
@@ -222,6 +225,21 @@ public class TrackCreaterManager : MonoBehaviour
             trackDifficultyMan.Hard();
         }
 
+    }
+
+
+    void MediumTracksAdjust()
+    {
+        if (tr1.name == "Track Saw Long(Clone)" && tr3.name == "Track Saw Long(Clone)")
+        {
+            print("Long Saws");
+
+            tr1.GetComponentInChildren<SawArmRotate>().isRandom = false;
+            tr3.GetComponentInChildren<SawArmRotate>().isRandom = false;
+
+            tr1.GetComponentInChildren<SawArmRotate>().isClockwise = true;
+            tr3.GetComponentInChildren<SawArmRotate>().isClockwise = true;
+        }
     }
 
 
