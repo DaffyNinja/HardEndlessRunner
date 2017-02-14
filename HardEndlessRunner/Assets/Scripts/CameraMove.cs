@@ -6,9 +6,12 @@ public class CameraMove : MonoBehaviour {
 
     public float moveSpeed;
     public float boostSpeed;
-
+    [Header("Screen Siz & Pos")]
     public float xPos;
     public float yPos;
+    public float orthSize;
+    [Space(5)]
+    public float killNum;
 
     public Transform playerTrans;
     PlayerMove pMove;
@@ -18,6 +21,8 @@ public class CameraMove : MonoBehaviour {
 	// Use this for initialization
 	void Awake ()
     {
+        GetComponent<Camera>().orthographicSize = orthSize;
+
         transform.position = new Vector3(playerTrans.position.x + xPos, playerTrans.position.y + yPos, transform.position.z);
 
         pMove = playerTrans.GetComponent<PlayerMove>();
@@ -37,7 +42,7 @@ public class CameraMove : MonoBehaviour {
 
         Vector3 viewPos = GetComponent<Camera>().WorldToViewportPoint(playerTrans.position);
 
-        if (viewPos.x < 0)
+        if (viewPos.x <= killNum)
         {
             //print("GO");
 

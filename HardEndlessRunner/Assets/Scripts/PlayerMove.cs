@@ -158,7 +158,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (col.gameObject.tag == "Saw" && obtainedShield == false)   // game Over
         {
-            print("Dead");
+           // print("Dead");
 
             gMaster.isGameOver = true;
         }
@@ -169,8 +169,8 @@ public class PlayerMove : MonoBehaviour
 
         if (col.gameObject.tag == "Spike" && obtainedShield == false)
         {
-            print("Spike");
-
+           // print("Spike");
+           
             gMaster.isGameOver = true;
         }
         else if (col.gameObject.tag == "Spike" && obtainedShield == true)
@@ -180,7 +180,7 @@ public class PlayerMove : MonoBehaviour
 
         if (col.gameObject.tag == "Pillar")
         {
-            print("Pillar");
+            //print("Pillar");
 
             //gMaster.isGameOver = true;
         }
