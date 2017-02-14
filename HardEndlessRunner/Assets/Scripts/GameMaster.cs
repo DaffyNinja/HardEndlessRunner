@@ -80,7 +80,7 @@ public class GameMaster : MonoBehaviour
         scoreUI.text = Mathf.RoundToInt(score).ToString();
         highScoreUI.text = currentHighScore.ToString();
 
-        PhoneInput();
+       // PhoneInput();
     }
 
     void GameOver()
@@ -112,6 +112,11 @@ public class GameMaster : MonoBehaviour
     public void RetryButton()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void QuitButton()
+    {
+        SceneManager.LoadScene(0);
     }
 
 }
