@@ -27,6 +27,14 @@ public class PlayerMove : MonoBehaviour
     bool inAir;
     bool fall;
 
+    [Header("Slide")]
+    public float timeforFullSlide;
+    public float minSlideForce;
+    public float maxSlideForce;
+
+    float slideTimeHeld;
+    Vector2 resolvedSlide;
+
     [Header("Special Abilities")]
     public float boostSpeed;
     public float boostTime;
@@ -94,6 +102,11 @@ public class PlayerMove : MonoBehaviour
             {
                 timeHeld = 0f;
             }
+            else if (Input.GetKeyDown(KeyCode.LeftControl) && grounded)
+            {
+                slideTimeHeld = 0f;
+            }
+
 
             if (Input.GetKey(KeyCode.Space) && grounded)
             {
@@ -105,9 +118,18 @@ public class PlayerMove : MonoBehaviour
 
             }
 
+            if (Input.GetKey(KeyCode.LeftControl) && grounded)
+            {
+                slideTimeHeld += Time.deltaTime;
+            }
+
             if (Input.GetKeyUp(KeyCode.Space) && grounded)
             {
                 Jump();
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftControl) && grounded)
+            {
+                Slide();
             }
 
             // Slide
@@ -138,6 +160,8 @@ public class PlayerMove : MonoBehaviour
         if (grounded)
         {
             resolvedJump = new Vector2(0, 0);
+           // resolvedSlide = new Vector2(0, 0);
+
             GetComponent<SpriteRenderer>().color = Color.white;
         }
 
@@ -158,7 +182,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (col.gameObject.tag == "Saw" && obtainedShield == false)   // game Over
         {
-           // print("Dead");
+            // print("Dead");
 
             gMaster.isGameOver = true;
         }
@@ -169,8 +193,8 @@ public class PlayerMove : MonoBehaviour
 
         if (col.gameObject.tag == "Spike" && obtainedShield == false)
         {
-           // print("Spike");
-           
+            // print("Spike");
+
             gMaster.isGameOver = true;
         }
         else if (col.gameObject.tag == "Spike" && obtainedShield == true)
@@ -256,11 +280,30 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    void Slide()
+    {
+        GetComponent<BoxCollider2D>().size = new Vector2(0.5f, 1.3f);
+        transform.rotation = Quaternion.Euler(0, 0, 90);
+
+        float hozSlideForce = ((maxSlideForce - minSlideForce) * (slideTimeHeld / timeforFullSlide)) + minSlideForce;
+
+        if (hozSlideForce > maxSlideForce)
+        {
+            hozSlideForce = maxSlideForce;
+        }
+
+        slideTimeHeld = 0;
+
+        resolvedSlide = new Vector2(hozSlideForce, 0);
+
+        rig.AddForce(resolvedSlide, ForceMode2D.Impulse);
+    }
+
     void SpecialAbilities()
     {
 
 
-      //  print(alphaLerp.ToString());
+        //  print(alphaLerp.ToString());
 
         // Boost
         if (obtainedBoost)
@@ -312,7 +355,7 @@ public class PlayerMove : MonoBehaviour
 
             if (shieldTimer >= shieldTime / 1.75f)
             {
-               shieldObj.GetComponent<SpriteRenderer>().color = new Color(shieldColour.r, shieldColour.g, shieldColour.b, alphaLerp);
+                shieldObj.GetComponent<SpriteRenderer>().color = new Color(shieldColour.r, shieldColour.g, shieldColour.b, alphaLerp);
             }
 
             if (shieldTimer >= shieldTime)
@@ -333,6 +376,16 @@ public class PlayerMove : MonoBehaviour
 
         }
 
+
+    }
+
+    public void JumpButton()
+    {
+
+    }
+
+    public void SlideButton()
+    {
 
     }
 

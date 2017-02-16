@@ -9,7 +9,6 @@ public class TrackNumList
     public int trackNum2;
     public int trackNum3;
     public int trackNum4;
-
 }
 
 public class TrackCreaterManager : MonoBehaviour
@@ -227,6 +226,9 @@ public class TrackCreaterManager : MonoBehaviour
 
     }
 
+    void EasyTracksAdjust()
+    {
+    }
 
     void MediumTracksAdjust()
     {
@@ -242,6 +244,9 @@ public class TrackCreaterManager : MonoBehaviour
         }
     }
 
+    void HardTracksAdjust()
+    {
+    }
 
 
 }
