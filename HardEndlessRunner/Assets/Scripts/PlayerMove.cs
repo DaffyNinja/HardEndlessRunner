@@ -24,8 +24,6 @@ public class PlayerMove : MonoBehaviour
     public float groundCheck;
 
     bool grounded;
-    bool inAir;
-    bool fall;
 
     [Header("Slide")]
     public float timeforFullSlide;
@@ -102,9 +100,10 @@ public class PlayerMove : MonoBehaviour
             {
                 timeHeld = 0f;
             }
-            else if (Input.GetKeyDown(KeyCode.LeftControl) && grounded)
+
+            if (Input.GetKeyDown(KeyCode.LeftControl) && grounded)
             {
-                slideTimeHeld = 0f;
+                //slideTimeHeld = 0f;
             }
 
 
@@ -120,19 +119,18 @@ public class PlayerMove : MonoBehaviour
 
             if (Input.GetKey(KeyCode.LeftControl) && grounded)
             {
-                slideTimeHeld += Time.deltaTime;
+                // slideTimeHeld += Time.deltaTime;
             }
 
             if (Input.GetKeyUp(KeyCode.Space) && grounded)
             {
                 Jump();
             }
-            else if (Input.GetKeyUp(KeyCode.LeftControl) && grounded)
-            {
-                Slide();
-            }
 
-            // Slide
+            //if (Input.GetKeyUp(KeyCode.LeftControl))
+            //{
+            //    Slide();
+            //}
         }
         else      // Mobile  
         {
@@ -159,10 +157,14 @@ public class PlayerMove : MonoBehaviour
 
         if (grounded)
         {
-            resolvedJump = new Vector2(0, 0);
-           // resolvedSlide = new Vector2(0, 0);
+            // resolvedJump = new Vector2(0, 0);
+            // resolvedSlide = new Vector2(0, 0);
 
             GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        else
+        {
+            print("Not Grounded");
         }
 
         if (timeHeld >= timeForFullJump && grounded == true)
@@ -282,21 +284,22 @@ public class PlayerMove : MonoBehaviour
 
     void Slide()
     {
-        GetComponent<BoxCollider2D>().size = new Vector2(0.5f, 1.3f);
         transform.rotation = Quaternion.Euler(0, 0, 90);
+      //  GetComponent<BoxCollider2D>().size = new Vector2(0.25f, 0.25f);
+      
 
-        float hozSlideForce = ((maxSlideForce - minSlideForce) * (slideTimeHeld / timeforFullSlide)) + minSlideForce;
+        //float hozSlideForce = ((maxSlideForce - minSlideForce) * (slideTimeHeld / timeforFullSlide)) + minSlideForce;
 
-        if (hozSlideForce > maxSlideForce)
-        {
-            hozSlideForce = maxSlideForce;
-        }
+        //if (hozSlideForce > maxSlideForce)
+        //{
+        //    hozSlideForce = maxSlideForce;
+        //}
 
-        slideTimeHeld = 0;
+        //slideTimeHeld = 0;
 
-        resolvedSlide = new Vector2(hozSlideForce, 0);
+        //resolvedSlide = new Vector2(hozSlideForce, 0);
 
-        rig.AddForce(resolvedSlide, ForceMode2D.Impulse);
+        //rig.AddForce(resolvedSlide, ForceMode2D.Impulse);
     }
 
     void SpecialAbilities()
