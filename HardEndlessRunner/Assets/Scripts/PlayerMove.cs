@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+
+    bool canMove;
     public float rightSpeed;
     float startingRightSpeed;
 
@@ -70,10 +72,13 @@ public class PlayerMove : MonoBehaviour
 
         gMaster = gMaster.GetComponent<GameMaster>();
 
+        canMove = true;
+
         shieldObj = transform.GetChild(0).gameObject;
         shieldObj.SetActive(false);
         shieldColour = shieldObj.GetComponent<SpriteRenderer>().color;
         shieldColourStartingAlpha = shieldColour.a;
+
 
 
         startingRightSpeed = rightSpeed;
@@ -83,6 +88,8 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (gMaster.isGameOver == false)
         {
             transform.Translate(rightSpeed, 0, 0);
@@ -94,7 +101,7 @@ public class PlayerMove : MonoBehaviour
 
         grounded = Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - groundCheck), 1 << LayerMask.NameToLayer("Ground"));
 
-        if (isPC)
+        if (isPC && canMove == true)
         {
             if (Input.GetKeyDown(KeyCode.Space) && grounded)
             {
@@ -132,7 +139,7 @@ public class PlayerMove : MonoBehaviour
             //    Slide();
             //}
         }
-        else      // Mobile  
+        else if (isPC == false && canMove == true)      // Mobile  
         {
 
             if (Input.touchCount > 0 && grounded)
@@ -182,16 +189,17 @@ public class PlayerMove : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Saw" && obtainedShield == false)   // game Over
+        if (col.gameObject.tag == "Saw" && obtainedShield == false && obtainedBoost == false)   // game Over
         {
             // print("Dead");
 
             gMaster.isGameOver = true;
         }
-        else if (col.gameObject.tag == "Saw" && obtainedShield == true)
+        else if (col.gameObject.tag == "Saw" && obtainedShield == true || col.gameObject.tag == "Saw" && obtainedBoost == true)
         {
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
+
 
         if (col.gameObject.tag == "Spike" && obtainedShield == false)
         {
@@ -199,7 +207,7 @@ public class PlayerMove : MonoBehaviour
 
             gMaster.isGameOver = true;
         }
-        else if (col.gameObject.tag == "Spike" && obtainedShield == true)
+        else if (col.gameObject.tag == "Spike" && obtainedShield == true || col.gameObject.tag == "Spike" && obtainedBoost == true)
         {
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
@@ -235,12 +243,7 @@ public class PlayerMove : MonoBehaviour
 
             gMaster.isGameOver = true;
         }
-        else if (col.gameObject.tag == "Dart" && obtainedShield == true)
-        {
-            Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        }
-
-        if (col.gameObject.tag != "Track" && col.gameObject.layer != 8)
+        else if (col.gameObject.tag == "Dart" && obtainedShield == true || col.gameObject.tag == "Dart" && obtainedBoost == true)
         {
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
@@ -289,8 +292,8 @@ public class PlayerMove : MonoBehaviour
     void Slide()
     {
         transform.rotation = Quaternion.Euler(0, 0, 90);
-      //  GetComponent<BoxCollider2D>().size = new Vector2(0.25f, 0.25f);
-      
+        //  GetComponent<BoxCollider2D>().size = new Vector2(0.25f, 0.25f);
+
 
         //float hozSlideForce = ((maxSlideForce - minSlideForce) * (slideTimeHeld / timeforFullSlide)) + minSlideForce;
 
@@ -313,6 +316,11 @@ public class PlayerMove : MonoBehaviour
         {
             rightSpeed = boostSpeed;
 
+            canMove = false;
+
+            //  rig.gravityScale = 0;
+            //   rig.constraints = RigidbodyConstraints2D.FreezePositionY;
+
             boostTimer += Time.deltaTime;
 
             GetComponent<SpriteRenderer>().color = Color.yellow;
@@ -327,6 +335,8 @@ public class PlayerMove : MonoBehaviour
         }
         else if (obtainedBoost == false)
         {
+            canMove = true;
+
             rightSpeed = startingRightSpeed;
 
             rig.gravityScale = 1;
