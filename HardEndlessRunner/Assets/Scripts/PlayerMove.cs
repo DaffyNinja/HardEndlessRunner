@@ -162,10 +162,10 @@ public class PlayerMove : MonoBehaviour
 
             GetComponent<SpriteRenderer>().color = Color.white;
         }
-        else
-        {
-            print("Not Grounded");
-        }
+        //else
+        //{
+        //    print("Not Grounded");
+        //}
 
         if (timeHeld >= timeForFullJump && grounded == true)
         {
@@ -240,6 +240,10 @@ public class PlayerMove : MonoBehaviour
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
 
+        if (col.gameObject.tag != "Track" && col.gameObject.layer != 8)
+        {
+            Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
 
         //print(col.gameObject.layer);
 
@@ -304,10 +308,6 @@ public class PlayerMove : MonoBehaviour
 
     void SpecialAbilities()
     {
-
-
-        //  print(alphaLerp.ToString());
-
         // Boost
         if (obtainedBoost)
         {
