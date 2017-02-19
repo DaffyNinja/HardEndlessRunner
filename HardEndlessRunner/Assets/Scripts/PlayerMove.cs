@@ -35,6 +35,12 @@ public class PlayerMove : MonoBehaviour
     float slideTimeHeld;
     Vector2 resolvedSlide;
 
+    float slideTimer;
+    int slideTongle;
+
+    public Sprite slideSpr;
+    Sprite normSpr;
+
     [Header("Special Abilities")]
     public float boostSpeed;
     public float boostTime;
@@ -65,6 +71,8 @@ public class PlayerMove : MonoBehaviour
     public bool isPC;
 
 
+    SpriteRenderer sprRend;
+
     // Use this for initialization
     void Awake()
     {
@@ -80,6 +88,11 @@ public class PlayerMove : MonoBehaviour
         shieldColourStartingAlpha = shieldColour.a;
 
         startingRightSpeed = rightSpeed;
+
+        sprRend = GetComponent<SpriteRenderer>();
+
+        normSpr = sprRend.sprite;
+
 
     }
 
@@ -100,6 +113,7 @@ public class PlayerMove : MonoBehaviour
 
         if (isPC && canMove == true)
         {
+            //Jump
             if (Input.GetKeyDown(KeyCode.Space) && grounded)
             {
                 timeHeld = 0f;
@@ -121,20 +135,61 @@ public class PlayerMove : MonoBehaviour
 
             }
 
-            if (Input.GetKey(KeyCode.LeftControl) && grounded)
-            {
-                // slideTimeHeld += Time.deltaTime;
-            }
-
             if (Input.GetKeyUp(KeyCode.Space) && grounded)
             {
                 Jump();
             }
 
-            //if (Input.GetKeyUp(KeyCode.LeftControl))
+            // Slide
+
+            //if (Input.GetKeyDown(KeyCode.LeftControl) && grounded)
             //{
-            //    Slide();
+            //    slideTimeHeld = 0f;
             //}
+
+
+            //if (Input.GetKey(KeyCode.LeftControl) && grounded)
+            //{
+            //    slideTimeHeld += Time.deltaTime;
+            //}
+
+            if (slideTongle == 0)
+            {
+                if (Input.GetKeyDown(KeyCode.LeftControl) && grounded)
+                {
+                    // Slide();
+
+                    // GetComponent<BoxCollider2D>().size = new Vector2(0.25f, 0.5f);
+                   // transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y - 0.25f);
+
+                    GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y - 0.35f);
+
+                    sprRend.sprite = slideSpr;
+
+                    slideTongle = 1;
+
+               
+                }
+            }
+            else if(slideTongle == 1)
+            {
+                if (Input.GetKeyDown(KeyCode.LeftControl) && grounded)
+                {
+                    //transform.position = new Vector2(transform.position.x, transform.position.y + 0.5f);
+
+                   // transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y + 0.25f);
+
+                    GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y + 0.35f);
+
+                    sprRend.sprite = normSpr;
+
+                    slideTongle = 0;
+                }     
+            }
+
+
+      
+      
         }
         else if (isPC == false && canMove == true)      // Mobile  
         {
@@ -293,8 +348,21 @@ public class PlayerMove : MonoBehaviour
 
     void Slide()
     {
-        transform.rotation = Quaternion.Euler(0, 0, 90);
-        //  GetComponent<BoxCollider2D>().size = new Vector2(0.25f, 0.25f);
+        // transform.rotation = Quaternion.Euler(0, 0, 90);
+
+    
+        slideTimer += Time.deltaTime;
+
+        if (slideTimer < 2)
+        {
+            print("Done");
+
+            GetComponent<BoxCollider2D>().size = new Vector2(0.25f, 0.5f);
+        }
+        else
+        {
+            GetComponent<BoxCollider2D>().size = new Vector2(0.775f, 1.3f);
+        }
 
 
         //float hozSlideForce = ((maxSlideForce - minSlideForce) * (slideTimeHeld / timeforFullSlide)) + minSlideForce;
