@@ -79,8 +79,6 @@ public class PlayerMove : MonoBehaviour
         shieldColour = shieldObj.GetComponent<SpriteRenderer>().color;
         shieldColourStartingAlpha = shieldColour.a;
 
-
-
         startingRightSpeed = rightSpeed;
 
     }
@@ -88,7 +86,6 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
 
         if (gMaster.isGameOver == false)
         {
@@ -201,9 +198,9 @@ public class PlayerMove : MonoBehaviour
         }
 
 
-        if (col.gameObject.tag == "Spike" && obtainedShield == false)
+        if (col.gameObject.tag == "Spike" && obtainedShield == false && obtainedBoost == false)
         {
-            // print("Spike");
+            print("Spike");
 
             gMaster.isGameOver = true;
         }
@@ -244,6 +241,11 @@ public class PlayerMove : MonoBehaviour
             gMaster.isGameOver = true;
         }
         else if (col.gameObject.tag == "Dart" && obtainedShield == true || col.gameObject.tag == "Dart" && obtainedBoost == true)
+        {
+            Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        }
+
+        if (col.gameObject.tag == "Platform" && obtainedBoost == true)
         {
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
