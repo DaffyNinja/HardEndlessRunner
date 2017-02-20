@@ -28,12 +28,10 @@ public class PlayerMove : MonoBehaviour
     bool grounded;
 
     [Header("Slide")]
-    public float timeforFullSlide;
-    public float minSlideForce;
-    public float maxSlideForce;
-
-    float slideTimeHeld;
-    Vector2 resolvedSlide;
+    public float slideSpeed;
+    public float slideSlowSpeed;
+    public float timeForFullSlide;
+    public float slideTimeDivide;   
 
     float slideTimer;
     int slideTongle;
@@ -100,11 +98,24 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
 
-        if (gMaster.isGameOver == false)
+        // Right movment
+        if (slideTongle == 0)
         {
             transform.Translate(rightSpeed, 0, 0);
         }
-        else
+        else if (slideTongle == 1)
+        {
+            if (slideTimer >= timeForFullSlide / slideTimeDivide)  // SLowSLide
+            {
+                transform.Translate(slideSlowSpeed, 0, 0);
+            }
+            else
+            {
+                transform.Translate(slideSpeed, 0, 0);
+            }
+         
+        }
+        else if(gMaster.isGameOver == true)
         {
             transform.Translate(0, 0, 0);
         }
@@ -141,55 +152,52 @@ public class PlayerMove : MonoBehaviour
             }
 
             // Slide
-
-            //if (Input.GetKeyDown(KeyCode.LeftControl) && grounded)
-            //{
-            //    slideTimeHeld = 0f;
-            //}
-
-
-            //if (Input.GetKey(KeyCode.LeftControl) && grounded)
-            //{
-            //    slideTimeHeld += Time.deltaTime;
-            //}
-
             if (slideTongle == 0)
             {
-                if (Input.GetKeyDown(KeyCode.LeftControl) && grounded)
+                if (Input.GetKeyDown(KeyCode.LeftControl) && grounded)  //  Is sliding 
                 {
-                    // Slide();
-
-                    // GetComponent<BoxCollider2D>().size = new Vector2(0.25f, 0.5f);
-                   // transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y - 0.25f);
-
                     GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y - 0.35f);
 
                     sprRend.sprite = slideSpr;
 
-                    slideTongle = 1;
+                    rightSpeed = slideSpeed;
 
-               
+                    slideTongle = 1;
                 }
             }
-            else if(slideTongle == 1)
+            else if (slideTongle == 1)
             {
-                if (Input.GetKeyDown(KeyCode.LeftControl) && grounded)
+                slideTimer += Time.deltaTime;
+
+                if (slideTimer >= timeForFullSlide) // Change back to normal
                 {
-                    //transform.position = new Vector2(transform.position.x, transform.position.y + 0.5f);
-
-                   // transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y + 0.25f);
-
                     GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y + 0.35f);
 
                     sprRend.sprite = normSpr;
 
+                    rightSpeed = startingRightSpeed;
+
                     slideTongle = 0;
-                }     
+                    slideTimer = 0;
+                }
+
+                if (Input.GetKeyDown(KeyCode.LeftControl))
+                {
+                    GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y + 0.35f);
+
+                    sprRend.sprite = normSpr;
+
+                    rightSpeed = startingRightSpeed;
+
+                    slideTongle = 0;
+                    slideTimer = 0;
+                }
+                
             }
 
 
-      
-      
+
+
         }
         else if (isPC == false && canMove == true)      // Mobile  
         {
@@ -211,20 +219,17 @@ public class PlayerMove : MonoBehaviour
                 Jump();
             }
 
+
             // Slide
+
         }
 
         if (grounded)
         {
-            // resolvedJump = new Vector2(0, 0);
-            // resolvedSlide = new Vector2(0, 0);
-
+          
             GetComponent<SpriteRenderer>().color = Color.white;
         }
-        //else
-        //{
-        //    print("Not Grounded");
-        //}
+
 
         if (timeHeld >= timeForFullJump && grounded == true)
         {
@@ -344,39 +349,6 @@ public class PlayerMove : MonoBehaviour
 
             rig.AddForce(resolvedJump, ForceMode2D.Impulse);
         }
-    }
-
-    void Slide()
-    {
-        // transform.rotation = Quaternion.Euler(0, 0, 90);
-
-    
-        slideTimer += Time.deltaTime;
-
-        if (slideTimer < 2)
-        {
-            print("Done");
-
-            GetComponent<BoxCollider2D>().size = new Vector2(0.25f, 0.5f);
-        }
-        else
-        {
-            GetComponent<BoxCollider2D>().size = new Vector2(0.775f, 1.3f);
-        }
-
-
-        //float hozSlideForce = ((maxSlideForce - minSlideForce) * (slideTimeHeld / timeforFullSlide)) + minSlideForce;
-
-        //if (hozSlideForce > maxSlideForce)
-        //{
-        //    hozSlideForce = maxSlideForce;
-        //}
-
-        //slideTimeHeld = 0;
-
-        //resolvedSlide = new Vector2(hozSlideForce, 0);
-
-        //rig.AddForce(resolvedSlide, ForceMode2D.Impulse);
     }
 
     void SpecialAbilities()
