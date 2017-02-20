@@ -71,6 +71,9 @@ public class PlayerMove : MonoBehaviour
 
     SpriteRenderer sprRend;
 
+    bool slidePressed;
+    bool jumpPressed;
+
     // Use this for initialization
     void Awake()
     {
@@ -89,8 +92,7 @@ public class PlayerMove : MonoBehaviour
 
         sprRend = GetComponent<SpriteRenderer>();
 
-        normSpr = sprRend.sprite;
-
+        normSpr = sprRend.sprite; 
 
     }
 
@@ -195,9 +197,6 @@ public class PlayerMove : MonoBehaviour
                 
             }
 
-
-
-
         }
         else if (isPC == false && canMove == true)      // Mobile  
         {
@@ -219,8 +218,50 @@ public class PlayerMove : MonoBehaviour
                 Jump();
             }
 
-
             // Slide
+
+            if (slideTongle == 0)
+            {
+                if (slidePressed == true && grounded)  //  Is sliding 
+                {
+                    GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y - 0.35f);
+
+                    sprRend.sprite = slideSpr;
+
+                    rightSpeed = slideSpeed;
+
+                    slideTongle = 1;
+                }
+            }
+            else if (slideTongle == 1)
+            {
+                slideTimer += Time.deltaTime;
+
+                if (slideTimer >= timeForFullSlide) // Change back to normal
+                {
+                    GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y + 0.35f);
+
+                    sprRend.sprite = normSpr;
+
+                    rightSpeed = startingRightSpeed;
+
+                    slideTongle = 0;
+                    slideTimer = 0;
+                }
+
+                if (slidePressed == true)
+                {
+                    GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y + 0.35f);
+
+                    sprRend.sprite = normSpr;
+
+                    rightSpeed = startingRightSpeed;
+
+                    slideTongle = 0;
+                    slideTimer = 0;
+                }
+
+            }
 
         }
 
@@ -436,12 +477,22 @@ public class PlayerMove : MonoBehaviour
 
     public void JumpButton()
     {
+        jumpPressed = true;
 
+        slidePressed = false;
     }
 
-    public void SlideButton()
+    public void SlideButtonDown()
     {
+        slidePressed = true;
 
+        jumpPressed = false;
+       
+    }
+
+    public void SlideButtonUp()
+    {
+        slidePressed = false;
     }
 
 
