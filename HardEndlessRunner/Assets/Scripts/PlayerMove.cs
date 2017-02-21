@@ -56,11 +56,9 @@ public class PlayerMove : MonoBehaviour
     Color shieldColour;
     float shieldColourStartingAlpha;
     float alphaLerp;
-
-
+    
     float t = 0;
-
-
+     
     Rigidbody2D rig;
 
     [Space(5)]
@@ -73,6 +71,8 @@ public class PlayerMove : MonoBehaviour
 
     bool slidePressed;
     bool jumpPressed;
+    bool jumpHeld;
+    bool jumpUp;
 
     // Use this for initialization
     void Awake()
@@ -94,7 +94,8 @@ public class PlayerMove : MonoBehaviour
 
         normSpr = sprRend.sprite;
 
-     }
+      
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -196,32 +197,34 @@ public class PlayerMove : MonoBehaviour
         }
         else if (isPC == false && canMove == true)      // Mobile  
         {
-
-            print(slidePressed);
-
-            if (Input.touchCount > 0 && grounded)
+            // Jump Buttons
+            if (jumpHeld == true && grounded)
             {
-                print("Touch");
-
-                //Jump();
-
                 timeHeld += Time.deltaTime;
             }
 
-
-            if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && grounded)
+            if (jumpHeld == false && jumpUp == true &&grounded)
             {
-                print("Touch Up");
-
                 Jump();
+
+                jumpUp = false;
             }
 
-            // Slide
+            // Jump  Touch
+            //if (Input.touchCount > 0 && grounded)
+            //{
+            //    timeHeld += Time.deltaTime;
+            //}
 
+
+            //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && grounded)
+            //{                   
+            //    Jump();
+            //}
+
+            // Slide Button
             if (slideTongle == 0)
             {
-                print(0);
-
                 if (slidePressed == true && grounded)  //  Is sliding 
                 {
                     print("Slide");
@@ -237,8 +240,7 @@ public class PlayerMove : MonoBehaviour
             }
             else if (slideTongle == 1)
             {
-                print(1);
-
+                  
                 slideTimer += Time.deltaTime;
 
                 if (slideTimer >= timeForFullSlide) // Change back to normal
@@ -472,20 +474,27 @@ public class PlayerMove : MonoBehaviour
         jumpPressed = true;
     }
 
+    public void JumpButtonDown()
+    {
+        jumpUp = false;
+        jumpHeld = true;
+    }
+
+    public void JumpButtonUp()
+    {
+        jumpUp = true;
+        jumpPressed = false;
+        jumpHeld = false;
+    }
+
     public void SlideButtonDown()
     {
-       slidePressed = true;
-
-      //  jumpPressed = false;
-
-       // slideTongle = 1;
+        slidePressed = true;
     }
 
     public void SlideButtonUp()
     {
-       slidePressed = false;
-
-       // slideTongle = 0;
+        slidePressed = false;
     }
 
 
