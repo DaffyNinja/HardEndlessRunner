@@ -94,7 +94,7 @@ public class PlayerMove : MonoBehaviour
 
         normSpr = sprRend.sprite;
 
-    }
+     }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -197,6 +197,8 @@ public class PlayerMove : MonoBehaviour
         else if (isPC == false && canMove == true)      // Mobile  
         {
 
+            print(slidePressed);
+
             if (Input.touchCount > 0 && grounded)
             {
                 print("Touch");
@@ -218,8 +220,12 @@ public class PlayerMove : MonoBehaviour
 
             if (slideTongle == 0)
             {
+                print(0);
+
                 if (slidePressed == true && grounded)  //  Is sliding 
                 {
+                    print("Slide");
+
                     GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y - 0.35f);
 
                     sprRend.sprite = slideSpr;
@@ -231,6 +237,8 @@ public class PlayerMove : MonoBehaviour
             }
             else if (slideTongle == 1)
             {
+                print(1);
+
                 slideTimer += Time.deltaTime;
 
                 if (slideTimer >= timeForFullSlide) // Change back to normal
@@ -241,22 +249,12 @@ public class PlayerMove : MonoBehaviour
 
                     rightSpeed = startingRightSpeed;
 
-                    slideTongle = 0;
-                    slideTimer = 0;
-                }
+                    slidePressed = false;
 
-                if (slidePressed == true)
-                {
-                    GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y + 0.35f);
-
-                    sprRend.sprite = normSpr;
-
-                    rightSpeed = startingRightSpeed;
 
                     slideTongle = 0;
                     slideTimer = 0;
                 }
-
             }
 
         }
@@ -350,8 +348,6 @@ public class PlayerMove : MonoBehaviour
         //print(col.gameObject.layer);
 
     }
-
-
 
     void Jump()
     {
@@ -474,21 +470,22 @@ public class PlayerMove : MonoBehaviour
     public void JumpButton()
     {
         jumpPressed = true;
-
-        slidePressed = false;
     }
 
     public void SlideButtonDown()
     {
-        slidePressed = true;
+       slidePressed = true;
 
-        jumpPressed = false;
+      //  jumpPressed = false;
 
+       // slideTongle = 1;
     }
 
     public void SlideButtonUp()
     {
-        slidePressed = false;
+       slidePressed = false;
+
+       // slideTongle = 0;
     }
 
 
