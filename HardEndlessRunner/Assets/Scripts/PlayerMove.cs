@@ -31,7 +31,7 @@ public class PlayerMove : MonoBehaviour
     public float slideSpeed;
     public float slideSlowSpeed;
     public float timeForFullSlide;
-    public float slideTimeDivide;   
+    public float slideTimeDivide;
 
     float slideTimer;
     int slideTongle;
@@ -92,32 +92,28 @@ public class PlayerMove : MonoBehaviour
 
         sprRend = GetComponent<SpriteRenderer>();
 
-        normSpr = sprRend.sprite; 
+        normSpr = sprRend.sprite;
 
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
 
         // Right movment
         if (slideTongle == 0)
         {
-            transform.Translate(rightSpeed, 0, 0);
+            Vector2 moveQuality = new Vector2(rightSpeed, 0);
+            rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
+
+            // transform.Translate(rightSpeed, 0, 0);      
         }
         else if (slideTongle == 1)
         {
-            if (slideTimer >= timeForFullSlide / slideTimeDivide)  // SLowSLide
-            {
-                transform.Translate(slideSlowSpeed, 0, 0);
-            }
-            else
-            {
-                transform.Translate(slideSpeed, 0, 0);
-            }
-         
+            Vector2 moveQuality = new Vector2(slideSpeed, 0);
+            rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
         }
-        else if(gMaster.isGameOver == true)
+        else if (gMaster.isGameOver == true)
         {
             transform.Translate(0, 0, 0);
         }
@@ -194,7 +190,7 @@ public class PlayerMove : MonoBehaviour
                     slideTongle = 0;
                     slideTimer = 0;
                 }
-                
+
             }
 
         }
@@ -267,7 +263,7 @@ public class PlayerMove : MonoBehaviour
 
         if (grounded)
         {
-          
+
             GetComponent<SpriteRenderer>().color = Color.white;
         }
 
@@ -487,7 +483,7 @@ public class PlayerMove : MonoBehaviour
         slidePressed = true;
 
         jumpPressed = false;
-       
+
     }
 
     public void SlideButtonUp()

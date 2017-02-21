@@ -64,7 +64,7 @@ public class TrackTester : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         // tracksObj = GameObject.FindGameObjectsWithTag("Track");
 
