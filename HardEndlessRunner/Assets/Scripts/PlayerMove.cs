@@ -22,9 +22,11 @@ public class PlayerMove : MonoBehaviour
 
     float timeHeld = 0.0f;
     Vector2 resolvedJump;
-    [Space(5)]
-    public float groundCheck;
+    //[Space(5)]
+    //public float groundCheck;
 
+    Transform groundCheckTran;
+    float groundedRadius = 0.2f;
     bool grounded;
 
     [Header("Slide")]
@@ -77,9 +79,12 @@ public class PlayerMove : MonoBehaviour
     bool jumpHeld;
     bool jumpUp;
 
+ 
     // Use this for initialization
     void Awake()
     {
+        groundCheckTran = transform.Find("GroundCheck");
+
         rig = GetComponent<Rigidbody2D>();
 
         gMaster = gMaster.GetComponent<GameMaster>();
@@ -103,6 +108,17 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        grounded = false;
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckTran.position, groundedRadius, 1 << LayerMask.NameToLayer("Ground"));
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (colliders[i].gameObject != gameObject)
+            {
+                grounded = true;
+            }
+        }
+
+       // grounded = Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - groundCheck), 1 << LayerMask.NameToLayer("Ground"));
 
         // Right movment
         if (slideTongle == 0)
@@ -121,8 +137,6 @@ public class PlayerMove : MonoBehaviour
         {
             transform.Translate(0, 0, 0);
         }
-
-        grounded = Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - groundCheck), 1 << LayerMask.NameToLayer("Ground"));
 
         if (isPC && canMove == true)
         {
@@ -344,6 +358,8 @@ public class PlayerMove : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+       
+
         if (col.gameObject.tag == "Dart" && obtainedShield == false)
         {
             print("Dart");
@@ -404,12 +420,10 @@ public class PlayerMove : MonoBehaviour
         // Boost
         if (obtainedBoost)
         {
-            rightSpeed = boostSpeed;
+            Vector2 moveQuality = new Vector2(rightSpeed, 0);
+            rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
 
             canMove = false;
-
-            //  rig.gravityScale = 0;
-            //   rig.constraints = RigidbodyConstraints2D.FreezePositionY;
 
             boostTimer += Time.deltaTime;
 
@@ -427,7 +441,8 @@ public class PlayerMove : MonoBehaviour
         {
             canMove = true;
 
-            rightSpeed = startingRightSpeed;
+            Vector2 moveQuality = new Vector2(startingRightSpeed, 0);
+            rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
 
             rig.gravityScale = 1;
 
