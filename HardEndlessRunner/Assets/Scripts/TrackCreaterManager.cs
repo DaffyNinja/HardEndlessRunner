@@ -64,6 +64,7 @@ public class TrackCreaterManager : MonoBehaviour
     [Header("Special")]
     public bool spawnSpecials;
     public List<GameObject> specialObjs;
+    [Space(5)]
     public float specialAppearNum;
     float startSpecialNum;
 
@@ -132,7 +133,7 @@ public class TrackCreaterManager : MonoBehaviour
         }
         else
         {
-            TrackCreation2(pos7, pos8, pos9, pos10, pos11);
+            TrackCreation2(pos7, pos8, pos9, pos10);
         }
 
         // Spawn Special
@@ -176,7 +177,7 @@ public class TrackCreaterManager : MonoBehaviour
         }
     }
 
-    void TrackCreation2(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4, Vector2 trackPos5)
+    void TrackCreation2(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4)//, Vector2 trackPos5)
     {
 
         create = true;

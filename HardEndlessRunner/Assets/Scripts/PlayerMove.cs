@@ -60,6 +60,9 @@ public class PlayerMove : MonoBehaviour
     float t = 0;
      
     Rigidbody2D rig;
+    [Header("Input")]
+    public bool isButtons;
+    public bool isTouch;
 
     [Space(5)]
     public GameMaster gMaster;
@@ -198,64 +201,74 @@ public class PlayerMove : MonoBehaviour
         else if (isPC == false && canMove == true)      // Mobile  
         {
             // Jump Buttons
-            if (jumpHeld == true && grounded)
+            if (isButtons)
             {
-                timeHeld += Time.deltaTime;
-            }
-
-            if (jumpHeld == false && jumpUp == true &&grounded)
-            {
-                Jump();
-
-                jumpUp = false;
-            }
-
-            // Jump  Touch
-            //if (Input.touchCount > 0 && grounded)
-            //{
-            //    timeHeld += Time.deltaTime;
-            //}
-
-
-            //if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && grounded)
-            //{                   
-            //    Jump();
-            //}
-
-            // Slide Button
-            if (slideTongle == 0)
-            {
-                if (slidePressed == true && grounded)  //  Is sliding 
+                if (jumpHeld == true && grounded)
                 {
-                    print("Slide");
+                    timeHeld += Time.deltaTime;
+                }
 
-                    GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y - 0.35f);
+                if (jumpHeld == false && jumpUp == true && grounded)
+                {
+                    Jump();
 
-                    sprRend.sprite = slideSpr;
-
-                    rightSpeed = slideSpeed;
-
-                    slideTongle = 1;
+                    jumpUp = false;
                 }
             }
-            else if (slideTongle == 1)
+            else if (isTouch)
             {
-                  
-                slideTimer += Time.deltaTime;
-
-                if (slideTimer >= timeForFullSlide) // Change back to normal
+                // Jump  Touch
+                if (Input.touchCount > 0 && grounded)
                 {
-                    GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y + 0.35f);
-
-                    sprRend.sprite = normSpr;
-
-                    rightSpeed = startingRightSpeed;
-
-                    slidePressed = false;
+                    timeHeld += Time.deltaTime;
+                }
 
 
-                    slideTongle = 0;
-                    slideTimer = 0;
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && grounded)
+                {
+                    Jump();
+                }
+            }
+
+
+
+            // Slide Button
+            if (isButtons)
+            {
+                if (slideTongle == 0)
+                {
+                    if (slidePressed == true && grounded)  //  Is sliding 
+                    {
+                        print("Slide");
+
+                        GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y - 0.35f);
+
+                        sprRend.sprite = slideSpr;
+
+                        rightSpeed = slideSpeed;
+
+                        slideTongle = 1;
+                    }
+                }
+                else if (slideTongle == 1)
+                {
+
+                    slideTimer += Time.deltaTime;
+
+                    if (slideTimer >= timeForFullSlide) // Change back to normal
+                    {
+                        GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y + 0.35f);
+
+                        sprRend.sprite = normSpr;
+
+                        rightSpeed = startingRightSpeed;
+
+                        slidePressed = false;
+
+
+                        slideTongle = 0;
+                        slideTimer = 0;
+                    }
                 }
             }
 
