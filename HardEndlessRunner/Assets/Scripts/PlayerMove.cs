@@ -22,8 +22,6 @@ public class PlayerMove : MonoBehaviour
 
     float timeHeld = 0.0f;
     Vector2 resolvedJump;
-    //[Space(5)]
-    //public float groundCheck;
 
     Transform groundCheckTran;
     float groundedRadius = 0.2f;
@@ -31,9 +29,19 @@ public class PlayerMove : MonoBehaviour
 
     [Header("Slide")]
     public float slideSpeed;
-    public float slideSlowSpeed;
     public float timeForFullSlide;
     public float slideTimeDivide;
+
+    public float colBoxXSize;
+    public float colBoxYSize;
+    public float colCirRadius;
+
+    float startBoxXSize;
+    float startBoxYSize;
+    float startCircRadius;
+
+    BoxCollider2D boxCol;
+    CircleCollider2D circCol;
 
     float slideTimer;
     int slideTongle;
@@ -102,7 +110,14 @@ public class PlayerMove : MonoBehaviour
 
         normSpr = sprRend.sprite;
 
-      
+        boxCol = GetComponent<BoxCollider2D>();
+        circCol = GetComponent<CircleCollider2D>();
+
+        startBoxXSize = boxCol.size.x;
+        startBoxYSize = boxCol.size.y;
+
+        startCircRadius = circCol.radius;
+             
     }
 
     // Update is called once per frame
@@ -172,7 +187,8 @@ public class PlayerMove : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.LeftControl) && grounded)  //  Is sliding 
                 {
-                    GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y - 0.35f);
+                    boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
+                    circCol.radius = colCirRadius;
 
                     sprRend.sprite = slideSpr;
 
@@ -187,7 +203,9 @@ public class PlayerMove : MonoBehaviour
 
                 if (slideTimer >= timeForFullSlide) // Change back to normal
                 {
-                    GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y + 0.35f);
+
+                    boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
+                    circCol.radius = startCircRadius;
 
                     sprRend.sprite = normSpr;
 
@@ -199,7 +217,8 @@ public class PlayerMove : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.LeftControl))
                 {
-                    GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y + 0.35f);
+                    boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
+                    circCol.radius = startCircRadius;
 
                     sprRend.sprite = normSpr;
 
@@ -252,10 +271,9 @@ public class PlayerMove : MonoBehaviour
                 if (slideTongle == 0)
                 {
                     if (slidePressed == true && grounded)  //  Is sliding 
-                    {
-                        print("Slide");
-
-                        GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y - 0.35f);
+                    {                              
+                        boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
+                        circCol.radius = colCirRadius;
 
                         sprRend.sprite = slideSpr;
 
@@ -271,7 +289,8 @@ public class PlayerMove : MonoBehaviour
 
                     if (slideTimer >= timeForFullSlide) // Change back to normal
                     {
-                        GetComponent<BoxCollider2D>().size = new Vector2(GetComponent<BoxCollider2D>().size.x, GetComponent<BoxCollider2D>().size.y + 0.35f);
+                        boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
+                        circCol.radius = startCircRadius;
 
                         sprRend.sprite = normSpr;
 
