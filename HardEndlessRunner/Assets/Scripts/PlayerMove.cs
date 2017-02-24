@@ -86,7 +86,6 @@ public class PlayerMove : MonoBehaviour
     SpriteRenderer sprRend;
 
     bool slidePressed;
-    bool jumpPressed;
     bool jumpHeld;
     bool jumpUp;
 
@@ -397,7 +396,7 @@ public class PlayerMove : MonoBehaviour
 
         if (col.gameObject.tag == "Spike" && obtainedShield == false && obtainedBoost == false)
         {
-            print("Spike");
+            //print("Spike");
 
             gMaster.isGameOver = true;
         }
@@ -488,10 +487,10 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    public void JumpButton()
-    {
-        jumpPressed = true;
-    }
+    //public void JumpButton()
+    //{
+    //    jumpPressed = true;
+    //}
 
     public void JumpButtonDown()
     {
@@ -502,7 +501,6 @@ public class PlayerMove : MonoBehaviour
     public void JumpButtonUp()
     {
         jumpUp = true;
-        jumpPressed = false;
         jumpHeld = false;
     }
 
