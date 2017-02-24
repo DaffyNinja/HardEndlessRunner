@@ -1,4 +1,4 @@
-5.5.1f1:2.8.2.0
+5.5.2f1:2.8.2.0
 Android
 C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll
 C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll
@@ -8,3 +8,5 @@ C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/Un
 C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll
 C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll
 C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll
+C:/Program Files (x86)/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll
+C:/Program Files (x86)/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll

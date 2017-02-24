@@ -138,14 +138,21 @@ public class PlayerMove : MonoBehaviour
             }
         }
 
-       // grounded = Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - groundCheck), 1 << LayerMask.NameToLayer("Ground"));
+        // grounded = Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - groundCheck), 1 << LayerMask.NameToLayer("Ground"));
 
         // Right movment
         if (slideTongle == 0)
         {
-            Vector2 moveQuality = new Vector2(rightSpeed, 0);
-            rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
-
+            if (!obtainedBoost)
+            {
+                Vector2 moveQuality = new Vector2(rightSpeed, 0);
+                rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
+            }
+            else
+            {
+                Vector2 moveQuality = new Vector2(boostSpeed, 0);
+                rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
+            }
             // transform.Translate(rightSpeed, 0, 0);      
         }
         else if (slideTongle == 1)
@@ -155,7 +162,8 @@ public class PlayerMove : MonoBehaviour
         }
         else if (gMaster.isGameOver == true)
         {
-            transform.Translate(0, 0, 0);
+            Vector2 moveQuality = new Vector2(0, 0);
+            rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
         }
 
         if (isPC && canMove == true)
@@ -512,10 +520,7 @@ public class PlayerMove : MonoBehaviour
     {
         // Boost
         if (obtainedBoost)
-        {
-            Vector2 moveQuality = new Vector2(rightSpeed, 0);
-            rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
-
+        {                       
             canMove = false;
 
             boostTimer += Time.deltaTime;
@@ -533,10 +538,7 @@ public class PlayerMove : MonoBehaviour
         else if (obtainedBoost == false)
         {
             canMove = true;
-
-            Vector2 moveQuality = new Vector2(startingRightSpeed, 0);
-            rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
-
+         
             rig.gravityScale = 1;
 
             // GetComponent<SpriteRenderer>().color = Color.white;
