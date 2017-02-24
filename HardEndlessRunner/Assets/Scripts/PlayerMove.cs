@@ -74,6 +74,9 @@ public class PlayerMove : MonoBehaviour
     public bool isButtons;
     public bool isTouch;
 
+    float screenPosX;
+    Vector2 touchPos;
+
     [Space(5)]
     public GameMaster gMaster;
     [Space(10)]
@@ -117,6 +120,8 @@ public class PlayerMove : MonoBehaviour
         startBoxYSize = boxCol.size.y;
 
         startCircRadius = circCol.radius;
+
+        screenPosX = Screen.width / 2;
              
     }
 
@@ -233,7 +238,7 @@ public class PlayerMove : MonoBehaviour
         }
         else if (isPC == false && canMove == true)      // Mobile  
         {
-            // Jump Buttons
+            // Buttons
             if (isButtons)
             {
                 if (jumpHeld == true && grounded)
@@ -247,31 +252,11 @@ public class PlayerMove : MonoBehaviour
 
                     jumpUp = false;
                 }
-            }
-            else if (isTouch)
-            {
-                // Jump  Touch
-                if (Input.touchCount > 0 && grounded)
-                {
-                    timeHeld += Time.deltaTime;
-                }
 
-
-                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && grounded)
-                {
-                    Jump();
-                }
-            }
-
-
-
-            // Slide Button
-            if (isButtons)
-            {
                 if (slideTongle == 0)
                 {
                     if (slidePressed == true && grounded)  //  Is sliding 
-                    {                              
+                    {
                         boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
                         circCol.radius = colCirRadius;
 
@@ -298,17 +283,78 @@ public class PlayerMove : MonoBehaviour
 
                         slidePressed = false;
 
+                        slideTongle = 0;
+                        slideTimer = 0;
+
+                    }
+                }
+            }
+            else if (isTouch)   // Touch
+            {
+                // Jump  Touch
+                if (Input.touchCount > 0)
+                {
+                    touchPos = Input.GetTouch(0).position;
+                }
+                else
+                {
+                    touchPos = new Vector2(0, 0);
+                }
+
+                if (touchPos.y < screenPosX && Input.touchCount > 0 && grounded)
+                {
+                    print("Touch");
+                    timeHeld += Time.deltaTime;
+                }
+
+                if (touchPos.y < screenPosX && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && grounded)
+                {
+                    Jump();
+                }
+
+                // SLide Touch
+                if (slideTongle == 0)
+                {
+                    if (touchPos.y > screenPosX && Input.touchCount > 0 && grounded)  //  Is sliding 
+                    {
+                        print("Slide Touch");
+
+                        boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
+                        circCol.radius = colCirRadius;
+
+                        sprRend.sprite = slideSpr;
+
+                        rightSpeed = slideSpeed;
+
+                        slideTongle = 1;
+                    }
+                }
+                else if (slideTongle == 1)
+                {
+
+                    slideTimer += Time.deltaTime;
+
+                    if (slideTimer >= timeForFullSlide) // Change back to normal
+                    {
+                        boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
+                        circCol.radius = startCircRadius;
+
+                        sprRend.sprite = normSpr;
+
+                        rightSpeed = startingRightSpeed;
+
+                        slidePressed = false;
 
                         slideTongle = 0;
                         slideTimer = 0;
+
                     }
                 }
             }
 
         }
 
-        if (grounded)
-        {
+        if (grounded)            {
 
             GetComponent<SpriteRenderer>().color = Color.white;
         }
@@ -434,6 +480,34 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    public void JumpButton()
+    {
+        jumpPressed = true;
+    }
+
+    public void JumpButtonDown()
+    {
+        jumpUp = false;
+        jumpHeld = true;
+    }
+
+    public void JumpButtonUp()
+    {
+        jumpUp = true;
+        jumpPressed = false;
+        jumpHeld = false;
+    }
+
+    public void SlideButtonDown()
+    {
+        slidePressed = true;
+    }
+
+    public void SlideButtonUp()
+    {
+        slidePressed = false;
+    }
+
     void SpecialAbilities()
     {
         // Boost
@@ -516,33 +590,7 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-    public void JumpButton()
-    {
-        jumpPressed = true;
-    }
 
-    public void JumpButtonDown()
-    {
-        jumpUp = false;
-        jumpHeld = true;
-    }
-
-    public void JumpButtonUp()
-    {
-        jumpUp = true;
-        jumpPressed = false;
-        jumpHeld = false;
-    }
-
-    public void SlideButtonDown()
-    {
-        slidePressed = true;
-    }
-
-    public void SlideButtonUp()
-    {
-        slidePressed = false;
-    }
 
 
 }
