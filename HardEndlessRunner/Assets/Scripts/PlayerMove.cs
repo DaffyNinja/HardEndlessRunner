@@ -24,7 +24,8 @@ public class PlayerMove : MonoBehaviour
     Vector2 resolvedJump;
 
     Transform groundCheckTran;
-    float groundedRadius = 0.2f;
+    [Space(5)]
+    public float groundedRadius = 0.4f;
     bool grounded;
 
     [Header("Slide")]
@@ -319,14 +320,14 @@ public class PlayerMove : MonoBehaviour
                         Jump();
                     }
                 }
-              
+
 
                 // SLide Touch
                 if (slideTongle == 0)
                 {
                     if (touchPos.x > screenPosX && Input.touchCount > 0 && grounded)  //  Is sliding 
                     {
-                      //  print("Slide Touch");
+                        //  print("Slide Touch");
 
                         boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
                         circCol.radius = colCirRadius;
