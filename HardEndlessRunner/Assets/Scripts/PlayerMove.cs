@@ -66,15 +66,15 @@ public class PlayerMove : MonoBehaviour
     Color shieldColour;
     float shieldColourStartingAlpha;
     float alphaLerp;
-    
+
     float t = 0;
-     
+
     Rigidbody2D rig;
     [Header("Input")]
     public bool isButtons;
     public bool isTouch;
 
-    float screenPosX;
+    public float screenPosX;
     Vector2 touchPos;
 
     [Space(5)]
@@ -89,7 +89,7 @@ public class PlayerMove : MonoBehaviour
     bool jumpHeld;
     bool jumpUp;
 
- 
+
     // Use this for initialization
     void Awake()
     {
@@ -121,7 +121,7 @@ public class PlayerMove : MonoBehaviour
         startCircRadius = circCol.radius;
 
         screenPosX = Screen.width / 2;
-             
+
     }
 
     // Update is called once per frame
@@ -296,9 +296,9 @@ public class PlayerMove : MonoBehaviour
                     }
                 }
             }
-            else if (isTouch)   // Touch
+            else if (isTouch && canMove == true)   // Touch
             {
-                // Jump  Touch
+                // Touch
                 if (Input.touchCount > 0)
                 {
                     touchPos = Input.GetTouch(0).position;
@@ -308,23 +308,25 @@ public class PlayerMove : MonoBehaviour
                     touchPos = new Vector2(0, 0);
                 }
 
-                if (touchPos.y < screenPosX && Input.touchCount > 0 && grounded)
+                // Jump  Touch
+                if (touchPos.x < screenPosX && touchPos.x > 0 && grounded)
                 {
-                    print("Touch");
+                    //print("Touch");
                     timeHeld += Time.deltaTime;
-                }
 
-                if (touchPos.y < screenPosX && Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended && grounded)
-                {
-                    Jump();
+                    if (Input.GetTouch(0).phase == TouchPhase.Ended && grounded)
+                    {
+                        Jump();
+                    }
                 }
+              
 
                 // SLide Touch
                 if (slideTongle == 0)
                 {
-                    if (touchPos.y > screenPosX && Input.touchCount > 0 && grounded)  //  Is sliding 
+                    if (touchPos.x > screenPosX && Input.touchCount > 0 && grounded)  //  Is sliding 
                     {
-                        print("Slide Touch");
+                      //  print("Slide Touch");
 
                         boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
                         circCol.radius = colCirRadius;
@@ -361,7 +363,8 @@ public class PlayerMove : MonoBehaviour
 
         }
 
-        if (grounded)            {
+        if (grounded)
+        {
 
             GetComponent<SpriteRenderer>().color = Color.white;
         }
@@ -430,7 +433,7 @@ public class PlayerMove : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-       
+
 
         if (col.gameObject.tag == "Dart" && obtainedShield == false)
         {
@@ -518,7 +521,7 @@ public class PlayerMove : MonoBehaviour
     {
         // Boost
         if (obtainedBoost)
-        {                       
+        {
             canMove = false;
 
             boostTimer += Time.deltaTime;
@@ -536,7 +539,7 @@ public class PlayerMove : MonoBehaviour
         else if (obtainedBoost == false)
         {
             canMove = true;
-         
+
             rig.gravityScale = 1;
 
             // GetComponent<SpriteRenderer>().color = Color.white;

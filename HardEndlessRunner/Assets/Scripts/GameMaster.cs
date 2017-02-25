@@ -19,8 +19,9 @@ public class GameMaster : MonoBehaviour
     public Text scoreUI;
     public Text highScoreUI;
 
-
+    public GameObject touchButtonCanvas;
     public GameObject gOverCanvas;
+
     public GameObject playerObj;
 
     Vector2 playerObjStartPos;
@@ -37,6 +38,15 @@ public class GameMaster : MonoBehaviour
         playerObjStartPos = playerObj.transform.position;
 
         currentHighScore = PlayerPrefs.GetInt("highScore");
+
+        if (playerObj.GetComponent<PlayerMove>().isTouch || playerObj.GetComponent<PlayerMove>().isPC)
+        {
+            touchButtonCanvas.SetActive(false);
+        }
+        else
+        {
+            touchButtonCanvas.SetActive(true);
+        }
 
     }
 
