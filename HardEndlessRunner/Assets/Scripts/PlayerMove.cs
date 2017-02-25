@@ -8,22 +8,11 @@ public class PlayerMove : MonoBehaviour
     bool canMove;
     public float rightSpeed;
     float startingRightSpeed;
-
     [Header("Jump")]
-    public float forceTest;
-    [Space(5)]
-    public float timeForFullJump = 2.0f;
-    public float minJumpForce = 0.5f;
-    public float maxJumpForce = 2.0f;
-    public float rightJumpForce = 1.0f;
-    [Space(5)]
-    public float boostJumpTime;
-    public float boostMinJumpForce;
-    public float boostMaxJumpForce;
-    public float boostRightJumpForc;
-
-    float timeHeld = 0.0f;
-    Vector2 resolvedJump;
+    public float JumpAcceleration;
+    public bool isJumping;
+    public float jumpTime;
+    float jumpTimer;
 
     Transform groundCheckTran;
     [Space(5)]
@@ -91,8 +80,6 @@ public class PlayerMove : MonoBehaviour
     bool slidePressed;
     bool jumpHeld;
     bool jumpUp;
-
-
 
 
     // Use this for initialization
@@ -172,41 +159,21 @@ public class PlayerMove : MonoBehaviour
             rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
         }
 
+        // Controls 
         if (isPC && canMove == true)
         {
             //Jump
-            if (Input.GetKeyDown(KeyCode.Space) && grounded)
+            if (Input.GetKeyDown(KeyCode.Space) && !isJumping && grounded)
             {
-                rig.velocity = new Vector2(rig.velocity.x, forceTest);              
+                isJumping = true;
+
+                rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
             }
-
-
-            print(forceTest);
-          
-
-
-            //if (Input.GetKeyDown(KeyCode.Space) && grounded)
-            //{
-
-            //    timeHeld = 0f;
-
-            //}
-
-            //if (Input.GetKey(KeyCode.Space) && grounded)
-            //{
-            //    timeHeld += Time.deltaTime * 2;
-            //}
-            //else if (Input.GetKey(KeyCode.Space) && grounded && obtainedBoost == true)
-            //{
-            //    timeHeld += Time.deltaTime * 3;
-
-            //}
-
-            //if (Input.GetKeyUp(KeyCode.Space) && grounded)
-            //{
-            // Jump();
-
-            //}
+            else if (Input.GetKey(KeyCode.Space) && isJumping && jumpTimer < jumpTime)
+            {
+                jumpTimer += Time.deltaTime;
+                rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
+            }
 
             // Slide
             if (slideTongle == 0)
@@ -263,10 +230,10 @@ public class PlayerMove : MonoBehaviour
             if (isButtons)
             {
                 // Jump
-                if (jumpHeld == true && grounded)
-                {
-                    rig.velocity = new Vector2(rig.velocity.x, forceTest);
-                }
+                //if (jumpHeld == true && grounded)
+                //{
+                //    rig.velocity = new Vector2(rig.velocity.x, forceTest);
+                //}
 
                 //if (jumpHeld == true && grounded)
                 //{
@@ -330,10 +297,10 @@ public class PlayerMove : MonoBehaviour
                 }
 
                 // Jump  Touch
-                if (touchPos.x < screenPosX && touchPos.x > 0 && grounded)
-                {
-                    rig.velocity = new Vector2(rig.velocity.x, forceTest);
-                }
+                //if (touchPos.x < screenPosX && touchPos.x > 0 && grounded)
+                //{
+                //    rig.velocity = new Vector2(rig.velocity.x, forceTest);
+                //}
 
                 //if (touchPos.x < screenPosX && touchPos.x > 0 && grounded)
                 //{
@@ -389,7 +356,7 @@ public class PlayerMove : MonoBehaviour
 
         }
 
-        if (timeHeld >= timeForFullJump && grounded == true)
+        if (jumpTimer >= jumpTime && grounded == true)
         {
             GetComponent<SpriteRenderer>().color = Color.green;
         }
@@ -452,7 +419,12 @@ public class PlayerMove : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-
+        if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+          //  print("G");
+            jumpTimer = 0;
+            isJumping = false;
+        }
 
         if (col.gameObject.tag == "Dart" && obtainedShield == false)
         {
@@ -477,45 +449,7 @@ public class PlayerMove : MonoBehaviour
     void Jump()
     {
 
-        //Vector2 moveQuality = new Vector2(0, 12f);
-        //rig.velocity = new Vector2(rig.velocity.x, moveQuality.y);
-
-        if (obtainedBoost == false)
-        {
-            float verticalJumpForce = ((maxJumpForce - minJumpForce) * (timeHeld / timeForFullJump)) + minJumpForce;
-
-            if (verticalJumpForce > maxJumpForce)
-            {
-                verticalJumpForce = maxJumpForce;
-            }
-
-            // timeHeld = 0;
-
-            resolvedJump = new Vector2(rightJumpForce, verticalJumpForce);
-
-            Vector2 moveQuality = resolvedJump;
-            rig.velocity = new Vector2(rig.velocity.x, resolvedJump.y);
-
-            // rig.AddForce(resolvedJump, ForceMode2D.Impulse);
-        }
-        else
-        {
-            float verticalJumpForce = ((boostMaxJumpForce - boostMinJumpForce) * (timeHeld / boostJumpTime)) + boostMinJumpForce;
-
-            if (verticalJumpForce > boostMaxJumpForce)
-            {
-                verticalJumpForce = boostMaxJumpForce;
-            }
-
-            // timeHeld = 0;
-
-            resolvedJump = new Vector2(rightJumpForce, verticalJumpForce);
-
-            Vector2 moveQuality = resolvedJump;
-            rig.velocity = new Vector2(rig.velocity.x, resolvedJump.y);
-
-            //rig.AddForce(resolvedJump, ForceMode2D.Impulse);
-        }
+       
 
     }
 
