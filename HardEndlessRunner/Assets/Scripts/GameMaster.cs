@@ -39,11 +39,11 @@ public class GameMaster : MonoBehaviour
 
         currentHighScore = PlayerPrefs.GetInt("highScore");
 
-        if (playerObj.GetComponent<PlayerMove>().isTouch || playerObj.GetComponent<PlayerMove>().isPC)
+        if (playerObj.GetComponent<PlayerMove>().isTouch == true)
         {
             touchButtonCanvas.SetActive(false);
         }
-        else
+        else if(playerObj.GetComponent<PlayerMove>().isButtons == true)
         {
             touchButtonCanvas.SetActive(true);
         }
