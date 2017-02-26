@@ -78,8 +78,10 @@ public class PlayerMove : MonoBehaviour
     SpriteRenderer sprRend;
 
     bool slidePressed;
+
     bool jumpHeld;
     bool jumpUp;
+    bool jumpPressed;
 
 
     // Use this for initialization
@@ -230,22 +232,15 @@ public class PlayerMove : MonoBehaviour
             if (isButtons)
             {
                 // Jump
-                //if (jumpHeld == true && grounded)
-                //{
-                //    rig.velocity = new Vector2(rig.velocity.x, forceTest);
-                //}
-
-                //if (jumpHeld == true && grounded)
-                //{
-                //    timeHeld += Time.deltaTime;
-                //}
-
-                //if (jumpHeld == false && jumpUp == true && grounded)
-                //{
-                //    Jump();
-
-                //    jumpUp = false;
-                //}
+                if (jumpHeld == true && grounded && !isJumping)
+                {
+                    isJumping = true;
+                }
+                else if (jumpHeld == true && isJumping && jumpTimer < jumpTime)
+                {   
+                    jumpTimer += Time.deltaTime;
+                    rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
+                }
 
                 // Sliding
                 if (slideTongle == 0)
@@ -297,22 +292,15 @@ public class PlayerMove : MonoBehaviour
                 }
 
                 // Jump  Touch
-                //if (touchPos.x < screenPosX && touchPos.x > 0 && grounded)
-                //{
-                //    rig.velocity = new Vector2(rig.velocity.x, forceTest);
-                //}
-
-                //if (touchPos.x < screenPosX && touchPos.x > 0 && grounded)
-                //{
-                //    //print("Touch");
-                //    timeHeld += Time.deltaTime;
-
-                //    if (Input.GetTouch(0).phase == TouchPhase.Ended && grounded)
-                //    {
-                //        Jump();
-                //    }
-                //}
-
+                if (touchPos.x < screenPosX && touchPos.x > 0 && grounded && !isJumping)
+                {
+                    isJumping = true;
+                }
+                else if (touchPos.x < screenPosX && touchPos.x > 0 && isJumping && jumpTimer < jumpTime)
+                {
+                    jumpTimer += Time.deltaTime;
+                    rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
+                }
 
                 // SLide Touch
                 if (slideTongle == 0)
@@ -356,17 +344,8 @@ public class PlayerMove : MonoBehaviour
 
         }
 
-        if (jumpTimer >= jumpTime && grounded == true)
-        {
-            GetComponent<SpriteRenderer>().color = Color.green;
-        }
-        else
-        {
-            GetComponent<SpriteRenderer>().color = Color.white;
-        }
 
-        SpecialAbilities();
-
+        SpecialAbilities();   
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -381,8 +360,7 @@ public class PlayerMove : MonoBehaviour
         {
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
-
-
+           
         if (col.gameObject.tag == "Spike" && obtainedShield == false && obtainedBoost == false)
         {
             //print("Spike");
@@ -421,7 +399,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-          //  print("G");
+            //  print("G");
             jumpTimer = 0;
             isJumping = false;
         }
@@ -446,17 +424,10 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-    void Jump()
+    public void JumpPress()
     {
-
-       
-
+        jumpPressed = true;
     }
-
-    //public void JumpButton()
-    //{
-    //    jumpPressed = true;
-    //}
 
     public void JumpButtonDown()
     {
@@ -468,6 +439,7 @@ public class PlayerMove : MonoBehaviour
     {
         jumpUp = true;
         jumpHeld = false;
+        jumpPressed = false;
     }
 
     public void SlideButtonDown()
