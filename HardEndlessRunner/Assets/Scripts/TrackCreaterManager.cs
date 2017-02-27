@@ -115,7 +115,7 @@ public class TrackCreaterManager : MonoBehaviour
         Vector2 pos8 = new Vector2(playerTrans.position.x + trackDis * 7, playerPos.y - trackYPos);
         Vector2 pos9 = new Vector2(playerTrans.position.x + trackDis * 8, playerPos.y - trackYPos);
         Vector2 pos10 = new Vector2(playerTrans.position.x + trackDis * 9, playerPos.y - trackYPos);
-        //Vector2 pos11 = new Vector2(playerTrans.position.x + trackDis * 10, playerPos.y - trackYPos);
+        Vector2 pos11 = new Vector2(playerTrans.position.x + trackDis * 10, playerPos.y - trackYPos);
 
         if (isStart)
         {
@@ -123,7 +123,7 @@ public class TrackCreaterManager : MonoBehaviour
         }
         else
         {
-            TrackCreation2(pos7, pos8, pos9, pos10);
+            TrackCreation2(pos7, pos8, pos9, pos10,pos11);
         }
 
         // Spawn Special
@@ -167,7 +167,7 @@ public class TrackCreaterManager : MonoBehaviour
     }
 
     // Creates the rest of the tracks as the player keeps moving
-    void TrackCreation2(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4)//, Vector2 trackPos5)
+    void TrackCreation2(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4, Vector2 trackPos5)
     {
         create = true;
 

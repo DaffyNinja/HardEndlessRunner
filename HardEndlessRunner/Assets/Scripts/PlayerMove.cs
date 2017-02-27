@@ -14,13 +14,14 @@ public class PlayerMove : MonoBehaviour
     public bool isJumping;
     public float jumpTime;
     float jumpTimer;
+    public bool startTimer;
 
     Transform groundCheckTran;
     [Space(5)]
     public float groundedRadius = 0.4f;
     bool grounded;
 
-    [Header("Slide")]  
+    [Header("Slide")]
     public float slideSpeed;
     public float timeForFullSlide;
     public float slideTimeDivide;
@@ -148,7 +149,7 @@ public class PlayerMove : MonoBehaviour
             {
                 Vector2 moveQuality = new Vector2(boostSpeed, 0);
                 rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
-            }                    
+            }
         }
         else if (slideTongle == 1)
         {
@@ -169,13 +170,30 @@ public class PlayerMove : MonoBehaviour
             {
                 isJumping = true;
 
+                startTimer = true;
+
                 rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
+
             }
-            else if (Input.GetKey(KeyCode.Space) && isJumping && jumpTimer < jumpTime)
+            else if (Input.GetKey(KeyCode.Space) && isJumping && jumpTimer < jumpTime && startTimer)
             {
-                jumpTimer += Time.deltaTime;
+                if (startTimer)
+                {
+                    jumpTimer += Time.deltaTime;
+                }
+                else
+                {
+                    isJumping = false;
+                }
+
                 rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
             }
+            else if (Input.GetKeyUp(KeyCode.Space))
+            {
+                startTimer = false;
+            }
+
+
 
             // Slide
             if (slideTongle == 0)
@@ -389,10 +407,12 @@ public class PlayerMove : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        // Ground
         if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
             jumpTimer = 0;
             isJumping = false;
+            startTimer = true;
         }
 
         if (col.gameObject.tag == "Dart" && obtainedShield == false)
