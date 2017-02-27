@@ -8,6 +8,7 @@ public class PlayerMove : MonoBehaviour
     bool canMove;
     public float rightSpeed;
     float startingRightSpeed;
+
     [Header("Jump")]
     public float JumpAcceleration;
     public bool isJumping;
@@ -19,11 +20,12 @@ public class PlayerMove : MonoBehaviour
     public float groundedRadius = 0.4f;
     bool grounded;
 
-    [Header("Slide")]
+    [Header("Slide")]  
     public float slideSpeed;
     public float timeForFullSlide;
     public float slideTimeDivide;
 
+    // The players colliders when they slide and are not sliding
     public float colBoxXSize;
     public float colBoxYSize;
     public float colCirRadius;
@@ -41,7 +43,7 @@ public class PlayerMove : MonoBehaviour
     public Sprite slideSpr;
     Sprite normSpr;
 
-    [Header("Special Abilities")]
+    [Header("Special Abilities")]   // The players special abilities
     public float boostSpeed;
     public float boostTime;
     float boostTimer;
@@ -114,15 +116,14 @@ public class PlayerMove : MonoBehaviour
 
         startCircRadius = circCol.radius;
 
-        screenPosX = Screen.width / 2;
-
-        // Jump Test
+        screenPosX = Screen.width / 2;  // Half the screen x pos to control the touch positions on phone
 
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        // determines wether the player is grounded or not
         grounded = false;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckTran.position, groundedRadius, 1 << LayerMask.NameToLayer("Ground"));
         for (int i = 0; i < colliders.Length; i++)
@@ -147,8 +148,7 @@ public class PlayerMove : MonoBehaviour
             {
                 Vector2 moveQuality = new Vector2(boostSpeed, 0);
                 rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
-            }
-            // transform.Translate(rightSpeed, 0, 0);      
+            }                    
         }
         else if (slideTongle == 1)
         {
@@ -162,7 +162,7 @@ public class PlayerMove : MonoBehaviour
         }
 
         // Controls 
-        if (isPC && canMove == true)
+        if (isPC && canMove == true)  // PC Controls
         {
             //Jump
             if (Input.GetKeyDown(KeyCode.Space) && !isJumping && grounded)
@@ -237,7 +237,7 @@ public class PlayerMove : MonoBehaviour
                     isJumping = true;
                 }
                 else if (jumpHeld == true && isJumping && jumpTimer < jumpTime)
-                {   
+                {
                     jumpTimer += Time.deltaTime;
                     rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
                 }
@@ -307,8 +307,6 @@ public class PlayerMove : MonoBehaviour
                 {
                     if (touchPos.x > screenPosX && Input.touchCount > 0 && grounded)  //  Is sliding 
                     {
-                        //  print("Slide Touch");
-
                         boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
                         circCol.radius = colCirRadius;
 
@@ -345,26 +343,22 @@ public class PlayerMove : MonoBehaviour
         }
 
 
-        SpecialAbilities();   
+        SpecialAbilities();
     }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Saw" && obtainedShield == false && obtainedBoost == false)   // game Over
         {
-            // print("Dead");
-
             gMaster.isGameOver = true;
         }
         else if (col.gameObject.tag == "Saw" && obtainedShield == true || col.gameObject.tag == "Saw" && obtainedBoost == true)
         {
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
-           
+
         if (col.gameObject.tag == "Spike" && obtainedShield == false && obtainedBoost == false)
         {
-            //print("Spike");
-
             gMaster.isGameOver = true;
         }
         else if (col.gameObject.tag == "Spike" && obtainedShield == true || col.gameObject.tag == "Spike" && obtainedBoost == true)
@@ -374,9 +368,7 @@ public class PlayerMove : MonoBehaviour
 
         if (col.gameObject.tag == "Pillar")
         {
-            //print("Pillar");
 
-            //gMaster.isGameOver = true;
         }
 
         // Specials
@@ -399,7 +391,6 @@ public class PlayerMove : MonoBehaviour
     {
         if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
         {
-            //  print("G");
             jumpTimer = 0;
             isJumping = false;
         }
@@ -419,14 +410,6 @@ public class PlayerMove : MonoBehaviour
         {
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
-
-        //print(col.gameObject.layer);
-
-    }
-
-    public void JumpPress()
-    {
-        jumpPressed = true;
     }
 
     public void JumpButtonDown()

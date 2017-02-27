@@ -2,33 +2,35 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrackDifficultyManager : MonoBehaviour {
+public class TrackDifficultyManager : MonoBehaviour
+{
 
     TrackCreaterManager trackMan;
 
+  
     int easyRanNum;
     int mediumRanNum;
     int hardRanNum;
 
-
     // Use this for initialization
-    void Awake ()
+    void Awake()
     {
         trackMan = GetComponent<TrackCreaterManager>();
     }
 
     private void FixedUpdate()
     {
+        // Random numbers that change between track sets
         easyRanNum = Random.Range(0, trackMan.tNumListEasy.Count);
         mediumRanNum = Random.Range(0, trackMan.tNumListMedium.Count);
         hardRanNum = Random.Range(0, trackMan.tNumListHard.Count);
     }
 
+    // Contains all the track numbers that are in the array and assigns the track nums to create the track sets   
+    // The easy track sets numbers 
     public void Easy()
     {
-        //print("Easy");
 
-       
         switch (easyRanNum)
         {
             case 0:
@@ -80,17 +82,16 @@ public class TrackDifficultyManager : MonoBehaviour {
 
     }
 
+    // The medium track sets numbers 
     public void Medium()
     {
-        //print("Medium");
-
         switch (mediumRanNum)
         {
             case 0:
                 trackMan.trackPiece1 = trackMan.tNumListMedium[0].trackNum1;
                 trackMan.trackPiece2 = trackMan.tNumListMedium[0].trackNum2;
                 trackMan.trackPiece3 = trackMan.tNumListMedium[0].trackNum3;
-                trackMan.trackPiece4 = trackMan.tNumListMedium[0].trackNum4;  
+                trackMan.trackPiece4 = trackMan.tNumListMedium[0].trackNum4;
                 break;
             case 1:
                 trackMan.trackPiece1 = trackMan.tNumListMedium[1].trackNum1;
@@ -128,17 +129,16 @@ public class TrackDifficultyManager : MonoBehaviour {
         }
     }
 
+    // The hard track sets numbers 
     public void Hard()
     {
-       // print("Hard");
-
         switch (hardRanNum)
         {
             case 0:
                 trackMan.trackPiece1 = trackMan.tNumListHard[0].trackNum1;
                 trackMan.trackPiece2 = trackMan.tNumListHard[0].trackNum2;
                 trackMan.trackPiece3 = trackMan.tNumListHard[0].trackNum3;
-                trackMan.trackPiece4 = trackMan.tNumListHard[0].trackNum4;    
+                trackMan.trackPiece4 = trackMan.tNumListHard[0].trackNum4;
                 break;
             case 1:
                 trackMan.trackPiece1 = trackMan.tNumListHard[1].trackNum1;

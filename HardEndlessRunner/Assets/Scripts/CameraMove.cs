@@ -6,7 +6,8 @@ public class CameraMove : MonoBehaviour {
 
     public float moveSpeed;
     public float boostSpeed;
-    [Header("Screen Siz & Pos")]
+
+    [Header("Screen Size & Pos")]
     public float xPos;
     public float yPos;
     public float orthSize;
@@ -31,6 +32,7 @@ public class CameraMove : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate ()
     {
+        // Camera movement
         if (pMove.obtainedBoost == false)
         {
             transform.Translate(moveSpeed, 0, 0);
@@ -42,10 +44,9 @@ public class CameraMove : MonoBehaviour {
 
         Vector3 viewPos = GetComponent<Camera>().WorldToViewportPoint(playerTrans.position);
 
+        // If the player moves out of camera's left view, the game is over
         if (viewPos.x <= killNum)
-        {
-            //print("GO");
-
+        {              
             gMaster.isGameOver = true;
         }
 

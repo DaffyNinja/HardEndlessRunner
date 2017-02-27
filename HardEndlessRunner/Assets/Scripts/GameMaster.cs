@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
-
+   
     public float score;
     public int highScore;
     int currentHighScore;
@@ -39,6 +39,7 @@ public class GameMaster : MonoBehaviour
 
         currentHighScore = PlayerPrefs.GetInt("highScore");
 
+        // Deactivates the players  menu of the 
         if (playerObj.GetComponent<PlayerMove>().isTouch == true)
         {
             touchButtonCanvas.SetActive(false);
@@ -53,14 +54,12 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (isGameOver)
+        if (isGameOver) // If the game is over reload the scene the player is on if the player presses enter 
         {
             GameOver();
 
             if (Input.GetKey(KeyCode.Return))
             {
-                //Scene thisScene = SceneManager.GetActiveScene();
-
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
 
@@ -69,6 +68,7 @@ public class GameMaster : MonoBehaviour
         {
             if (playerObj.transform.position.x > playerObjStartPos.x)
             {
+                // Increases the players score based on time
                 if (playerObj.GetComponent<PlayerMove>().obtainedBoost == false)
                 {
                     score += Time.deltaTime;
@@ -85,12 +85,9 @@ public class GameMaster : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
-
-
         scoreUI.text = Mathf.RoundToInt(score).ToString();
         highScoreUI.text = currentHighScore.ToString();
-
-       // PhoneInput();
+    
     }
 
     void GameOver()
@@ -99,10 +96,7 @@ public class GameMaster : MonoBehaviour
 
         // Highscore
         if (score > currentHighScore)
-        {
-            //highScore = currentHighScore;
-            //highScore = Mathf.RoundToInt(score);
-
+        {                
             highScore = Mathf.RoundToInt(score);
             PlayerPrefs.SetInt("highScore", highScore);
             highScoreUI.text = currentHighScore.ToString();
@@ -119,6 +113,7 @@ public class GameMaster : MonoBehaviour
         }
     }
 
+    // Buttons for the game over screen
     public void RetryButton()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

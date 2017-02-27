@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class TrackNumList
+public class TrackNumList   // Is used to number the track pieces coresponding to their list in the array
 {
     public int trackNum1;
     public int trackNum2;
@@ -14,13 +14,13 @@ public class TrackNumList
 public class TrackCreaterManager : MonoBehaviour
 {
 
-    public List<GameObject> tracksList;
+    public List<GameObject> tracksList; // The track list
     [Space(15)]
-    public List<TrackNumList> tNumListEasy;
+    public List<TrackNumList> tNumListEasy; // Stores the track set numbers for Easy tracks
     [Space(10)]
-    public List<TrackNumList> tNumListMedium;
+    public List<TrackNumList> tNumListMedium;   // Stores the track set numbers for Medium tracks
     [Space(10)]
-    public List<TrackNumList> tNumListHard;
+    public List<TrackNumList> tNumListHard; // Stores the track set numbers for Hard tracks
     [Space(15)]
     public float trackDis;
     public float spawnDis;
@@ -31,10 +31,9 @@ public class TrackCreaterManager : MonoBehaviour
     bool create;
     bool isStart;
 
-    GameObject[] tracksObjs;
+    GameObject[] tracksObjs; // The track gameobjects created in scene
 
-    [Header("Difficulty")]
-    //  public int easyNum;
+    [Header("Difficulty")]  // Altrs when to change to the diffrent difficulty tracks
     public int mediumNum;
     public int hardNum;
 
@@ -45,13 +44,6 @@ public class TrackCreaterManager : MonoBehaviour
     GameObject tr5;
     GameObject tr6;
 
-    Vector2 tP1;
-    Vector2 tP2;
-    Vector2 tP3;
-    Vector2 tP4;
-    Vector2 tP5;
-    Vector2 tP6;
-
     [HideInInspector]
     public int trackPiece1;
     [HideInInspector]
@@ -61,7 +53,7 @@ public class TrackCreaterManager : MonoBehaviour
     [HideInInspector]
     public int trackPiece4;
 
-    [Header("Special")]
+    [Header("Special")]         // Special
     public bool spawnSpecials;
     public List<GameObject> specialObjs;
     [Space(5)]
@@ -89,10 +81,8 @@ public class TrackCreaterManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        // tracksObj = GameObject.FindGameObjectsWithTag("Track");
-
-        Difficulty();
-        TrackMaintance();
+        Difficulty();    // Changes the difficulty in the difficulty manager script  
+        TrackMaintance();  // Creates the tracks
 
     }
 
@@ -112,7 +102,7 @@ public class TrackCreaterManager : MonoBehaviour
 
     }
 
-    void SpawnTracks()
+    void SpawnTracks()   // Creates the tracks at positions ahead of the player
     {
         Vector2 pos1 = new Vector2(playerTrans.position.x + 0, playerPos.y - trackYPos);
         Vector2 pos2 = new Vector2(playerTrans.position.x + trackDis, playerPos.y - trackYPos);
@@ -139,17 +129,16 @@ public class TrackCreaterManager : MonoBehaviour
         // Spawn Special
         if (playerTrans.position.x >= playerPos.x + specialAppearNum && spawnSpecials == true)
         {
-
             GameObject[] specialSpawn = GameObject.FindGameObjectsWithTag("Special Spawn");
 
             Instantiate(specialObjs[Random.Range(0, specialObjs.Count)], specialSpawn[1].transform.position, Quaternion.identity);
 
             specialAppearNum = specialAppearNum + startSpecialNum;
-
         }
 
     }
 
+    // Creates the starting part of the track
     void TrackCreation1(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4, Vector2 trackPos5, Vector2 trackPos6)
     {
         create = true;
@@ -177,9 +166,9 @@ public class TrackCreaterManager : MonoBehaviour
         }
     }
 
+    // Creates the rest of the tracks as the player keeps moving
     void TrackCreation2(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4)//, Vector2 trackPos5)
     {
-
         create = true;
 
         foreach (GameObject t in tracksObjs)
@@ -209,6 +198,7 @@ public class TrackCreaterManager : MonoBehaviour
 
     }
 
+    // Alters the tracks difficulty by changing it in the DifficultyManager script
     void Difficulty()
     {
         if (gMaster.score < mediumNum)   //Easy
@@ -231,11 +221,11 @@ public class TrackCreaterManager : MonoBehaviour
     {
     }
 
-    void MediumTracksAdjust()
+    void MediumTracksAdjust() // Adjust values of certain track pieces depending on the tracks in a set
     {
         if (tr1.name == "Track Saw Long(Clone)" && tr3.name == "Track Saw Long(Clone)")
         {
-           // print("Long Saws");
+            // print("Long Saws");
 
             tr1.GetComponentInChildren<SawArmRotate>().isRandom = false;
             tr3.GetComponentInChildren<SawArmRotate>().isRandom = false;
