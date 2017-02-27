@@ -253,11 +253,26 @@ public class PlayerMove : MonoBehaviour
                 if (jumpHeld == true && grounded && !isJumping)
                 {
                     isJumping = true;
+
+                    startTimer = true;
                 }
-                else if (jumpHeld == true && isJumping && jumpTimer < jumpTime)
+                else if (jumpHeld == true && isJumping && jumpTimer < jumpTime && startTimer)
                 {
-                    jumpTimer += Time.deltaTime;
+                    if (startTimer)
+                    {
+                        jumpTimer += Time.deltaTime;
+                    }
+                    else
+                    {
+                        isJumping = false;
+                    }
+
                     rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
+                }
+
+                if (jumpUp == true)
+                {
+                    startTimer = false;
                 }
 
                 // Sliding
@@ -310,15 +325,31 @@ public class PlayerMove : MonoBehaviour
                 }
 
                 // Jump  Touch
-                if (touchPos.x < screenPosX && touchPos.x > 0 && grounded && !isJumping)
+                if (Input.touchCount > 0 && touchPos.x < screenPosX && Input.GetTouch(0).phase == TouchPhase.Stationary && grounded && !isJumping)
                 {
                     isJumping = true;
+
+                    startTimer = true;
                 }
-                else if (touchPos.x < screenPosX && touchPos.x > 0 && isJumping && jumpTimer < jumpTime)
+                else if (touchPos.x < screenPosX && Input.touchCount > 0 && isJumping && jumpTimer < jumpTime && startTimer)
                 {
-                    jumpTimer += Time.deltaTime;
+                    if (startTimer)
+                    {
+                        jumpTimer += Time.deltaTime;
+                    }
+                    else
+                    {
+                        isJumping = false;
+                    }
+
                     rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
                 }
+
+                if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+                {
+                    startTimer = false;
+                }
+
 
                 // SLide Touch
                 if (slideTongle == 0)
@@ -442,7 +473,6 @@ public class PlayerMove : MonoBehaviour
     {
         jumpUp = true;
         jumpHeld = false;
-        jumpPressed = false;
     }
 
     public void SlideButtonDown()
