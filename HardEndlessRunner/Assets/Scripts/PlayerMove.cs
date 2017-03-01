@@ -11,7 +11,8 @@ public class PlayerMove : MonoBehaviour
 
     [Header("Jump")]
     public float JumpAcceleration;
-    public bool isJumping;
+    public float jumpRightForce;
+    bool isJumping;
     public float jumpTime;
     float jumpTimer;
     public bool startTimer;
@@ -174,6 +175,8 @@ public class PlayerMove : MonoBehaviour
 
                 rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
 
+                rig.AddForce(new Vector2(jumpRightForce,0));
+
             }
             else if (Input.GetKey(KeyCode.Space) && isJumping && jumpTimer < jumpTime && startTimer)
             {
@@ -187,6 +190,8 @@ public class PlayerMove : MonoBehaviour
                 }
 
                 rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
+
+                rig.AddForce(new Vector2(jumpRightForce, 0));
             }
             else if (Input.GetKeyUp(KeyCode.Space))
             {
@@ -228,18 +233,18 @@ public class PlayerMove : MonoBehaviour
                     slideTimer = 0;
                 }
 
-                if (Input.GetKeyDown(KeyCode.LeftControl))
-                {
-                    boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
-                    circCol.radius = startCircRadius;
+                //if (Input.GetKeyDown(KeyCode.LeftControl))
+                //{
+                //    boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
+                //    circCol.radius = startCircRadius;
 
-                    sprRend.sprite = normSpr;
+                //    sprRend.sprite = normSpr;
 
-                    rightSpeed = startingRightSpeed;
+                //    rightSpeed = startingRightSpeed;
 
-                    slideTongle = 0;
-                    slideTimer = 0;
-                }
+                //    slideTongle = 0;
+                //    slideTimer = 0;
+                //}
 
             }
 

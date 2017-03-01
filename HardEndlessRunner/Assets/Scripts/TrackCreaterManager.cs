@@ -81,9 +81,10 @@ public class TrackCreaterManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        Difficulty();    // Changes the difficulty in the difficulty manager script  
         TrackMaintance();  // Creates the tracks
 
+        Difficulty();    // Changes the difficulty in the difficulty manager script  
+      
     }
 
     void TrackMaintance()
@@ -104,7 +105,7 @@ public class TrackCreaterManager : MonoBehaviour
 
     void SpawnTracks()   // Creates the tracks at positions ahead of the player
     {
-        Vector2 pos1 = new Vector2(playerTrans.position.x + 0, playerPos.y - trackYPos);
+        Vector2 pos1 = new Vector2(playerTrans.position.x, playerPos.y - trackYPos);
         Vector2 pos2 = new Vector2(playerTrans.position.x + trackDis, playerPos.y - trackYPos);
         Vector2 pos3 = new Vector2(playerTrans.position.x + trackDis * 2, playerPos.y - trackYPos);
         Vector2 pos4 = new Vector2(playerTrans.position.x + trackDis * 3, playerPos.y - trackYPos);
@@ -123,7 +124,7 @@ public class TrackCreaterManager : MonoBehaviour
         }
         else
         {
-            TrackCreation2(pos7, pos8, pos9, pos10,pos11);
+            TrackCreation2(pos7, pos8, pos9, pos10);//,pos11);
         }
 
         // Spawn Special
@@ -167,7 +168,7 @@ public class TrackCreaterManager : MonoBehaviour
     }
 
     // Creates the rest of the tracks as the player keeps moving
-    void TrackCreation2(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4, Vector2 trackPos5)
+    void TrackCreation2(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4)//, Vector2 trackPos5)
     {
         create = true;
 
@@ -183,16 +184,13 @@ public class TrackCreaterManager : MonoBehaviour
         if (create)
         {
             tr1 = Instantiate(tracksList[trackPiece1], trackPos1, Quaternion.identity);
-
             tr2 = Instantiate(tracksList[trackPiece2], trackPos2, Quaternion.identity);
-
             tr3 = Instantiate(tracksList[trackPiece3], trackPos3, Quaternion.identity);
-
             tr4 = Instantiate(tracksList[trackPiece4], trackPos4, Quaternion.identity);
 
-            create = false;
-
             MediumTracksAdjust();
+
+            create = false;                
 
         }
 
