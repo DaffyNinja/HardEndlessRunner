@@ -24,8 +24,9 @@ public class TrackTester : MonoBehaviour
     bool isStart;
 
     GameObject[] tracksObjs;
-
+    [Space(5)]
     public bool isSplit;
+    public bool makeSplit;
     public int splitTrNum;
     public float splitTrackYPos;
 
@@ -72,14 +73,29 @@ public class TrackTester : MonoBehaviour
 
         TrackMaintance();
 
-        if (isSplit)
+        if (playerTrans.position.x >= playerPos.x + 50 && playerTrans.position.x < playerPos.x + 100)
         {
-            trackPiece1 = splitTrNum;
-          //  isSplit = false;
+            print("Split");
+           // makeSplit = true;
+            isSplit = true;
+
         }
         else
         {
-            trackPiece1 = startTPiece1;
+            isSplit = false;
+           // makeSplit = false;
+        }
+
+        if (playerTrans.position.x >= playerPos.x + 30 && isSplit == false)
+        {
+            print("Make Split");
+            //  trackPiece1 = splitTrNum;
+            makeSplit = true;
+          //  makeSplit = false;
+        }
+        else
+        {
+            makeSplit = false;
         }
 
     }
@@ -95,7 +111,6 @@ public class TrackTester : MonoBehaviour
             {
                 Destroy(t);
             }
-
         }
 
         GameObject[] dartObjs = GameObject.FindGameObjectsWithTag("Dart");
@@ -130,11 +145,11 @@ public class TrackTester : MonoBehaviour
         Vector2 splitUp4 = new Vector2(playerTrans.position.x + trackDis * 9, playerPos.y + splitTrackYPos);
         Vector2 splitUp5 = new Vector2(playerTrans.position.x + trackDis * 10, playerPos.y + splitTrackYPos);
 
-        Vector2 splitDwn1 = new Vector2(playerTrans.position.x + trackDis * 6, playerPos.y - splitTrackYPos);
-        Vector2 splitDwn2 = new Vector2(playerTrans.position.x + trackDis * 7, playerPos.y - splitTrackYPos);
-        Vector2 splitDwn3 = new Vector2(playerTrans.position.x + trackDis * 8, playerPos.y - splitTrackYPos);
-        Vector2 splitDwn4 = new Vector2(playerTrans.position.x + trackDis * 9, playerPos.y - splitTrackYPos);
-        Vector2 splitDwn5 = new Vector2(playerTrans.position.x + trackDis * 10, playerPos.y - splitTrackYPos);
+        Vector2 splitDwn1 = new Vector2(playerTrans.position.x + trackDis * 6, playerPos.y - splitTrackYPos - 2);
+        Vector2 splitDwn2 = new Vector2(playerTrans.position.x + trackDis * 7, playerPos.y - splitTrackYPos - 2);
+        Vector2 splitDwn3 = new Vector2(playerTrans.position.x + trackDis * 8, playerPos.y - splitTrackYPos - 2);
+        Vector2 splitDwn4 = new Vector2(playerTrans.position.x + trackDis * 9, playerPos.y - splitTrackYPos - 2);
+        Vector2 splitDwn5 = new Vector2(playerTrans.position.x + trackDis * 10, playerPos.y - splitTrackYPos - 2);
 
         if (isStart)
         {
@@ -146,8 +161,8 @@ public class TrackTester : MonoBehaviour
         }
         else if (isStart == false && isSplit == true)
         {
-            TrackCreation3(splitUp1, splitUp3, splitUp3, splitUp4, splitUp5);
-            TrackCreation3(splitDwn1, splitDwn2, splitDwn3, splitDwn4, splitDwn5);
+                        TrackCreation3(splitUp1, splitUp3, splitUp3, splitUp4, splitUp5);
+            TrackCreation3(splitDwn1, splitDwn2, splitDwn3, splitDwn4, splitDwn5);     
         }
 
 
@@ -205,13 +220,22 @@ public class TrackTester : MonoBehaviour
 
         if (create)
         {
+            
             tr1 = Instantiate(tracksList[trackPiece1], trackPos1, Quaternion.identity);
+
 
             tr2 = Instantiate(tracksList[trackPiece2], trackPos2, Quaternion.identity);
 
             tr3 = Instantiate(tracksList[trackPiece3], trackPos3, Quaternion.identity);
 
-            tr4 = Instantiate(tracksList[trackPiece4], trackPos4, Quaternion.identity);
+            if (makeSplit)
+            {
+                tr4 = Instantiate(tracksList[10], new Vector2(playerTrans.position.x + trackDis * 9, playerPos.y - 2), Quaternion.identity);
+            }
+            else
+            {
+                tr4 = Instantiate(tracksList[trackPiece4], trackPos4, Quaternion.identity);
+            }
 
             create = false;
 
@@ -235,13 +259,16 @@ public class TrackTester : MonoBehaviour
 
         if (create)
         {
-            tr1 = Instantiate(tracksList[0], trackPos1, Quaternion.identity);
 
-            tr2 = Instantiate(tracksList[0], trackPos2, Quaternion.identity);
 
-            tr3 = Instantiate(tracksList[0], trackPos3, Quaternion.identity);
+            tr1 = Instantiate(tracksList[11], trackPos1, Quaternion.identity);
 
-            tr4 = Instantiate(tracksList[0], trackPos4, Quaternion.identity);
+
+            tr2 = Instantiate(tracksList[11], trackPos2, Quaternion.identity);
+
+            tr3 = Instantiate(tracksList[11], trackPos3, Quaternion.identity);
+
+            tr4 = Instantiate(tracksList[11], trackPos4, Quaternion.identity);
 
             create = false;
 
