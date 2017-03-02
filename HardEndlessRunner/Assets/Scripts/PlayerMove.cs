@@ -78,7 +78,6 @@ public class PlayerMove : MonoBehaviour
     [Space(10)]
     public bool isPC;
 
-
     SpriteRenderer sprRend;
 
     bool slidePressed;
@@ -232,19 +231,6 @@ public class PlayerMove : MonoBehaviour
                     slideTongle = 0;
                     slideTimer = 0;
                 }
-
-                //if (Input.GetKeyDown(KeyCode.LeftControl))
-                //{
-                //    boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
-                //    circCol.radius = startCircRadius;
-
-                //    sprRend.sprite = normSpr;
-
-                //    rightSpeed = startingRightSpeed;
-
-                //    slideTongle = 0;
-                //    slideTimer = 0;
-                //}
 
             }
 

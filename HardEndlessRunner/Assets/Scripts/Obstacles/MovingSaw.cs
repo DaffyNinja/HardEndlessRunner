@@ -41,8 +41,8 @@ public class MovingSaw : MonoBehaviour
 
         if (isUp)
         {
-            print("Up");
-
+           // print("Up");
+          
             upDownPos = new Vector2(startPos.x, startPos.y + yPos);
         }
         else if (isDown)

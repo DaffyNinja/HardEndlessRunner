@@ -25,8 +25,9 @@ public class TrackTester : MonoBehaviour
 
     GameObject[] tracksObjs;
     [Space(5)]
-    public bool isSplit;
-    public bool makeSplit;
+    public bool doSplit;
+    bool isSplit;
+    bool makeSplit;
     public int splitTrNum;
     public float splitTrackYPos;
 
@@ -73,29 +74,34 @@ public class TrackTester : MonoBehaviour
 
         TrackMaintance();
 
-        if (playerTrans.position.x >= playerPos.x + 50 && playerTrans.position.x < playerPos.x + 100)
+        if (doSplit)
         {
-            print("Split");
-           // makeSplit = true;
-            isSplit = true;
+            if (playerTrans.position.x >= playerPos.x + 50 && playerTrans.position.x < playerPos.x + 100)
+            {
+                print("Split");
+                // makeSplit = true;
+                isSplit = true;
 
-        }
-        else
-        {
-            isSplit = false;
-           // makeSplit = false;
-        }
+            }
+            else
+            {
+                {
+                    isSplit = false;
+                    // makeSplit = false;
+                }
 
-        if (playerTrans.position.x >= playerPos.x + 30 && isSplit == false)
-        {
-            print("Make Split");
-            //  trackPiece1 = splitTrNum;
-            makeSplit = true;
-          //  makeSplit = false;
-        }
-        else
-        {
-            makeSplit = false;
+                if (playerTrans.position.x >= playerPos.x + 30 && isSplit == false)
+                {
+                    print("Make Split");
+                    //  trackPiece1 = splitTrNum;
+                    makeSplit = true;
+                    //  makeSplit = false;
+                }
+                else
+                {
+                    makeSplit = false;
+                }
+            }
         }
 
     }
@@ -161,8 +167,8 @@ public class TrackTester : MonoBehaviour
         }
         else if (isStart == false && isSplit == true)
         {
-                        TrackCreation3(splitUp1, splitUp3, splitUp3, splitUp4, splitUp5);
-            TrackCreation3(splitDwn1, splitDwn2, splitDwn3, splitDwn4, splitDwn5);     
+            TrackCreation3(splitUp1, splitUp3, splitUp3, splitUp4, splitUp5);
+            TrackCreation3(splitDwn1, splitDwn2, splitDwn3, splitDwn4, splitDwn5);
         }
 
 
@@ -220,7 +226,7 @@ public class TrackTester : MonoBehaviour
 
         if (create)
         {
-            
+
             tr1 = Instantiate(tracksList[trackPiece1], trackPos1, Quaternion.identity);
 
 
