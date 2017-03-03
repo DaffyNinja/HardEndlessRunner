@@ -489,7 +489,7 @@ public class PlayerMove : MonoBehaviour
 
             GetComponent<SpriteRenderer>().color = Color.yellow;
 
-            rig.gravityScale = 2;
+         
 
             if (boostTimer >= boostTime)
             {
@@ -501,7 +501,7 @@ public class PlayerMove : MonoBehaviour
         {
             canMove = true;
 
-            rig.gravityScale = 1;
+           
 
             // GetComponent<SpriteRenderer>().color = Color.white;
 
