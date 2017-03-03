@@ -223,7 +223,7 @@ public class TrackCreaterManager : MonoBehaviour
     {
         if (tr1.name == "Track Saw Long(Clone)" && tr3.name == "Track Saw Long(Clone)")
         {
-            // print("Long Saws");
+            print("Long Saws");
 
             tr1.GetComponentInChildren<SawArmRotate>().isRandom = false;
             tr3.GetComponentInChildren<SawArmRotate>().isRandom = false;
