@@ -448,8 +448,10 @@ public class PlayerMove : MonoBehaviour
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
 
-        if (col.gameObject.tag == "Platform" && obtainedBoost == true)
+        if (col.gameObject.tag == "Platform" && obtainedBoost == true  || col.gameObject.tag == "Track" && obtainedBoost == true)
         {
+            print("Hit");
+
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }

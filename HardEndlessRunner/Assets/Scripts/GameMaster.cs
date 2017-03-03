@@ -69,13 +69,13 @@ public class GameMaster : MonoBehaviour
             if (playerObj.transform.position.x > playerObjStartPos.x)
             {
                 // Increases the players score based on time
-                if (playerObj.GetComponent<PlayerMove>().obtainedBoost == false)
+                if (playerObj.GetComponent<PlayerMove>().obtainedBoost == false)   // Normal
                 {
-                    score += Time.deltaTime;
+                    score += Time.deltaTime * 3;
                 }
-                else
+                else   // Boost
                 {
-                    score += Time.deltaTime * 2;
+                    score += Time.deltaTime * 4;
                 }
             }
         }
