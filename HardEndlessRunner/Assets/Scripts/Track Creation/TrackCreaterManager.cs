@@ -70,7 +70,7 @@ public class TrackCreaterManager : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
-        isStart = true;
+        //isStart = true;
         gMaster = GetComponent<GameMaster>();
         trackDifficultyMan = GetComponent<TrackDifficultyManager>();
         playerPos = playerTrans.position;
@@ -83,8 +83,7 @@ public class TrackCreaterManager : MonoBehaviour
     {
         TrackMaintance();  // Creates the tracks
 
-        Difficulty();    // Changes the difficulty in the difficulty manager script  
-      
+        Difficulty();   // Changes the difficulty in the difficulty manager script        
     }
 
     void TrackMaintance()
@@ -99,8 +98,7 @@ public class TrackCreaterManager : MonoBehaviour
                 Destroy(t);
             }
 
-        }
-
+        }  
     }
 
     void SpawnTracks()   // Creates the tracks at positions ahead of the player
@@ -119,15 +117,6 @@ public class TrackCreaterManager : MonoBehaviour
         Vector2 pos11 = new Vector2(playerTrans.position.x + trackDis * 10, playerPos.y - trackYPos);
 
         TrackCreation1(pos7, pos8, pos9, pos10);//, pos5, pos6);
-
-        //if (isStart)
-        //{
-        //    TrackCreation1(pos1, pos2, pos3, pos4, pos5, pos6);
-        //}
-        //else
-        //{
-        //    TrackCreation2(pos7, pos8, pos9, pos10);//,pos11);
-        //}
 
         // Spawn Special
         if (playerTrans.position.x >= playerPos.x + specialAppearNum && spawnSpecials == true)
@@ -161,41 +150,12 @@ public class TrackCreaterManager : MonoBehaviour
             tr2 = Instantiate(tracksList[trackPiece2], trackPos2, Quaternion.identity);
             tr3 = Instantiate(tracksList[trackPiece3], trackPos3, Quaternion.identity);
             tr4 = Instantiate(tracksList[trackPiece4], trackPos4, Quaternion.identity);
-            //tr5 = Instantiate(tracksList[0], trackPos5, Quaternion.identity);
-            //tr6 = Instantiate(tracksList[0], trackPos6, Quaternion.identity);
+
+            MediumTracksAdjust();
 
             create = false;
 
         }
-    }
-
-    // Creates the rest of the tracks as the player keeps moving
-    void TrackCreation2(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4)//, Vector2 trackPos5)
-    {
-        create = true;
-
-        foreach (GameObject t in tracksObjs)
-        {
-            if (trackPos1.x < t.transform.position.x + spawnDis)
-            {
-                create = false;
-                isStart = false;
-            }
-        }
-
-        if (create)
-        {
-            tr1 = Instantiate(tracksList[trackPiece1], trackPos1, Quaternion.identity);
-            tr2 = Instantiate(tracksList[trackPiece2], trackPos2, Quaternion.identity);
-            tr3 = Instantiate(tracksList[trackPiece3], trackPos3, Quaternion.identity);
-            tr4 = Instantiate(tracksList[trackPiece4], trackPos4, Quaternion.identity);
-
-            MediumTracksAdjust();
-
-            create = false;                
-
-        }
-
     }
 
     // Alters the tracks difficulty by changing it in the DifficultyManager script
