@@ -118,14 +118,16 @@ public class TrackCreaterManager : MonoBehaviour
         Vector2 pos10 = new Vector2(playerTrans.position.x + trackDis * 9, playerPos.y - trackYPos);
         Vector2 pos11 = new Vector2(playerTrans.position.x + trackDis * 10, playerPos.y - trackYPos);
 
-        if (isStart)
-        {
-            TrackCreation1(pos1, pos2, pos3, pos4, pos5, pos6);
-        }
-        else
-        {
-            TrackCreation2(pos7, pos8, pos9, pos10);//,pos11);
-        }
+        TrackCreation1(pos7, pos8, pos9, pos10);//, pos5, pos6);
+
+        //if (isStart)
+        //{
+        //    TrackCreation1(pos1, pos2, pos3, pos4, pos5, pos6);
+        //}
+        //else
+        //{
+        //    TrackCreation2(pos7, pos8, pos9, pos10);//,pos11);
+        //}
 
         // Spawn Special
         if (playerTrans.position.x >= playerPos.x + specialAppearNum && spawnSpecials == true)
@@ -140,27 +142,27 @@ public class TrackCreaterManager : MonoBehaviour
     }
 
     // Creates the starting part of the track
-    void TrackCreation1(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4, Vector2 trackPos5, Vector2 trackPos6)
+    void TrackCreation1(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4)//, Vector2 trackPos5, Vector2 trackPos6)
     {
         create = true;
 
         foreach (GameObject t in tracksObjs)
         {
-            if (trackPos1.x < t.transform.position.x) // 11.5
+            if (trackPos1.x < t.transform.position.x + spawnDis) // 11.5
             {
                 create = false;
                 isStart = false;
             }
         }
 
-        if (create && isStart == true)
+        if (create)
         {
-            tr1 = Instantiate(tracksList[0], trackPos1, Quaternion.identity);
-            tr2 = Instantiate(tracksList[0], trackPos2, Quaternion.identity);
-            tr3 = Instantiate(tracksList[0], trackPos3, Quaternion.identity);
-            tr4 = Instantiate(tracksList[0], trackPos4, Quaternion.identity);
-            tr5 = Instantiate(tracksList[0], trackPos5, Quaternion.identity);
-            tr6 = Instantiate(tracksList[0], trackPos6, Quaternion.identity);
+            tr1 = Instantiate(tracksList[trackPiece1], trackPos1, Quaternion.identity);
+            tr2 = Instantiate(tracksList[trackPiece2], trackPos2, Quaternion.identity);
+            tr3 = Instantiate(tracksList[trackPiece3], trackPos3, Quaternion.identity);
+            tr4 = Instantiate(tracksList[trackPiece4], trackPos4, Quaternion.identity);
+            //tr5 = Instantiate(tracksList[0], trackPos5, Quaternion.identity);
+            //tr6 = Instantiate(tracksList[0], trackPos6, Quaternion.identity);
 
             create = false;
 

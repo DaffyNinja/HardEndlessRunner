@@ -64,7 +64,6 @@ public class TrackTester : MonoBehaviour
         startSpecialNum = specialAppearNum;
 
         startTPiece1 = trackPiece1;
-
     }
 
     // Update is called once per frame
@@ -132,7 +131,7 @@ public class TrackTester : MonoBehaviour
 
     void SpawnTracks()
     {
-        Vector2 pos1 = new Vector2(playerTrans.position.x + 0, playerPos.y - trackYPos);
+        Vector2 pos1 = new Vector2(playerTrans.position.x, playerPos.y - trackYPos);
         Vector2 pos2 = new Vector2(playerTrans.position.x + trackDis, playerPos.y - trackYPos);
         Vector2 pos3 = new Vector2(playerTrans.position.x + trackDis * 2, playerPos.y - trackYPos);
         Vector2 pos4 = new Vector2(playerTrans.position.x + trackDis * 3, playerPos.y - trackYPos);
@@ -145,31 +144,16 @@ public class TrackTester : MonoBehaviour
         Vector2 pos10 = new Vector2(playerTrans.position.x + trackDis * 9, playerPos.y - trackYPos);
         Vector2 pos11 = new Vector2(playerTrans.position.x + trackDis * 10, playerPos.y - trackYPos);
 
-        Vector2 splitUp1 = new Vector2(playerTrans.position.x + trackDis * 6, playerPos.y + splitTrackYPos);
-        Vector2 splitUp2 = new Vector2(playerTrans.position.x + trackDis * 7, playerPos.y + splitTrackYPos);
-        Vector2 splitUp3 = new Vector2(playerTrans.position.x + trackDis * 8, playerPos.y + splitTrackYPos);
-        Vector2 splitUp4 = new Vector2(playerTrans.position.x + trackDis * 9, playerPos.y + splitTrackYPos);
-        Vector2 splitUp5 = new Vector2(playerTrans.position.x + trackDis * 10, playerPos.y + splitTrackYPos);
+        TrackCreation1(pos7, pos8, pos9, pos10);//, pos8);//, pos9);
 
-        Vector2 splitDwn1 = new Vector2(playerTrans.position.x + trackDis * 6, playerPos.y - splitTrackYPos - 2);
-        Vector2 splitDwn2 = new Vector2(playerTrans.position.x + trackDis * 7, playerPos.y - splitTrackYPos - 2);
-        Vector2 splitDwn3 = new Vector2(playerTrans.position.x + trackDis * 8, playerPos.y - splitTrackYPos - 2);
-        Vector2 splitDwn4 = new Vector2(playerTrans.position.x + trackDis * 9, playerPos.y - splitTrackYPos - 2);
-        Vector2 splitDwn5 = new Vector2(playerTrans.position.x + trackDis * 10, playerPos.y - splitTrackYPos - 2);
-
-        if (isStart)
-        {
-            TrackCreation1(pos1, pos2, pos3, pos4, pos5, pos6);
-        }
-        else if (isStart == false && isSplit == false)
-        {
-            TrackCreation2(pos7, pos8, pos9, pos10, pos11);
-        }
-        else if (isStart == false && isSplit == true)
-        {
-            TrackCreation3(splitUp1, splitUp3, splitUp3, splitUp4, splitUp5);
-            TrackCreation3(splitDwn1, splitDwn2, splitDwn3, splitDwn4, splitDwn5);
-        }
+        //if (isStart)
+        //{
+        //    TrackCreation1(pos1, pos2, pos3, pos4);//, pos5, pos6);
+        //}
+        //else if (isStart == false && isSplit == false)
+        //{
+        //    TrackCreation2(pos5, pos6, pos7, pos8, pos9);
+        //}
 
 
         if (playerTrans.position.x >= playerPos.x + specialAppearNum && isSpecial == true)
@@ -184,27 +168,27 @@ public class TrackTester : MonoBehaviour
 
     }
 
-    void TrackCreation1(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4, Vector2 trackPos5, Vector2 trackPos6)
+    void TrackCreation1(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4)//, Vector2 trackPos5)//, Vector2 trackPos6)
     {
         create = true;
 
         foreach (GameObject t in tracksObjs)
         {
-            if (trackPos1.x < t.transform.position.x) // 11.5
+            if (trackPos1.x < t.transform.position.x + spawnDis) // 11.5
             {
                 create = false;
                 isStart = false;
             }
         }
 
-        if (create && isStart == true)
+        if (create)
         {
-            tr1 = Instantiate(tracksList[0], trackPos1, Quaternion.identity);
-            tr2 = Instantiate(tracksList[0], trackPos2, Quaternion.identity);
-            tr3 = Instantiate(tracksList[0], trackPos3, Quaternion.identity);
-            tr4 = Instantiate(tracksList[0], trackPos4, Quaternion.identity);
-            tr5 = Instantiate(tracksList[0], trackPos5, Quaternion.identity);
-            tr6 = Instantiate(tracksList[0], trackPos6, Quaternion.identity);
+            tr1 = Instantiate(tracksList[trackPiece1], trackPos1, Quaternion.identity);
+            tr2 = Instantiate(tracksList[trackPiece2], trackPos2, Quaternion.identity);
+            tr3 = Instantiate(tracksList[trackPiece3], trackPos3, Quaternion.identity);
+            tr4 = Instantiate(tracksList[trackPiece4], trackPos4, Quaternion.identity);
+          //  tr5 = Instantiate(tracksList[0], trackPos5, Quaternion.identity);
+           // tr6 = Instantiate(tracksList[0], trackPos6, Quaternion.identity);
 
             create = false;
         }
@@ -249,37 +233,36 @@ public class TrackTester : MonoBehaviour
 
     }
 
-    void TrackCreation3(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4, Vector2 trackPos5)
-    {
+    //void TrackCreation3(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4, Vector2 trackPos5)
+    //{
 
-        create = true;
+    //    create = true;
 
-        foreach (GameObject t in tracksObjs)
-        {
-            if (trackPos1.x < t.transform.position.x + spawnDis)
-            {
-                create = false;
-                isStart = false;
-            }
-        }
+    //    foreach (GameObject t in tracksObjs)
+    //    {
+    //        if (trackPos1.x < t.transform.position.x + spawnDis)
+    //        {
+    //            create = false;
+    //            isStart = false;
+    //        }
+    //    }
 
-        if (create)
-        {
-
-
-            tr1 = Instantiate(tracksList[11], trackPos1, Quaternion.identity);
+    //    if (create)
+    //    {
 
 
-            tr2 = Instantiate(tracksList[11], trackPos2, Quaternion.identity);
+    //        tr1 = Instantiate(tracksList[11], trackPos1, Quaternion.identity);   
 
-            tr3 = Instantiate(tracksList[11], trackPos3, Quaternion.identity);
+    //        tr2 = Instantiate(tracksList[11], trackPos2, Quaternion.identity);
 
-            tr4 = Instantiate(tracksList[11], trackPos4, Quaternion.identity);
+    //        tr3 = Instantiate(tracksList[11], trackPos3, Quaternion.identity);
 
-            create = false;
+    //        tr4 = Instantiate(tracksList[11], trackPos4, Quaternion.identity);
 
-        }
+    //        create = false;
 
-    }
+    //    }
+
+    //}
 
 }
