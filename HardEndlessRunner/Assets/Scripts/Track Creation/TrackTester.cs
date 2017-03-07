@@ -2,11 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public class TrackNumListTest
+{
+    public int trackN1;
+    public int trackN2;
+    public int trackN3;
+    public int trackN4;
+
+}
+
 public class TrackTester : MonoBehaviour
 {
 
-
     public List<GameObject> tracksList;
+    [Space(5)]
+    public bool isSetTest;
+    public List<TrackNumList> trackSetTest;
     [Space(5)]
     public int trackPiece1;
     int startTPiece1;
@@ -70,6 +81,10 @@ public class TrackTester : MonoBehaviour
     void FixedUpdate()
     {
         // tracksObj = GameObject.FindGameObjectsWithTag("Track");
+        if (isSetTest)
+        {
+            TrackSets();
+        }
 
         TrackMaintance();
 
@@ -146,15 +161,6 @@ public class TrackTester : MonoBehaviour
 
         TrackCreation1(pos7, pos8, pos9, pos10);//, pos8);//, pos9);
 
-        //if (isStart)
-        //{
-        //    TrackCreation1(pos1, pos2, pos3, pos4);//, pos5, pos6);
-        //}
-        //else if (isStart == false && isSplit == false)
-        //{
-        //    TrackCreation2(pos5, pos6, pos7, pos8, pos9);
-        //}
-
 
         if (playerTrans.position.x >= playerPos.x + specialAppearNum && isSpecial == true)
         {
@@ -187,82 +193,56 @@ public class TrackTester : MonoBehaviour
             tr2 = Instantiate(tracksList[trackPiece2], trackPos2, Quaternion.identity);
             tr3 = Instantiate(tracksList[trackPiece3], trackPos3, Quaternion.identity);
             tr4 = Instantiate(tracksList[trackPiece4], trackPos4, Quaternion.identity);
-          //  tr5 = Instantiate(tracksList[0], trackPos5, Quaternion.identity);
-           // tr6 = Instantiate(tracksList[0], trackPos6, Quaternion.identity);
+
+          //  TrackPieceAdjust();
 
             create = false;
         }
     }
 
-    void TrackCreation2(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4, Vector2 trackPos5)
+    void TrackPieceAdjust()
     {
 
-        create = true;
-
-        foreach (GameObject t in tracksObjs)
+        if (tr2.name == "Track Saw Long(Clone)")
         {
-            if (trackPos1.x < t.transform.position.x + spawnDis)
-            {
-                create = false;
-                isStart = false;
-            }
+            print("TR2");
+
+            tr2.GetComponentInChildren<SawArmRotate>().speed = 1.35f;
+
+            tr2.GetComponentInChildren<SawArmRotate>().isRandom = false;
+            tr2.GetComponentInChildren<SawArmRotate>().isClockwise = false;
         }
-
-        if (create)
-        {
-
-            tr1 = Instantiate(tracksList[trackPiece1], trackPos1, Quaternion.identity);
-
-
-            tr2 = Instantiate(tracksList[trackPiece2], trackPos2, Quaternion.identity);
-
-            tr3 = Instantiate(tracksList[trackPiece3], trackPos3, Quaternion.identity);
-
-            if (makeSplit)
-            {
-                tr4 = Instantiate(tracksList[10], new Vector2(playerTrans.position.x + trackDis * 9, playerPos.y - 2), Quaternion.identity);
-            }
-            else
-            {
-                tr4 = Instantiate(tracksList[trackPiece4], trackPos4, Quaternion.identity);
-            }
-
-            create = false;
-
-        }
-
     }
 
-    //void TrackCreation3(Vector2 trackPos1, Vector2 trackPos2, Vector2 trackPos3, Vector2 trackPos4, Vector2 trackPos5)
-    //{
+    void TrackSets()
+    {
+        int ranNum = Random.Range(0,trackSetTest.Count);
 
-    //    create = true;
+        switch (ranNum)
+        {
+            case 0:
+                trackPiece1 = trackSetTest[0].trackNum1;
+                trackPiece2 = trackSetTest[0].trackNum2;
+                trackPiece3 = trackSetTest[0].trackNum3;
+                trackPiece4 = trackSetTest[0].trackNum4;
+                break;
+            case 1:
+                trackPiece1 = trackSetTest[1].trackNum1;
+                trackPiece2 = trackSetTest[1].trackNum2;
+                trackPiece3 = trackSetTest[1].trackNum3;
+                trackPiece4 = trackSetTest[1].trackNum4;
+                break;
+            //case 2:
+            //    trackPiece1 = trackSetTest[0].trackNum1;
+            //    trackPiece2 = trackSetTest[0].trackNum2;
+            //    trackPiece3 = trackSetTest[0].trackNum3;
+            //    trackPiece4 = trackSetTest[0].trackNum4;
+            //    break;
+            default:
+                print("TEST ERROR!");
+                break;
+        }
+    }
 
-    //    foreach (GameObject t in tracksObjs)
-    //    {
-    //        if (trackPos1.x < t.transform.position.x + spawnDis)
-    //        {
-    //            create = false;
-    //            isStart = false;
-    //        }
-    //    }
-
-    //    if (create)
-    //    {
-
-
-    //        tr1 = Instantiate(tracksList[11], trackPos1, Quaternion.identity);   
-
-    //        tr2 = Instantiate(tracksList[11], trackPos2, Quaternion.identity);
-
-    //        tr3 = Instantiate(tracksList[11], trackPos3, Quaternion.identity);
-
-    //        tr4 = Instantiate(tracksList[11], trackPos4, Quaternion.identity);
-
-    //        create = false;
-
-    //    }
-
-    //}
 
 }
