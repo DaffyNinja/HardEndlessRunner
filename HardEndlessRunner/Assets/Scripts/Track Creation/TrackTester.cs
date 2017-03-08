@@ -8,7 +8,6 @@ public class TrackNumListTest
     public int trackN2;
     public int trackN3;
     public int trackN4;
-
 }
 
 public class TrackTester : MonoBehaviour
