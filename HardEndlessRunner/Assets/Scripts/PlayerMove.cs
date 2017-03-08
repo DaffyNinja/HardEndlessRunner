@@ -140,27 +140,30 @@ public class PlayerMove : MonoBehaviour
         // Right movment
         if (slideTongle == 0)
         {
-            if (!obtainedBoost)
+            if (!obtainedBoost && canMove)
             {
                 Vector2 moveQuality = new Vector2(rightSpeed, 0);
                 rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
             }
-            else
+            else if (obtainedBoost && canMove)
             {
                 Vector2 moveQuality = new Vector2(boostSpeed, 0);
                 rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
             }
+
         }
         else if (slideTongle == 1)
         {
             Vector2 moveQuality = new Vector2(slideSpeed, 0);
             rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
         }
-        else if (gMaster.isGameOver == true)
+
+        // Stops Player
+        if (gMaster.isGameOver)
         {
-            Vector2 moveQuality = new Vector2(0, 0);
-            rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
+            rig.bodyType = RigidbodyType2D.Static;
         }
+
 
         // Controls 
         if (isPC && canMove == true)  // PC Controls
@@ -174,7 +177,7 @@ public class PlayerMove : MonoBehaviour
 
                 rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
 
-                rig.AddForce(new Vector2(jumpRightForce,0));
+                rig.AddForce(new Vector2(jumpRightForce, 0));
 
             }
             else if (Input.GetKey(KeyCode.Space) && isJumping && jumpTimer < jumpTime && startTimer)
@@ -267,23 +270,23 @@ public class PlayerMove : MonoBehaviour
                 }
 
                 // Sliding
-                if (slideTongle == 0)
+                if (slideTongle == 0 && slidePressed == true && grounded)
                 {
-                    if (slidePressed == true && grounded)  //  Is sliding 
-                    {
-                        boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
-                        circCol.radius = colCirRadius;
 
-                        sprRend.sprite = slideSpr;
+                    boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
+                    circCol.radius = colCirRadius;
 
-                        rightSpeed = slideSpeed;
+                    sprRend.sprite = slideSpr;
 
-                        slideTongle = 1;
-                    }
+                    rightSpeed = slideSpeed;
+
+                    slideTongle = 1;
+
+                    slidePressed = false;
+
                 }
                 else if (slideTongle == 1)
                 {
-
                     slideTimer += Time.deltaTime;
 
                     if (slideTimer >= timeForFullSlide) // Change back to normal
@@ -406,10 +409,10 @@ public class PlayerMove : MonoBehaviour
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
 
-        if (col.gameObject.tag == "Pillar")
-        {
+        //if (col.gameObject.tag == "Pillar")
+        //{
 
-        }
+        //}
 
         // Specials
         if (col.gameObject.tag == "Boost" && obtainedBoost == false && obtainedShield == false)
@@ -448,7 +451,7 @@ public class PlayerMove : MonoBehaviour
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
 
-        if (col.gameObject.tag == "Platform" && obtainedBoost == true  || col.gameObject.tag == "Track" && obtainedBoost == true)
+        if (col.gameObject.tag == "Platform" && obtainedBoost == true || col.gameObject.tag == "Track" && obtainedBoost == true)
         {
             print("Hit");
 
@@ -489,7 +492,7 @@ public class PlayerMove : MonoBehaviour
 
             GetComponent<SpriteRenderer>().color = Color.yellow;
 
-         
+
 
             if (boostTimer >= boostTime)
             {
@@ -501,7 +504,7 @@ public class PlayerMove : MonoBehaviour
         {
             canMove = true;
 
-           
+
 
             // GetComponent<SpriteRenderer>().color = Color.white;
 

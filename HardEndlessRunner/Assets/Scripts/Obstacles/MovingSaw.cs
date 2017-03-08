@@ -77,7 +77,7 @@ public class MovingSaw : MonoBehaviour
 
         if (isRight || isLeft)
         {
-            print("L R");
+           // print("L R");
 
             transform.localPosition = Vector2.Lerp(startPos, leftRightPos, num);
         }
