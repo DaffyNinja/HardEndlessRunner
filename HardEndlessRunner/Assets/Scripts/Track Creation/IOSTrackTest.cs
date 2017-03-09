@@ -6,6 +6,12 @@ public class IOSTrackTest : MonoBehaviour {
 
     public GameObject[] tracksList;
 
+	public int trackPiece1;
+	public int trackPiece2;
+	public int trackPiece3;
+	public int trackPiece4;
+
+
     bool create;
 
     GameObject[] tracksObjs;
@@ -20,11 +26,7 @@ public class IOSTrackTest : MonoBehaviour {
     GameObject tr3;
     GameObject tr4;
 
-    public int trackPiece1;
-    public int trackPiece2;
-    public int trackPiece3;
-    public int trackPiece4;
-
+    
 
     public Transform playerTrans;
     private Vector2 playerPos;
@@ -37,10 +39,18 @@ public class IOSTrackTest : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
     {
         tracksObjs = GameObject.FindGameObjectsWithTag("Track");
-        SpawnTracks();
+
+		Vector2 pos7 = new Vector2(playerTrans.position.x + trackDis * 6, playerPos.y - trackYPos);
+		Vector2 pos8 = new Vector2(playerTrans.position.x + trackDis * 7, playerPos.y - trackYPos);
+		Vector2 pos9 = new Vector2(playerTrans.position.x + trackDis * 8, playerPos.y - trackYPos);
+		Vector2 pos10 = new Vector2(playerTrans.position.x + trackDis * 9, playerPos.y - trackYPos);
+
+		TrackCreation1(pos7, pos8, pos9, pos10);
+
+       // SpawnTracks();
 		
 	}
 
