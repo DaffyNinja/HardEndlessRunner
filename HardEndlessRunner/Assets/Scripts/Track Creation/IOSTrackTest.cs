@@ -39,7 +39,7 @@ public class IOSTrackTest : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void FixedUpdate ()
+	void Update ()
     {
         tracksObjs = GameObject.FindGameObjectsWithTag("Track");
 
@@ -49,6 +49,15 @@ public class IOSTrackTest : MonoBehaviour {
 		Vector2 pos10 = new Vector2(playerTrans.position.x + trackDis * 9, playerPos.y - trackYPos);
 
 		TrackCreation1(pos7, pos8, pos9, pos10);
+
+		foreach (GameObject t in tracksObjs)
+		{
+			if (t.transform.position.x < playerTrans.position.x - 18)
+			{
+				Destroy(t);
+			}
+
+		}  
 
        // SpawnTracks();
 		

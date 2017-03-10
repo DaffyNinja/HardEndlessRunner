@@ -76,6 +76,7 @@ public class PlayerMove : MonoBehaviour
     [Space(5)]
     public GameMaster gMaster;
     [Space(10)]
+	public bool isIOS;
     public bool isPC;
 
     SpriteRenderer sprRend;
@@ -121,9 +122,281 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+	void Update()
+	{
+		if(isIOS == true)
+		{
+			// determines wether the player is grounded or not
+			grounded = false;
+			Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckTran.position, groundedRadius, 1 << LayerMask.NameToLayer("Ground"));
+			for (int i = 0; i < colliders.Length; i++)
+			{
+				if (colliders[i].gameObject != gameObject)
+				{
+					grounded = true;
+				}
+			}
+
+			// grounded = Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - groundCheck), 1 << LayerMask.NameToLayer("Ground"));
+
+			// Right movment
+			if (slideTongle == 0)
+			{
+				if (!obtainedBoost && canMove)
+				{
+					Vector2 moveQuality = new Vector2(rightSpeed, 0);
+					rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
+				}
+				else if (obtainedBoost && canMove)
+				{
+					Vector2 moveQuality = new Vector2(boostSpeed, 0);
+					rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
+				}
+
+			}
+			else if (slideTongle == 1)
+			{
+				Vector2 moveQuality = new Vector2(slideSpeed, 0);
+				rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
+			}
+
+			// Stops Player
+			if (gMaster.isGameOver)
+			{
+				rig.bodyType = RigidbodyType2D.Static;
+			}
+
+
+			// Controls 
+			if (isPC && canMove == true)  // PC Controls
+			{
+				//Jump
+				if (Input.GetKeyDown(KeyCode.Space) && !isJumping && grounded)
+				{
+					isJumping = true;
+
+					startTimer = true;
+
+					rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
+
+					rig.AddForce(new Vector2(jumpRightForce, 0));
+
+				}
+				else if (Input.GetKey(KeyCode.Space) && isJumping && jumpTimer < jumpTime && startTimer)
+				{
+					if (startTimer)
+					{
+						jumpTimer += Time.deltaTime;
+					}
+					else
+					{
+						isJumping = false;
+					}
+
+					rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
+
+					rig.AddForce(new Vector2(jumpRightForce, 0));
+				}
+				else if (Input.GetKeyUp(KeyCode.Space))
+				{
+					startTimer = false;
+				}
+
+
+
+				// Slide
+				if (slideTongle == 0)
+				{
+					if (Input.GetKeyDown(KeyCode.LeftControl) && grounded)  //  Is sliding 
+					{
+						boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
+						circCol.radius = colCirRadius;
+
+						sprRend.sprite = slideSpr;
+
+						rightSpeed = slideSpeed;
+
+						slideTongle = 1;
+					}
+				}
+				else if (slideTongle == 1)
+				{
+					slideTimer += Time.deltaTime;
+
+					if (slideTimer >= timeForFullSlide) // Change back to normal
+					{
+
+						boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
+						circCol.radius = startCircRadius;
+
+						sprRend.sprite = normSpr;
+
+						rightSpeed = startingRightSpeed;
+
+						slideTongle = 0;
+						slideTimer = 0;
+					}
+
+				}
+
+			}
+			else if (isPC == false && canMove == true)      // Mobile  
+			{
+				// Buttons
+				if (isButtons)
+				{
+					// Jump
+					if (jumpHeld == true && grounded && !isJumping)
+					{
+						isJumping = true;
+
+						startTimer = true;
+					}
+					else if (jumpHeld == true && isJumping && jumpTimer < jumpTime && startTimer)
+					{
+						if (startTimer)
+						{
+							jumpTimer += Time.deltaTime;
+						}
+						else
+						{
+							isJumping = false;
+						}
+
+						rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
+					}
+
+					if (jumpUp == true)
+					{
+						startTimer = false;
+					}
+
+					// Sliding
+					if (slideTongle == 0 && slidePressed == true && grounded)
+					{
+
+						boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
+						circCol.radius = colCirRadius;
+
+						sprRend.sprite = slideSpr;
+
+						rightSpeed = slideSpeed;
+
+						slideTongle = 1;
+
+						slidePressed = false;
+
+					}
+					else if (slideTongle == 1)
+					{
+						slideTimer += Time.deltaTime;
+
+						if (slideTimer >= timeForFullSlide) // Change back to normal
+						{
+							boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
+							circCol.radius = startCircRadius;
+
+							sprRend.sprite = normSpr;
+
+							rightSpeed = startingRightSpeed;
+
+							slidePressed = false;
+
+							slideTongle = 0;
+							slideTimer = 0;
+
+						}
+					}
+				}
+				else if (isTouch && canMove == true)   // Touch
+				{
+					// Touch
+					if (Input.touchCount > 0)
+					{
+						touchPos = Input.GetTouch(0).position;
+					}
+					else
+					{
+						touchPos = new Vector2(0, 0);
+					}
+
+					// Jump  Touch
+					if (Input.touchCount > 0 && touchPos.x < screenPosX && Input.GetTouch(0).phase == TouchPhase.Stationary && grounded && !isJumping)
+					{
+						isJumping = true;
+
+						startTimer = true;
+					}
+					else if (touchPos.x < screenPosX && Input.touchCount > 0 && isJumping && jumpTimer < jumpTime && startTimer)
+					{
+						if (startTimer)
+						{
+							jumpTimer += Time.deltaTime;
+						}
+						else
+						{
+							isJumping = false;
+						}
+
+						rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
+					}
+
+					if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)
+					{
+						startTimer = false;
+					}
+
+
+					// SLide Touch
+					if (slideTongle == 0)
+					{
+						if (touchPos.x > screenPosX && Input.touchCount > 0 && grounded)  //  Is sliding 
+						{
+							boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
+							circCol.radius = colCirRadius;
+
+							sprRend.sprite = slideSpr;
+
+							rightSpeed = slideSpeed;
+
+							slideTongle = 1;
+						}
+					}
+					else if (slideTongle == 1)
+					{
+
+						slideTimer += Time.deltaTime;
+
+						if (slideTimer >= timeForFullSlide) // Change back to normal
+						{
+							boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
+							circCol.radius = startCircRadius;
+
+							sprRend.sprite = normSpr;
+
+							rightSpeed = startingRightSpeed;
+
+							slidePressed = false;
+
+							slideTongle = 0;
+							slideTimer = 0;
+
+						}
+					}
+				}
+
+			}
+
+
+			SpecialAbilities();
+		}
+	}
+
     // Update is called once per frame
     void FixedUpdate()
     {
+		if(isIOS == false)
+	   {
         // determines wether the player is grounded or not
         grounded = false;
         Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckTran.position, groundedRadius, 1 << LayerMask.NameToLayer("Ground"));
@@ -387,6 +660,7 @@ public class PlayerMove : MonoBehaviour
 
 
         SpecialAbilities();
+	 }
     }
 
     void OnTriggerEnter2D(Collider2D col)
