@@ -683,11 +683,6 @@ public class PlayerMove : MonoBehaviour
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
 
-        //if (col.gameObject.tag == "Pillar")
-        //{
-
-        //}
-
         // Specials
         if (col.gameObject.tag == "Boost" && obtainedBoost == false && obtainedShield == false)
         {
@@ -767,7 +762,6 @@ public class PlayerMove : MonoBehaviour
             GetComponent<SpriteRenderer>().color = Color.yellow;
 
 
-
             if (boostTimer >= boostTime)
             {
                 obtainedBoost = false;
@@ -777,9 +771,6 @@ public class PlayerMove : MonoBehaviour
         else if (obtainedBoost == false)
         {
             canMove = true;
-
-
-
             // GetComponent<SpriteRenderer>().color = Color.white;
 
             boostTimer = 0;
@@ -791,7 +782,7 @@ public class PlayerMove : MonoBehaviour
             shieldTimer += Time.deltaTime;
             shieldObj.SetActive(true);
 
-
+            // Stuter Shield
             alphaLerp = Mathf.Lerp(shieldStutMin, shieldStutMax, t);
 
             t += 3 * Time.deltaTime;
