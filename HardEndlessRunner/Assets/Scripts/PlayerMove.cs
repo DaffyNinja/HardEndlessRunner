@@ -665,7 +665,7 @@ public class PlayerMove : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Saw" && obtainedShield == false && obtainedBoost == false)   // game Over
+        if (col.gameObject.tag == "Saw" && obtainedShield == false && obtainedBoost == false)   // Game Over
         {
             gMaster.isGameOver = true;
         }
