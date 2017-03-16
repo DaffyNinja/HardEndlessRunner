@@ -31,6 +31,7 @@ public class TrackCreaterManager : MonoBehaviour
     bool create;
     bool isStart;
 
+    public Transform trackParent;
     GameObject[] tracksObjs; // The track gameobjects created in scene
 
     [Header("Difficulty")]  // Altrs when to change to the diffrent difficulty tracks
@@ -151,7 +152,14 @@ public class TrackCreaterManager : MonoBehaviour
             tr3 = Instantiate(tracksList[trackPiece3], trackPos3, Quaternion.identity);
             tr4 = Instantiate(tracksList[trackPiece4], trackPos4, Quaternion.identity);
 
+            tr1.transform.parent = trackParent;
+            tr2.transform.parent = trackParent;
+            tr3.transform.parent = trackParent;
+            tr4.transform.parent = trackParent;
+
             MediumTracksAdjust();
+
+           
 
             create = false;
 

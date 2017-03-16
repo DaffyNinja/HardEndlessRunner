@@ -66,6 +66,11 @@ public class PlayerMove : MonoBehaviour
     float t = 0;
 
     Rigidbody2D rig;
+    [Header("Audio")]
+    public AudioClip landSFX;
+    AudioSource aSource;
+
+
     [Header("Input")]
     public bool isButtons;
     public bool isTouch;
@@ -117,6 +122,8 @@ public class PlayerMove : MonoBehaviour
         startBoxYSize = boxCol.size.y;
 
         startCircRadius = circCol.radius;
+
+        aSource = GetComponent<AudioSource>();
 
         screenPosX = Screen.width / 2;  // Half the screen x pos to control the touch positions on phone
 
@@ -707,6 +714,7 @@ public class PlayerMove : MonoBehaviour
             jumpTimer = 0;
             isJumping = false;
             startTimer = true;
+            aSource.PlayOneShot(landSFX);
         }
 
         if (col.gameObject.tag == "Dart" && obtainedShield == false)
