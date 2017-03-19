@@ -30,7 +30,7 @@ public class CameraMoveIOS : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         // Camera movement
         if (pMove.obtainedBoost == false)
