@@ -15,7 +15,7 @@ public class CameraMoveIOS : MonoBehaviour {
     public float killNum;
 
     public Transform playerTrans;
-    PlayerMove pMove;
+    PlayerMoveIOS pMove;
 
     public GameMaster gMaster;
 
@@ -26,7 +26,7 @@ public class CameraMoveIOS : MonoBehaviour {
 
         transform.position = new Vector3(playerTrans.position.x + xPos, playerTrans.position.y + yPos, transform.position.z);
 
-        pMove = playerTrans.GetComponent<PlayerMove>();
+        pMove = playerTrans.GetComponent<PlayerMoveIOS>();
     }
 
     // Update is called once per frame

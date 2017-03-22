@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
-{
+public class PlayerMoveIOS : MonoBehaviour {
 
     bool canMove;
     public float rightSpeed;
@@ -130,50 +129,49 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        // determines wether the player is grounded or not
-        grounded = false;
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckTran.position, groundedRadius, 1 << LayerMask.NameToLayer("Ground"));
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            if (colliders[i].gameObject != gameObject)
+      
+            // determines wether the player is grounded or not
+            grounded = false;
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheckTran.position, groundedRadius, 1 << LayerMask.NameToLayer("Ground"));
+            for (int i = 0; i < colliders.Length; i++)
             {
-                grounded = true;
+                if (colliders[i].gameObject != gameObject)
+                {
+                    grounded = true;
+                }
             }
-        }
 
-        // grounded = Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - groundCheck), 1 << LayerMask.NameToLayer("Ground"));
+            // grounded = Physics2D.Linecast(transform.position, new Vector2(transform.position.x, transform.position.y - groundCheck), 1 << LayerMask.NameToLayer("Ground"));
 
-        // Right movment
-        if (slideTongle == 0)
-        {
-            if (!obtainedBoost && canMove)
+            // Right movment
+            if (slideTongle == 0)
             {
-                Vector2 moveQuality = new Vector2(rightSpeed, 0);
+                if (!obtainedBoost && canMove)
+                {
+                    Vector2 moveQuality = new Vector2(rightSpeed, 0);
+                    rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
+                }
+                else if (obtainedBoost && canMove)
+                {
+                    Vector2 moveQuality = new Vector2(boostSpeed, 0);
+                    rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
+                }
+
+            }
+            else if (slideTongle == 1)
+            {
+                Vector2 moveQuality = new Vector2(slideSpeed, 0);
                 rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
             }
-            else if (obtainedBoost && canMove)
+
+            // Stops Player
+            if (gMaster.isGameOver)
             {
-                Vector2 moveQuality = new Vector2(boostSpeed, 0);
-                rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
+                rig.bodyType = RigidbodyType2D.Static;
             }
-
-        }
-        else if (slideTongle == 1)
-        {
-            Vector2 moveQuality = new Vector2(slideSpeed, 0);
-            rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
-        }
-
-        // Stops Player
-        if (gMaster.isGameOver)
-        {
-            rig.bodyType = RigidbodyType2D.Static;
-        }
 
 
         // Controls 
@@ -399,11 +397,9 @@ public class PlayerMove : MonoBehaviour
                     }
                 }
             }
+        }            
 
-        }
-
-        SpecialAbilities();
-
+            SpecialAbilities();          
 
     }
 
