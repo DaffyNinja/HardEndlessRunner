@@ -9,17 +9,11 @@ public class InOutSpikes : MonoBehaviour
 
     public bool isGround;
 
-    Transform[] spikeTrans;
+    Transform spikeTran;
 
-    Vector2 startPos1;
-    Vector2 startPos2;
-    Vector2 startPos3;
-
-    Vector2 activePos;
-
-    Vector2 deactivePos1;
-    Vector2 deactivePos2;
-    Vector2 deactivePos3;
+    Vector2 startPos;
+    Vector2 activePos; 
+    Vector2 deactivePos; 
 
     [Space(5)]
     public bool isActive;
@@ -28,28 +22,18 @@ public class InOutSpikes : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
-        spikeTrans = new Transform[transform.childCount];
+        spikeTran = transform.GetChild(0);
 
-        for (int i = 0; i < transform.childCount; i++)
-        {
-            spikeTrans[i] = transform.GetChild(i).transform;
-        }
+        startPos = spikeTran.position;
 
-        startPos1 = spikeTrans[0].transform.position;
-        startPos2 = spikeTrans[1].transform.position;
-        startPos3 = spikeTrans[2].transform.position;
 
         if (isGround)
         {
-            deactivePos1 = new Vector2(spikeTrans[0].transform.position.x, spikeTrans[0].transform.position.y - 1);
-            deactivePos2 = new Vector2(spikeTrans[1].transform.position.x, spikeTrans[1].transform.position.y - 1);
-            deactivePos3 = new Vector2(spikeTrans[2].transform.position.x, spikeTrans[2].transform.position.y - 1);
+            deactivePos = new Vector2(spikeTran.position.x, spikeTran.position.y - 1);
         }
         else
         {
-            deactivePos1 = new Vector2(spikeTrans[0].transform.position.x, spikeTrans[0].transform.position.y + 1);
-            deactivePos2 = new Vector2(spikeTrans[1].transform.position.x, spikeTrans[1].transform.position.y + 1);
-            deactivePos3 = new Vector2(spikeTrans[2].transform.position.x, spikeTrans[2].transform.position.y + 1);
+            deactivePos = new Vector2(spikeTran.position.x, spikeTran.position.y + 1);
         }
     }
 
@@ -60,15 +44,11 @@ public class InOutSpikes : MonoBehaviour
         {
             timer += Time.deltaTime;
 
-            spikeTrans[0].transform.position = startPos1;
-            spikeTrans[1].transform.position = startPos2;
-            spikeTrans[2].transform.position = startPos3;
+            spikeTran.transform.position = startPos;
         }
         else if (timer >= inOutTime)  // Deactive
         {
-            spikeTrans[0].transform.position = deactivePos1;
-            spikeTrans[1].transform.position = deactivePos2;
-            spikeTrans[2].transform.position = deactivePos3;
+            spikeTran.position = deactivePos;
 
             isActive = false;
             isDeactive = true;
