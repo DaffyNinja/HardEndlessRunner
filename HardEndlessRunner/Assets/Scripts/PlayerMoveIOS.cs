@@ -130,7 +130,7 @@ public class PlayerMoveIOS : MonoBehaviour {
 
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
       
             // determines wether the player is grounded or not
