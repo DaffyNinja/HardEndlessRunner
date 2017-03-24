@@ -5,29 +5,27 @@ using UnityEngine;
 public class IOSTrackTest : MonoBehaviour {
 
     public GameObject[] tracksList;
-
+    [Space(5)]
 	public int trackPiece1;
 	public int trackPiece2;
 	public int trackPiece3;
 	public int trackPiece4;
 
-
     bool create;
 
     GameObject[] tracksObjs;
 
+    [Space(5)]
     public float spawnDis;
     public float trackDis;
-    public float trackYPos;
-
+    public float trackYPos;  
 
     GameObject tr1;
     GameObject tr2;
     GameObject tr3;
     GameObject tr4;
 
-    
-
+    [Space(5)]
     public Transform playerTrans;
     private Vector2 playerPos;
 
