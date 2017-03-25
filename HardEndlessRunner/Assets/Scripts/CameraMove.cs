@@ -10,6 +10,8 @@ public class CameraMove : MonoBehaviour {
     [Header("Screen Size & Pos")]
     public float xPos;
     public float yPos;
+    float screenWidth;
+    float screenHeight;
     public float orthSize;
     [Space(5)]
     public float killNum;
@@ -22,6 +24,12 @@ public class CameraMove : MonoBehaviour {
 	// Use this for initialization
 	void Awake ()
     {
+        screenWidth = Screen.width;
+        screenHeight = Screen.height;
+
+        print("Screen Height: " + screenHeight);
+        print("Screen Width: " + screenWidth);
+
         GetComponent<Camera>().orthographicSize = orthSize;
 
         transform.position = new Vector3(playerTrans.position.x + xPos, playerTrans.position.y + yPos, transform.position.z);
