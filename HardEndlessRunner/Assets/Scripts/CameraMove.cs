@@ -27,8 +27,8 @@ public class CameraMove : MonoBehaviour {
         screenWidth = Screen.width;
         screenHeight = Screen.height;
 
-        print("Screen Height: " + screenHeight);
-        print("Screen Width: " + screenWidth);
+        //print("Screen Height: " + screenHeight);
+        //print("Screen Width: " + screenWidth);
 
         GetComponent<Camera>().orthographicSize = orthSize;
 
