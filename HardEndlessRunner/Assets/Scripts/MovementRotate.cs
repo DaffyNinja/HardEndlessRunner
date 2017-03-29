@@ -6,7 +6,7 @@ public class MovementRotate : MonoBehaviour {
 
     public float rotateSpeed;
 
-    public bool isRotate;
+    public bool isRight;
 
 	// Use this for initialization
 	void Start ()
@@ -17,7 +17,11 @@ public class MovementRotate : MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate ()
     {
-        if (isRotate)
+        if (isRight)
+        {
+            transform.Rotate(0, 0, -rotateSpeed);
+        }
+        else
         {
             transform.Rotate(0, 0, rotateSpeed);
         }
