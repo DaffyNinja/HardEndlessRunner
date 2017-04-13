@@ -9,6 +9,8 @@ public class PlayerMove : MonoBehaviour
     public float rightSpeed;
     float startingRightSpeed;
 
+    Animator anMate;
+
     [Header("Jump")]
     public float JumpAcceleration;
     public float jumpRightForce;
@@ -100,6 +102,8 @@ public class PlayerMove : MonoBehaviour
 
         gMaster = gMaster.GetComponent<GameMaster>();
 
+        anMate = GetComponent<Animator>();
+
         canMove = true;
 
         shieldObj = transform.GetChild(0).gameObject;
@@ -126,6 +130,8 @@ public class PlayerMove : MonoBehaviour
         screenPosX = Screen.width / 2;  // Half the screen x pos to control the touch positions on phone
 
         playLandSound = false;
+
+
 
     }
 
@@ -220,6 +226,8 @@ public class PlayerMove : MonoBehaviour
             {
                 if (Input.GetKeyDown(KeyCode.LeftControl) && grounded)  //  Is sliding 
                 {
+                    anMate.enabled = false;
+
                     boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
                     circCol.radius = colCirRadius;
 
@@ -228,6 +236,8 @@ public class PlayerMove : MonoBehaviour
                     rightSpeed = slideSpeed;
 
                     slideTongle = 1;
+
+                    
                 }
             }
             else if (slideTongle == 1)
@@ -236,6 +246,7 @@ public class PlayerMove : MonoBehaviour
 
                 if (slideTimer >= timeForFullSlide) // Change back to normal
                 {
+                    anMate.enabled = true;
 
                     boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
                     circCol.radius = startCircRadius;
@@ -563,9 +574,7 @@ public class PlayerMove : MonoBehaviour
             shieldColour = Color.white;
             shieldObj.GetComponent<SpriteRenderer>().color = new Color(shieldColour.r, shieldColour.g, shieldColour.b, shieldColourStartingAlpha);
             shieldObj.SetActive(false);
-            shieldTimer = 0;
-
-
+            shieldTimer = 0;       
         }
 
 
