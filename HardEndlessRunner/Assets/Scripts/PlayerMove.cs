@@ -228,10 +228,12 @@ public class PlayerMove : MonoBehaviour
                 {
                     anMate.enabled = false;
 
+                    sprRend.sprite = slideSpr;
+
                     boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
                     circCol.radius = colCirRadius;
 
-                    sprRend.sprite = slideSpr;
+                    
 
                     rightSpeed = slideSpeed;
 
@@ -302,8 +304,10 @@ public class PlayerMove : MonoBehaviour
                     boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
                     circCol.radius = colCirRadius;
 
-                    sprRend.sprite = slideSpr;
+                    anMate.enabled = false;
 
+                    sprRend.sprite = slideSpr;
+     
                     rightSpeed = slideSpeed;
 
                     slideTongle = 1;
@@ -320,7 +324,10 @@ public class PlayerMove : MonoBehaviour
                         boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
                         circCol.radius = startCircRadius;
 
-                        sprRend.sprite = normSpr;
+                        anMate.enabled = true;
+
+                        sprRend.sprite = slideSpr;
+
 
                         rightSpeed = startingRightSpeed;
 
@@ -381,6 +388,8 @@ public class PlayerMove : MonoBehaviour
                         boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
                         circCol.radius = colCirRadius;
 
+                        anMate.enabled = false;
+
                         sprRend.sprite = slideSpr;
 
                         rightSpeed = slideSpeed;
@@ -397,6 +406,8 @@ public class PlayerMove : MonoBehaviour
                     {
                         boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
                         circCol.radius = startCircRadius;
+
+                        anMate.enabled = true;
 
                         sprRend.sprite = normSpr;
 
