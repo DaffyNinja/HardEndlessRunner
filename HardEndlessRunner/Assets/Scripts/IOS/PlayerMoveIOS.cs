@@ -8,6 +8,8 @@ public class PlayerMoveIOS : MonoBehaviour {
     public float rightSpeed;
     float startingRightSpeed;
 
+    Animator aniMate;
+
     [Header("Jump")]
     public float JumpAcceleration;
     public float jumpRightForce;
@@ -100,6 +102,8 @@ public class PlayerMoveIOS : MonoBehaviour {
         gMaster = gMaster.GetComponent<GameMaster>();
 
         canMove = true;
+
+        aniMate = GetComponent<Animator>();
 
         shieldObj = transform.GetChild(0).gameObject;
         shieldObj.SetActive(false);
@@ -221,6 +225,8 @@ public class PlayerMoveIOS : MonoBehaviour {
                     boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
                     circCol.radius = colCirRadius;
 
+                    aniMate.enabled = false;
+
                     sprRend.sprite = slideSpr;
 
                     rightSpeed = slideSpeed;
@@ -237,6 +243,8 @@ public class PlayerMoveIOS : MonoBehaviour {
 
                     boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
                     circCol.radius = startCircRadius;
+
+                    aniMate.enabled = true;
 
                     sprRend.sprite = normSpr;
 
@@ -289,6 +297,8 @@ public class PlayerMoveIOS : MonoBehaviour {
                     boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
                     circCol.radius = colCirRadius;
 
+                    aniMate.enabled = false;
+
                     sprRend.sprite = slideSpr;
 
                     rightSpeed = slideSpeed;
@@ -306,6 +316,8 @@ public class PlayerMoveIOS : MonoBehaviour {
                     {
                         boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
                         circCol.radius = startCircRadius;
+
+                        aniMate.enabled = true;
 
                         sprRend.sprite = normSpr;
 
@@ -368,6 +380,8 @@ public class PlayerMoveIOS : MonoBehaviour {
                         boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
                         circCol.radius = colCirRadius;
 
+                        aniMate.enabled = false;
+
                         sprRend.sprite = slideSpr;
 
                         rightSpeed = slideSpeed;
@@ -384,6 +398,8 @@ public class PlayerMoveIOS : MonoBehaviour {
                     {
                         boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
                         circCol.radius = startCircRadius;
+
+                        aniMate.enabled = true;
 
                         sprRend.sprite = normSpr;
 
