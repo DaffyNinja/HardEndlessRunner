@@ -34,6 +34,8 @@ public class TrackCreaterManager : MonoBehaviour
     public Transform trackParent;
     GameObject[] tracksObjs; // The track gameobjects created in scene
 
+    GameObject[] aestheticObjs;
+
     [Header("Difficulty")]  // Altrs when to change to the diffrent difficulty tracks
     public int mediumNum;
     public int hardNum;
@@ -83,8 +85,22 @@ public class TrackCreaterManager : MonoBehaviour
     void FixedUpdate()
     {
         TrackMaintance();  // Creates the tracks
+        AestheticMaintance();
 
         Difficulty();   // Changes the difficulty in the difficulty manager script        
+    }
+
+    void AestheticMaintance()
+    {
+        aestheticObjs = GameObject.FindGameObjectsWithTag("Aesthetic");
+
+        foreach (GameObject a in aestheticObjs)
+        {
+            if (a.transform.position.x < playerTrans.position.x - destroyNum)
+            {
+                Destroy(a);
+            }
+        }
     }
 
     void TrackMaintance()
