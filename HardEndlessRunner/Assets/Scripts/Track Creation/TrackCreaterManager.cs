@@ -101,6 +101,8 @@ public class TrackCreaterManager : MonoBehaviour
                 Destroy(a);
             }
         }
+ 
+
     }
 
     void TrackMaintance()
