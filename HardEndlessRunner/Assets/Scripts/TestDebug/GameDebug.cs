@@ -31,7 +31,7 @@ public class GameDebug : MonoBehaviour
         {
             float FPS = 1.0f / Time.deltaTime;
 
-            framesPerSecondTxt.text = FPS.ToString();
+            framesPerSecondTxt.text = "FPS: " + Mathf.Round(FPS).ToString();
         }
     }
 }

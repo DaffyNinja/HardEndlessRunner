@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
-   
+
     public float score;
     public int highScore;
     int currentHighScore;
@@ -18,10 +18,13 @@ public class GameMaster : MonoBehaviour
 
     public Text scoreUI;
     public Text highScoreUI;
-
+    public Text gOverscoreUI;
+    public Text gOverhighScoreUI;
+    [Space(5)]
+    public GameObject inGameCanvas;
     public GameObject touchButtonCanvas;
     public GameObject gOverCanvas;
-
+    [Space(5)]
     public GameObject playerObj;
 
     Vector2 playerObjStartPos;
@@ -30,6 +33,8 @@ public class GameMaster : MonoBehaviour
     void Awake()
     {
         isGameOver = false;
+
+        inGameCanvas.SetActive(true);
 
         gOverCanvas.SetActive(false);
 
@@ -44,7 +49,7 @@ public class GameMaster : MonoBehaviour
         {
             touchButtonCanvas.SetActive(false);
         }
-        else if(playerObj.GetComponent<PlayerMove>().isButtons == true)
+        else if (playerObj.GetComponent<PlayerMove>().isButtons == true)
         {
             touchButtonCanvas.SetActive(true);
         }
@@ -87,20 +92,29 @@ public class GameMaster : MonoBehaviour
 
         scoreUI.text = Mathf.RoundToInt(score).ToString();
         highScoreUI.text = currentHighScore.ToString();
-    
+
     }
 
     void GameOver()
     {
         gOverCanvas.SetActive(true);
 
+        inGameCanvas.SetActive(false);
+
+        gOverscoreUI.text = Mathf.RoundToInt(score).ToString();
+
         // Highscore
         if (score > currentHighScore)
-        {                
+        {
             highScore = Mathf.RoundToInt(score);
             PlayerPrefs.SetInt("highScore", highScore);
             highScoreUI.text = currentHighScore.ToString();
+            gOverhighScoreUI.text = currentHighScore.ToString();
 
+        }
+        else
+        {
+            gOverhighScoreUI.text = currentHighScore.ToString();
         }
 
     }
