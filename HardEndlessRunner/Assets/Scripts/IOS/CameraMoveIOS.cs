@@ -17,7 +17,7 @@ public class CameraMoveIOS : MonoBehaviour {
     public Transform playerTrans;
     PlayerMoveIOS pMove;
 
-    public GameMaster gMaster;
+    public IOSGameMaster gMaster;
 
     // Use this for initialization
     void Awake()

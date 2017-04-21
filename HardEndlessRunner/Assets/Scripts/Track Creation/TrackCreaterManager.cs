@@ -66,15 +66,27 @@ public class TrackCreaterManager : MonoBehaviour
     [Header("Player")]
     public Transform playerTrans;
     Vector2 playerPos;
+    [Space(5)]
+    public bool isIOS;
 
     GameMaster gMaster;
+    IOSGameMaster gMasterIOS;
+
     TrackDifficultyManager trackDifficultyMan;
 
     // Use this for initialization
     void Awake()
     {
         //isStart = true;
-        gMaster = GetComponent<GameMaster>();
+        if (isIOS == false)
+        {
+            gMaster = GetComponent<GameMaster>();
+        }
+        else
+        {
+            gMasterIOS = GetComponent<IOSGameMaster>();
+        }
+
         trackDifficultyMan = GetComponent<TrackDifficultyManager>();
         playerPos = playerTrans.position;
         startSpecialNum = specialAppearNum;
@@ -187,18 +199,37 @@ public class TrackCreaterManager : MonoBehaviour
     // Alters the tracks difficulty by changing it in the DifficultyManager script
     void Difficulty()
     {
-        if (gMaster.score < mediumNum)   //Easy
+        if (isIOS == false)
         {
-            trackDifficultyMan.Easy();
+            if (gMaster.score < mediumNum)   //Easy
+            {
+                trackDifficultyMan.Easy();
 
+            }
+            else if (gMaster.score >= mediumNum && gMaster.score < hardNum) // Medium
+            {
+                trackDifficultyMan.Medium();
+            }
+            else    // Hard
+            {
+                trackDifficultyMan.Hard();
+            }
         }
-        else if (gMaster.score >= mediumNum && gMaster.score < hardNum) // Medium
+        else
         {
-            trackDifficultyMan.Medium();
-        }
-        else    // Hard
-        {
-            trackDifficultyMan.Hard();
+            if (gMasterIOS.score < mediumNum)   //Easy
+            {
+                trackDifficultyMan.Easy();
+
+            }
+            else if (gMasterIOS.score >= mediumNum && gMasterIOS.score < hardNum) // Medium
+            {
+                trackDifficultyMan.Medium();
+            }
+            else    // Hard
+            {
+                trackDifficultyMan.Hard();
+            }
         }
 
     }

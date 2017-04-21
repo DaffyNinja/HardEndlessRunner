@@ -80,7 +80,7 @@ public class PlayerMoveIOS : MonoBehaviour {
     Vector2 touchPos;
 
     [Space(5)]
-    public GameMaster gMaster;
+    public IOSGameMaster gMaster;
     [Space(10)]
     public bool isPC;
 
@@ -99,7 +99,7 @@ public class PlayerMoveIOS : MonoBehaviour {
 
         rig = GetComponent<Rigidbody2D>();
 
-        gMaster = gMaster.GetComponent<GameMaster>();
+        gMaster = gMaster.GetComponent<IOSGameMaster>();
 
         canMove = true;
 
@@ -208,7 +208,7 @@ public class PlayerMoveIOS : MonoBehaviour {
 
                 rig.velocity = new Vector2(rig.velocity.x, JumpAcceleration);
 
-                rig.AddForce(new Vector2(jumpRightForce, 0));
+                rig.AddForce(new Vector2(jumpRightForce, 0));                                                                            
             }
             else if (Input.GetKeyUp(KeyCode.Space))
             {

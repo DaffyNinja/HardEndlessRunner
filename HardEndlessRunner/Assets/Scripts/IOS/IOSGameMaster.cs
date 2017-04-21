@@ -1,0 +1,126 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class IOSGameMaster : MonoBehaviour
+{
+
+    public float score;
+    public int highScore;
+    int currentHighScore;
+    string highScoreKey = "HighScore";
+
+    [Space(5)]
+    public bool isGameOver;
+
+    public Text scoreUI;
+    public Text highScoreUI;
+
+    public GameObject touchButtonCanvas;
+    public GameObject gOverCanvas;
+
+    public GameObject playerObj;
+
+    Vector2 playerObjStartPos;
+
+    // Use this for initialization
+    void Awake()
+    {
+        isGameOver = false;
+
+        gOverCanvas.SetActive(false);
+
+        score = 0;
+
+        playerObjStartPos = playerObj.transform.position;
+
+        currentHighScore = PlayerPrefs.GetInt("highScore");
+
+        // Deactivates the players  menu of the 
+        if (playerObj.GetComponent<PlayerMoveIOS>().isTouch == true)
+        {
+            touchButtonCanvas.SetActive(false);
+        }
+        else if (playerObj.GetComponent<PlayerMoveIOS>().isButtons == true)
+        {
+            touchButtonCanvas.SetActive(true);
+        }
+
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
+    {
+        if (isGameOver) // If the game is over reload the scene the player is on if the player presses enter 
+        {
+            GameOver();
+
+            if (Input.GetKey(KeyCode.Return))
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+
+        }
+        else if (isGameOver == false)
+        {
+            if (playerObj.transform.position.x > playerObjStartPos.x)
+            {
+                // Increases the players score based on time
+                if (playerObj.GetComponent<PlayerMoveIOS>().obtainedBoost == false)   // Normal
+                {
+                    score += Time.deltaTime * 3;
+                }
+                else   // Boost
+                {
+                    score += Time.deltaTime * 4;
+                }
+            }
+        }
+
+        if (Input.GetKey(KeyCode.R))
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        scoreUI.text = Mathf.RoundToInt(score).ToString();
+        highScoreUI.text = currentHighScore.ToString();
+
+    }
+
+    void GameOver()
+    {
+        gOverCanvas.SetActive(true);
+
+        // Highscore
+        if (score > currentHighScore)
+        {
+            highScore = Mathf.RoundToInt(score);
+            PlayerPrefs.SetInt("highScore", highScore);
+            highScoreUI.text = currentHighScore.ToString();
+
+        }
+
+    }
+
+    void PhoneInput()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+
+    // Buttons for the game over screen
+    public void RetryButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void QuitButton()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+}
