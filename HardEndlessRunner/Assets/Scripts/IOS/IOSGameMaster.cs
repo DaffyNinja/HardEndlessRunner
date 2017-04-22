@@ -25,6 +25,8 @@ public class IOSGameMaster : MonoBehaviour
     public GameObject gOverCanvas;
     [Space(5)]
     public GameObject playerObj;
+    [Space(5)]
+    public bool boostFrameRate;
 
     Vector2 playerObjStartPos;
 
@@ -58,6 +60,15 @@ public class IOSGameMaster : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (boostFrameRate)
+        {
+            Application.targetFrameRate = 60;
+        }
+        else
+        {
+            Application.targetFrameRate = -1;
+        }
+
         if (isGameOver) // If the game is over reload the scene the player is on if the player presses enter 
         {
             GameOver();
