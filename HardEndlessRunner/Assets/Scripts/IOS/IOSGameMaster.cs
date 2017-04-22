@@ -17,10 +17,13 @@ public class IOSGameMaster : MonoBehaviour
 
     public Text scoreUI;
     public Text highScoreUI;
-
+    public Text gOverScoreUI;
+    public Text gOverHighScoreUI;
+    [Space(5)]
+    public GameObject inGameCanvas;
     public GameObject touchButtonCanvas;
     public GameObject gOverCanvas;
-
+    [Space(5)]
     public GameObject playerObj;
 
     Vector2 playerObjStartPos;
@@ -29,6 +32,8 @@ public class IOSGameMaster : MonoBehaviour
     void Awake()
     {
         isGameOver = false;
+
+        inGameCanvas.SetActive(true);
 
         gOverCanvas.SetActive(false);
 
@@ -93,13 +98,22 @@ public class IOSGameMaster : MonoBehaviour
     {
         gOverCanvas.SetActive(true);
 
+        inGameCanvas.SetActive(false);
+
+        gOverScoreUI.text = Mathf.RoundToInt(score).ToString();
+
         // Highscore
         if (score > currentHighScore)
         {
             highScore = Mathf.RoundToInt(score);
             PlayerPrefs.SetInt("highScore", highScore);
             highScoreUI.text = currentHighScore.ToString();
+            gOverHighScoreUI.text = currentHighScore.ToString();
 
+        }
+        else
+        {
+            gOverHighScoreUI.text = currentHighScore.ToString();
         }
 
     }
