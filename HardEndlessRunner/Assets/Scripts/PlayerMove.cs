@@ -578,8 +578,7 @@ public class PlayerMove : MonoBehaviour
 
                 if (shieldTimer >= shieldTime / 1.3f) // Mkaes the stuter go faster
                 {
-                    t += 6 * Time.deltaTime;
-
+                    t += 6 * Time.deltaTime; 
                 }
             }
 

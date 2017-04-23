@@ -419,6 +419,7 @@ public class PlayerMoveIOS : MonoBehaviour {
 
     }
 
+    // Collisions
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Saw" && obtainedShield == false && obtainedBoost == false)   // Game Over
@@ -491,6 +492,7 @@ public class PlayerMoveIOS : MonoBehaviour {
             Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
     }
+    // END Collisions
 
     public void JumpButtonDown()
     {
@@ -559,9 +561,14 @@ public class PlayerMoveIOS : MonoBehaviour {
                 t = 0.0f;
             }
 
-            if (shieldTimer >= shieldTime / 1.75f)
+            if (shieldTimer >= shieldTime / 1.7f)
             {
                 shieldObj.GetComponent<SpriteRenderer>().color = new Color(shieldColour.r, shieldColour.g, shieldColour.b, alphaLerp);
+
+                if (shieldTimer >= shieldTime / 1.3f) // Mkaes the stuter go faster
+                {
+                    t += 6 * Time.deltaTime;
+                }
             }
 
             if (shieldTimer >= shieldTime)
