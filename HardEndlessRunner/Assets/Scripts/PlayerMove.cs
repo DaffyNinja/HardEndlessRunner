@@ -233,13 +233,13 @@ public class PlayerMove : MonoBehaviour
                     boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
                     circCol.radius = colCirRadius;
 
-                    
+
 
                     rightSpeed = slideSpeed;
 
                     slideTongle = 1;
 
-                    
+
                 }
             }
             else if (slideTongle == 1)
@@ -307,7 +307,7 @@ public class PlayerMove : MonoBehaviour
                     anMate.enabled = false;
 
                     sprRend.sprite = slideSpr;
-     
+
                     rightSpeed = slideSpeed;
 
                     slideTongle = 1;
@@ -429,6 +429,7 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+    // Collisions
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Saw" && obtainedShield == false && obtainedBoost == false)   // Game Over
@@ -502,6 +503,8 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    // END Collisons
+
     public void JumpButtonDown()
     {
         jumpUp = false;
@@ -569,10 +572,18 @@ public class PlayerMove : MonoBehaviour
                 t = 0.0f;
             }
 
-            if (shieldTimer >= shieldTime / 1.75f)
+            if (shieldTimer >= shieldTime / 1.7) // Startes the stuter
             {
                 shieldObj.GetComponent<SpriteRenderer>().color = new Color(shieldColour.r, shieldColour.g, shieldColour.b, alphaLerp);
+
+                if (shieldTimer >= shieldTime / 1.3f) // Mkaes the stuter go faster
+                {
+                    t += 6 * Time.deltaTime;
+
+                }
             }
+
+
 
             if (shieldTimer >= shieldTime)
             {
@@ -585,7 +596,7 @@ public class PlayerMove : MonoBehaviour
             shieldColour = Color.white;
             shieldObj.GetComponent<SpriteRenderer>().color = new Color(shieldColour.r, shieldColour.g, shieldColour.b, shieldColourStartingAlpha);
             shieldObj.SetActive(false);
-            shieldTimer = 0;       
+            shieldTimer = 0;
         }
 
 
