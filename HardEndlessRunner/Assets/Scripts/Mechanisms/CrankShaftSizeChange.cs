@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrankShaftSizeChange : MonoBehaviour {
+public class CrankShaftSizeChange : MonoBehaviour
+{
 
     [Header("Size")]
     public float maxSizeFront;
@@ -19,64 +20,73 @@ public class CrankShaftSizeChange : MonoBehaviour {
     float startY;
 
     public float moveTime;
+    [Space(5)]
+    public float universalTime;
 
-    bool isFront;
-    bool isBack;
+
+    public bool isFront;
+    public bool isBack;
 
     SpriteRenderer sprRend;
 
-	// Use this for initialization
-	void Start ()
+    public InOutSpikes spikeCS;
+
+    // Use this for initialization
+    void Start()
     {
         sprRend = GetComponent<SpriteRenderer>();
-
-        isFront = true;
 
         startY = transform.localPosition.y;
 
         addedY = startY + maxYPos;
 
         minusY = startY - minYPos;
-        
 
-		
-	}
-	
-	// Update is called once per frame
-	void Update ()
+    }
+
+    // Update is called once per frame
+    void Update()
     {
         if (isFront)
         {
-            transform.localScale = Vector3.Lerp(new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z), new Vector3(maxSizeFront, maxSizeFront, transform.localScale.z), Time.deltaTime * sizeTime);
+            transform.localScale = Vector3.Lerp(new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z), new Vector3(maxSizeFront, maxSizeFront, transform.localScale.z), Time.deltaTime * universalTime);
 
-            transform.localPosition = Vector3.Lerp(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), new Vector3(transform.localPosition.x, addedY, transform.localPosition.z), Time.deltaTime * moveTime);
+            transform.localPosition = Vector3.Lerp(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), new Vector3(transform.localPosition.x, addedY, transform.localPosition.z), Time.deltaTime * universalTime);
 
             if (transform.localScale.x >= maxSizeFront - 0.05f && transform.localScale.y >= maxSizeFront - 0.05f)
             {
-                //print("Small");
+                print("Top");
+
+                spikeCS.isActive = true;
+                spikeCS.isDeactive = false;
+
                 sprRend.flipY = false;
-                
+
                 isBack = true;
                 isFront = false;
             }
         }
-        else if(isBack)
+        else if (isBack)
         {
-            transform.localScale = Vector3.Lerp(new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z), new Vector3(maxSizeBack, maxSizeBack, transform.localScale.z), Time.deltaTime * sizeTime);
+            transform.localScale = Vector3.Lerp(new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z), new Vector3(maxSizeBack, maxSizeBack, transform.localScale.z), Time.deltaTime * universalTime);
 
-            transform.localPosition = Vector3.Lerp(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), new Vector3(transform.localPosition.x, minusY, transform.localPosition.z), Time.deltaTime * moveTime);
+            transform.localPosition = Vector3.Lerp(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), new Vector3(transform.localPosition.x, minusY, transform.localPosition.z), Time.deltaTime * universalTime);
 
             if (transform.localScale.x <= maxSizeBack + 0.05f && transform.localScale.y <= maxSizeBack + 0.05f)
             {
-                //print("Big");
+                print("Bottom");
+
+                spikeCS.isDeactive = true;
+                spikeCS.isActive = false;
+               
 
                 sprRend.flipY = true;
 
                 isFront = true;
                 isBack = false;
-              
+
             }
         }
-		
-	}
+
+    }
 }

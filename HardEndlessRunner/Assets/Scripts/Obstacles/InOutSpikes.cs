@@ -12,12 +12,14 @@ public class InOutSpikes : MonoBehaviour
     Transform spikeTran;
 
     Vector2 startPos;
-    Vector2 activePos; 
-    Vector2 deactivePos; 
+    Vector2 activePos;
+    Vector2 deactivePos;
 
     [Space(5)]
     public bool isActive;
     public bool isDeactive;
+
+    public bool isNew;
 
     // Use this for initialization
     void Awake()
@@ -40,30 +42,46 @@ public class InOutSpikes : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (timer < inOutTime && isActive)  // Active
+        if (isNew == false)
         {
-            timer += Time.deltaTime;
-
-            spikeTran.transform.position = startPos;
-        }
-        else if (timer >= inOutTime)  // Deactive
-        {
-            spikeTran.position = deactivePos;
-
-            isActive = false;
-            isDeactive = true;
-
-        }
-
-        if (isDeactive)
-        {
-            timer -= Time.deltaTime;
-
-            if (timer <= 0)
+            if (timer < inOutTime && isActive)  // Active
             {
-                isActive = true;
-                isDeactive = false;
+                timer += Time.deltaTime;
+
+                spikeTran.transform.position = startPos;
             }
+            else if (timer >= inOutTime)  // Deactive
+            {
+                spikeTran.position = deactivePos;
+
+                isActive = false;
+                isDeactive = true;
+
+            }
+
+            if (isDeactive)
+            {
+                timer -= Time.deltaTime;
+
+                if (timer <= 0)
+                {
+                    isActive = true;
+                    isDeactive = false;
+                }
+            }
+        }
+        else
+        {
+            if (isActive)  // Active
+            {
+                spikeTran.transform.position = startPos;
+            }
+            else
+            {
+                spikeTran.position = deactivePos;
+
+            }
+
         }
 
 
