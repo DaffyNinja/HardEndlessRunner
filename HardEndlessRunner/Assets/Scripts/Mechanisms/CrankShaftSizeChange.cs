@@ -55,7 +55,7 @@ public class CrankShaftSizeChange : MonoBehaviour
 
             if (transform.localScale.x >= maxSizeFront - 0.05f && transform.localScale.y >= maxSizeFront - 0.05f)
             {
-                print("Top");
+                //print("Top");
 
                 spikeCS.isActive = true;
                 spikeCS.isDeactive = false;
@@ -74,7 +74,7 @@ public class CrankShaftSizeChange : MonoBehaviour
 
             if (transform.localScale.x <= maxSizeBack + 0.05f && transform.localScale.y <= maxSizeBack + 0.05f)
             {
-                print("Bottom");
+                //print("Bottom");
 
                 spikeCS.isDeactive = true;
                 spikeCS.isActive = false;

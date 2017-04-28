@@ -12,6 +12,8 @@ public class SawArmRotate : MonoBehaviour {
 
     int ranNum;
 
+    public MovementRotate rotateObj;
+
     // Use this for initialization
     void Awake ()
     {
@@ -24,24 +26,28 @@ public class SawArmRotate : MonoBehaviour {
     {
         if (isRandom)
         {
-            if (ranNum == 0) // Anti clockwise
+            if (ranNum == 0) // Anti clockwise  || Right
             {
-                transform.Rotate(0, 0, speed); 
+                transform.Rotate(0, 0, speed);
+                rotateObj.isRight = false;
             }
-            else // Clockwise
+            else // Clockwise || Left
             {
                 transform.Rotate(0, 0, -speed);
+                rotateObj.isRight = true;
             }
         }
         else
         {
-            if (isClockwise == false)
+            if (isClockwise == false) // Right
             {
                 transform.Rotate(0, 0, speed);
+                rotateObj.isRight = false;
             }
-            else
+            else // Left
             {
                 transform.Rotate(0, 0, -speed);
+                rotateObj.isRight = true;
             }
         }
 
