@@ -14,10 +14,17 @@ public class CrankShaftSizeChange : MonoBehaviour
     public float minYPos;
     public float maxYPos;
 
+    //public float minYPosPiston;
+    //public float maxYPosPiston;
+
     float addedY;
     float minusY;
 
+    //float addedYPiston;
+    //float minusYPiston;
+
     float startY;
+   // float startYPiston;
 
     public float moveTime;
     [Space(5)]
@@ -27,7 +34,12 @@ public class CrankShaftSizeChange : MonoBehaviour
     public bool isFront;
     public bool isBack;
 
+    public Sprite upSprite;
+    public Sprite downSprite;
+
     SpriteRenderer sprRend;
+
+    //public GameObject pistonObj;
 
     public InOutSpikes spikeCS;
 
@@ -36,11 +48,21 @@ public class CrankShaftSizeChange : MonoBehaviour
     {
         sprRend = GetComponent<SpriteRenderer>();
 
+        //upSprite = sprRend.sprite;
+
+
         startY = transform.localPosition.y;
 
         addedY = startY + maxYPos;
 
         minusY = startY - minYPos;
+
+
+        //startYPiston = pistonObj.transform.localPosition.y;
+
+        //addedYPiston = startYPiston + maxYPosPiston;
+
+        //minusYPiston = startYPiston - minYPosPiston;
 
     }
 
@@ -53,14 +75,21 @@ public class CrankShaftSizeChange : MonoBehaviour
 
             transform.localPosition = Vector3.Lerp(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), new Vector3(transform.localPosition.x, addedY, transform.localPosition.z), Time.deltaTime * universalTime);
 
-            if (transform.localScale.x >= maxSizeFront - 0.05f && transform.localScale.y >= maxSizeFront - 0.05f)
+            sprRend.sprite = upSprite;
+
+            // pistonObj.transform.localScale = Vector3.Lerp(new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z), new Vector3(maxSizeFront, maxSizeFront, transform.localScale.z), Time.deltaTime * universalTime);
+
+            // pistonObj.transform.localPosition = Vector3.Lerp(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), new Vector3(transform.localPosition.x, addedYPiston, transform.localPosition.z), Time.deltaTime * 3);
+
+            if (transform.localScale.x >= maxSizeFront - 0.05f)
             {
                 //print("Top");
 
+              //  sprRend.flipY = false;
+
+
                 spikeCS.isActive = true;
                 spikeCS.isDeactive = false;
-
-                sprRend.flipY = false;
 
                 isBack = true;
                 isFront = false;
@@ -72,15 +101,28 @@ public class CrankShaftSizeChange : MonoBehaviour
 
             transform.localPosition = Vector3.Lerp(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), new Vector3(transform.localPosition.x, minusY, transform.localPosition.z), Time.deltaTime * universalTime);
 
-            if (transform.localScale.x <= maxSizeBack + 0.05f && transform.localScale.y <= maxSizeBack + 0.05f)
+            sprRend.sprite = downSprite;
+
+
+            //pistonObj.transform.localScale = Vector3.Lerp(new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z), new Vector3(maxSizeBack, maxSizeBack, transform.localScale.z), Time.deltaTime * universalTime);
+            
+           // pistonObj.transform.localPosition = Vector3.Lerp(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), new Vector3(transform.localPosition.x, minYPosPiston, transform.localPosition.z), Time.deltaTime * 3);
+
+
+
+            if (transform.localScale.x <= maxSizeBack + 0.05f)
             {
                 //print("Bottom");
 
+               // pistonObj.transform.localPosition = Vector3.Lerp(new Vector3(transform.localPosition.x, transform.localPosition.y, transform.localPosition.z), new Vector3(transform.localPosition.x, addedYPiston, transform.localPosition.z), Time.deltaTime * universalTime);
+
+               // sprRend.flipY = true;
+
+
                 spikeCS.isDeactive = true;
                 spikeCS.isActive = false;
-               
 
-                sprRend.flipY = true;
+
 
                 isFront = true;
                 isBack = false;
