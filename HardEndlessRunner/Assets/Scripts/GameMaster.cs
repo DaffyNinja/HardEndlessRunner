@@ -14,6 +14,12 @@ public class GameMaster : MonoBehaviour
     string highScoreKey = "HighScore";
 
     [Space(5)]
+    public bool isEasy;
+    public bool isMedium;
+    public bool isHard;
+
+
+    [Space(5)]
     public bool isGameOver;
 
     public Text scoreUI;
@@ -59,6 +65,9 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // Difficulty
+
+
         if (isGameOver) // If the game is over reload the scene the player is on if the player presses enter 
         {
             GameOver();

@@ -113,7 +113,7 @@ public class TrackCreaterManager : MonoBehaviour
                 Destroy(a);
             }
         }
- 
+
 
     }
 
@@ -129,7 +129,7 @@ public class TrackCreaterManager : MonoBehaviour
                 Destroy(t);
             }
 
-        }  
+        }
     }
 
     void SpawnTracks()   // Creates the tracks at positions ahead of the player
@@ -189,7 +189,7 @@ public class TrackCreaterManager : MonoBehaviour
 
             MediumTracksAdjust();
 
-           
+
 
             create = false;
 
@@ -205,14 +205,29 @@ public class TrackCreaterManager : MonoBehaviour
             {
                 trackDifficultyMan.Easy();
 
+                gMaster.isEasy = true;
+
+                gMaster.isMedium = false;
+                gMaster.isHard = false;
+
             }
             else if (gMaster.score >= mediumNum && gMaster.score < hardNum) // Medium
             {
                 trackDifficultyMan.Medium();
+
+                gMaster.isMedium = true;
+
+                gMaster.isEasy = false;
+                gMaster.isHard = false;
             }
             else    // Hard
             {
                 trackDifficultyMan.Hard();
+
+                gMaster.isHard = true;
+
+                gMaster.isMedium = false;
+                gMaster.isEasy = false;
             }
         }
         else
