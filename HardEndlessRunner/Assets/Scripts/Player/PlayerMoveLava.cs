@@ -101,8 +101,6 @@ public class PlayerMoveLava : MonoBehaviour {
 
                 rig.AddForce(new Vector2(jumpRightForce, 0));
 
-
-
             }
             else if (Input.GetKey(KeyCode.Space) && isJumping && jumpTimer < jumpTime && startTimer)
             {
@@ -208,6 +206,36 @@ public class PlayerMoveLava : MonoBehaviour {
             }
 
         }
+
+    }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+
+        if (col.gameObject.tag == "Lava")
+        {
+            gMaster.isGameOver = true;
+        }
+
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        // Ground
+        if (col.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
+            jumpTimer = 0;
+            isJumping = false;
+            startTimer = true;
+            //aSource.PlayOneShot(landSFX);
+
+        }
+
+        //if (col.gameObject.layer == LayerMask.NameToLayer("Ground") && playLandSound == true)
+        //{
+        //    aSource.PlayOneShot(landSFX);
+        //    playLandSound = false;
+        //}
 
     }
 }
