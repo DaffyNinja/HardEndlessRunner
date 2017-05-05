@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GameMaster : MonoBehaviour
 {
 
+
     public float score;
     public int highScore;
     int currentHighScore;
@@ -33,6 +34,10 @@ public class GameMaster : MonoBehaviour
     [Space(5)]
     public GameObject playerObj;
 
+    [Header("Game Type")]
+    public bool isMainGame;
+    public bool isLavaSpecial;
+
     Vector2 playerObjStartPos;
 
     // Use this for initialization
@@ -51,13 +56,28 @@ public class GameMaster : MonoBehaviour
         currentHighScore = PlayerPrefs.GetInt("highScore");
 
         // Deactivates the players  menu of the 
-        if (playerObj.GetComponent<PlayerMove>().isTouch == true)
+        if (isMainGame)
         {
-            touchButtonCanvas.SetActive(false);
+            if (playerObj.GetComponent<PlayerMove>().isTouch == true)
+            {
+                touchButtonCanvas.SetActive(false);
+            }
+            else if (playerObj.GetComponent<PlayerMove>().isButtons == true)
+            {
+                touchButtonCanvas.SetActive(true);
+            }
         }
-        else if (playerObj.GetComponent<PlayerMove>().isButtons == true)
+        else if (isLavaSpecial)
         {
-            touchButtonCanvas.SetActive(true);
+            if (playerObj.GetComponent<PlayerMoveLava>().isTouch == true)
+            {
+                touchButtonCanvas.SetActive(false);
+            }
+            else if (playerObj.GetComponent<PlayerMoveLava>().isButtons == true)
+            {
+                touchButtonCanvas.SetActive(true);
+            }
+
         }
 
     }
@@ -83,17 +103,26 @@ public class GameMaster : MonoBehaviour
             if (playerObj.transform.position.x > playerObjStartPos.x)
             {
                 // Increases the players score based on time
-                if (playerObj.GetComponent<PlayerMove>().obtainedBoost == false)   // Normal
+
+                if (isMainGame)
+                {
+                    if (playerObj.GetComponent<PlayerMove>().obtainedBoost == false)   // Normal
+                    {
+                        score += Time.deltaTime * 3;
+                    }
+                    else   // Boost
+                    {
+                        score += Time.deltaTime * 4;
+                    }
+                }
+                else if (isLavaSpecial)
                 {
                     score += Time.deltaTime * 3;
-                }
-                else   // Boost
-                {
-                    score += Time.deltaTime * 4;
                 }
             }
         }
 
+        // Debug
         if (Input.GetKey(KeyCode.R))
         {
             SceneManager.LoadScene(0);

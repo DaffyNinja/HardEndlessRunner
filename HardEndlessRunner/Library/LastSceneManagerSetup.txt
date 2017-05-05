@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Main Game.unity
+- path: Assets/Lava Special.unity
   isLoaded: 1
   isActive: 1
