@@ -1,13 +1,13 @@
 fileFormatVersion: 2
-guid: 470f165bfd59617499ed04856d54bdc4
-timeCreated: 1494127236
+guid: ee616089e06d9f149ba57ffc4931f0a7
+timeCreated: 1494129422
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Lava Sprite Sheet V2_0
-    21300002: Lava Sprite Sheet V2_1
-    21300004: Lava Sprite Sheet V2_2
-    21300006: Lava Sprite Sheet V2_3
+    21300000: Lava Sprite Sheet V3_0
+    21300002: Lava Sprite Sheet V3_1
+    21300004: Lava Sprite Sheet V3_2
+    21300006: Lava Sprite Sheet V3_3
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -90,12 +90,25 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Lava Sprite Sheet V2_0
+      name: Lava Sprite Sheet V3_0
       rect:
         serializedVersion: 2
         x: 8
         y: 323
         width: 375
+        height: 237
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Lava Sprite Sheet V3_1
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 323
+        width: 374
         height: 241
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -103,39 +116,26 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Lava Sprite Sheet V2_1
-      rect:
-        serializedVersion: 2
-        x: 542
-        y: 323
-        width: 375
-        height: 245
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: Lava Sprite Sheet V2_2
+      name: Lava Sprite Sheet V3_2
       rect:
         serializedVersion: 2
         x: 0
         y: 6
         width: 376
-        height: 246
+        height: 242
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: Lava Sprite Sheet V2_3
+      name: Lava Sprite Sheet V3_3
       rect:
         serializedVersion: 2
         x: 541
         y: 0
         width: 376
-        height: 246
+        height: 242
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
