@@ -36,9 +36,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 564
+    x: 832
     y: 0
-    width: 870
+    width: 602
     height: 671
   m_MinSize: {x: 104, y: 121}
   m_MaxSize: {x: 4004, y: 4021}
@@ -226,7 +226,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 273
     y: 0
-    width: 291
+    width: 559
     height: 671
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
@@ -356,9 +356,9 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 885
+    x: 898
     y: 92
-    width: 547
+    width: 534
     height: 650
   m_ViewPositions:
     m_KeySerializationHelper:
@@ -366,16 +366,18 @@ MonoBehaviour:
     - {fileID: 1107795652364184366, guid: 27d68e17d0709a844a9433f9cfa049f7, type: 2}
     - {fileID: 1107907921749424258, guid: 079e6b7c96f6aa4438c8bf165ddd1c2e, type: 2}
     - {fileID: 1107662160090240806, guid: fa947df06b349b2469301a3aa2caa630, type: 2}
+    - {fileID: 1107438246628943404, guid: 7359988f8b94cfd4fbf1bae7a09618e9, type: 2}
     m_ValueSerializationHelper:
     - {x: 427.40002, y: 186}
     - {x: 374.80002, y: 304.40002}
     - {x: 370.00003, y: 294}
     - {x: 370.00003, y: 294}
+    - {x: 272.40002, y: 294}
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 9249be6b928ce7447aa8c9add5745acc,
+  m_AnimatorController: {fileID: 9100000, guid: 7359988f8b94cfd4fbf1bae7a09618e9,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 1107001697474558380, guid: 9249be6b928ce7447aa8c9add5745acc,
+  - m_Target: {fileID: 1107438246628943404, guid: 7359988f8b94cfd4fbf1bae7a09618e9,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -411,9 +413,9 @@ MonoBehaviour:
   m_DepthBufferBits: 0
   m_Pos:
     serializedVersion: 2
-    x: 566
+    x: 834
     y: 92
-    width: 866
+    width: 598
     height: 650
   m_MaximizeOnPlay: 0
   m_Gizmos: 0
@@ -443,25 +445,25 @@ MonoBehaviour:
       serializedVersion: 2
       x: 0
       y: 17
-      width: 866
+      width: 598
       height: 633
-    m_Scale: {x: 1, y: 1}
-    m_Translation: {x: 433, y: 316.5}
+    m_Scale: {x: 0.7475, y: 0.7475}
+    m_Translation: {x: 299, y: 316.5}
     m_MarginLeft: 0
     m_MarginRight: 0
     m_MarginTop: 0
     m_MarginBottom: 0
     m_LastShownAreaInsideMargins:
       serializedVersion: 2
-      x: -433
-      y: -316.5
-      width: 866
-      height: 633
+      x: -400
+      y: -423.41138
+      width: 800
+      height: 846.82275
     m_MinimalGUI: 1
-  m_defaultScale: 1
+  m_defaultScale: 0.7475
   m_TargetTexture: {fileID: 0}
   m_CurrentColorSpace: 0
-  m_LastWindowPixelSize: {x: 866, y: 650}
+  m_LastWindowPixelSize: {x: 598, y: 650}
   m_ClearInEditMode: 1
   m_NoCameraWarning: 1
   m_LowResolutionForAspectRatios: 01000100000100000100
@@ -495,7 +497,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: acb6ffff2ecbffff54d3ffffb8d3ffff20d7ffff10d9ffff16e3ffffd8fbffff000000002a3200000837000032380000
+    m_ExpandedIDs: 2e2bffff002cfffff02cffff5065ffff2266ffff1267ffff46f0ffff96f0fffffaf0ffff58f1ffffd8fbffff00000000463200008e700000b87000006a7200008872000004740000aa740000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -542,17 +544,17 @@ MonoBehaviour:
     serializedVersion: 2
     x: 275
     y: 92
-    width: 287
+    width: 555
     height: 650
   m_SceneLighting: 0
-  lastFramingTime: 88.23578188628377
+  lastFramingTime: 666.7093642094293
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1862.3867, y: 13357.141, z: 0}
+    m_Target: {x: 18.566208, y: -21.01866, z: 0}
     speed: 2
-    m_Value: {x: 1862.3867, y: 13357.141, z: 0}
+    m_Value: {x: 18.566208, y: -21.01866, z: 0}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -579,9 +581,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 55.63235
+    m_Target: 91.23689
     speed: 2
-    m_Value: 55.63235
+    m_Value: 91.23689
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -629,18 +631,18 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/!Scenes/Specials
+    - Assets/Prefabs/Tracks/Lava
   m_ViewMode: 1
   m_StartGridSize: 46
   m_LastFolders:
-  - Assets/!Scenes/Specials
+  - Assets/Prefabs/Tracks/Lava
   m_LastFoldersGridSize: 46
   m_LastProjectPath: C:\Users\User\Desktop\Hard Endless Runner GIT\HardEndlessRunner
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 0c2b0000
-    m_LastClickedID: 11020
+    scrollPos: {x: 0, y: 159}
+    m_SelectedIDs: 1c2c0000
+    m_LastClickedID: 11292
     m_ExpandedIDs: 000000000c250000de260000222700009e270000522b0000562b0000242d00003a31000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
