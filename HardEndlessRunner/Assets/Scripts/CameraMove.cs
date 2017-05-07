@@ -19,6 +19,8 @@ public class CameraMove : MonoBehaviour {
     public Transform playerTrans;
     PlayerMove pMove;
 
+    public bool isMainGame;
+
     public GameMaster gMaster;
 
 	// Use this for initialization
@@ -34,20 +36,30 @@ public class CameraMove : MonoBehaviour {
 
         transform.position = new Vector3(playerTrans.position.x + xPos, playerTrans.position.y + yPos, transform.position.z);
 
-        pMove = playerTrans.GetComponent<PlayerMove>();
+        if (isMainGame)
+        {
+            pMove = playerTrans.GetComponent<PlayerMove>();
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate ()
     {
         // Camera movement
-        if (pMove.obtainedBoost == false)
+        if (isMainGame)
         {
-            transform.Translate(moveSpeed, 0, 0);
+            if (pMove.obtainedBoost == false)
+            {
+                transform.Translate(moveSpeed, 0, 0);
+            }
+            else
+            {
+                transform.Translate(boostSpeed, 0, 0);
+            }
         }
         else
         {
-            transform.Translate(boostSpeed, 0, 0);
+            transform.Translate(moveSpeed, 0, 0);
         }
 
         Vector3 viewPos = GetComponent<Camera>().WorldToViewportPoint(playerTrans.position);

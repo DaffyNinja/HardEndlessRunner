@@ -8,10 +8,17 @@ using UnityEngine.SceneManagement;
 public class GameMaster : MonoBehaviour
 {
 
+
     public float score;
     public int highScore;
     int currentHighScore;
     string highScoreKey = "HighScore";
+
+    [Space(5)]
+    public bool isEasy;
+    public bool isMedium;
+    public bool isHard;
+
 
     [Space(5)]
     public bool isGameOver;
@@ -26,6 +33,10 @@ public class GameMaster : MonoBehaviour
     public GameObject gOverCanvas;
     [Space(5)]
     public GameObject playerObj;
+
+    [Header("Game Type")]
+    public bool isMainGame;
+    public bool isLavaSpecial;
 
     Vector2 playerObjStartPos;
 
@@ -45,13 +56,28 @@ public class GameMaster : MonoBehaviour
         currentHighScore = PlayerPrefs.GetInt("highScore");
 
         // Deactivates the players  menu of the 
-        if (playerObj.GetComponent<PlayerMove>().isTouch == true)
+        if (isMainGame)
         {
-            touchButtonCanvas.SetActive(false);
+            if (playerObj.GetComponent<PlayerMove>().isTouch == true)
+            {
+                touchButtonCanvas.SetActive(false);
+            }
+            else if (playerObj.GetComponent<PlayerMove>().isButtons == true)
+            {
+                touchButtonCanvas.SetActive(true);
+            }
         }
-        else if (playerObj.GetComponent<PlayerMove>().isButtons == true)
+        else if (isLavaSpecial)
         {
-            touchButtonCanvas.SetActive(true);
+            if (playerObj.GetComponent<PlayerMoveLava>().isTouch == true)
+            {
+                touchButtonCanvas.SetActive(false);
+            }
+            else if (playerObj.GetComponent<PlayerMoveLava>().isButtons == true)
+            {
+                touchButtonCanvas.SetActive(true);
+            }
+
         }
 
     }
@@ -59,6 +85,9 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        // Difficulty
+
+
         if (isGameOver) // If the game is over reload the scene the player is on if the player presses enter 
         {
             GameOver();
@@ -74,17 +103,26 @@ public class GameMaster : MonoBehaviour
             if (playerObj.transform.position.x > playerObjStartPos.x)
             {
                 // Increases the players score based on time
-                if (playerObj.GetComponent<PlayerMove>().obtainedBoost == false)   // Normal
+
+                if (isMainGame)
+                {
+                    if (playerObj.GetComponent<PlayerMove>().obtainedBoost == false)   // Normal
+                    {
+                        score += Time.deltaTime * 3;
+                    }
+                    else   // Boost
+                    {
+                        score += Time.deltaTime * 4;
+                    }
+                }
+                else if (isLavaSpecial)
                 {
                     score += Time.deltaTime * 3;
-                }
-                else   // Boost
-                {
-                    score += Time.deltaTime * 4;
                 }
             }
         }
 
+        // Debug
         if (Input.GetKey(KeyCode.R))
         {
             SceneManager.LoadScene(0);
