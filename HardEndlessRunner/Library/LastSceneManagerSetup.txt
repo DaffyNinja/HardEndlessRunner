@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/!Scenes/Specials/Saws Only Special.unity
+- path: Assets/!Scenes/Specials/Lava Special.unity
   isLoaded: 1
   isActive: 1
