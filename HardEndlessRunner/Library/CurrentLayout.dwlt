@@ -135,7 +135,7 @@ MonoBehaviour:
   m_MinSize: {x: 687, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 10
+  controlID: 70
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_MinSize: {x: 410, y: 492}
   m_MaxSize: {x: 14006, y: 14042}
   vertical: 1
-  controlID: 11
+  controlID: 71
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_MinSize: {x: 410, y: 221}
   m_MaxSize: {x: 12010, y: 4021}
   vertical: 0
-  controlID: 12
+  controlID: 72
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_MinSize: {x: 336, y: 271}
   m_MaxSize: {x: 14006, y: 10021}
   vertical: 0
-  controlID: 34
+  controlID: 12
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -495,23 +495,23 @@ MonoBehaviour:
     height: 650
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: d22b0000
+    m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 3cbdffffb8e8ffffbee8ffffd4e8ffff28e9ffff36e9ffffd8fbffff0000000086320000e0320000
+    m_ExpandedIDs: 1cfaffff5afaffffd8fbffff00000000102e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: Canvas
-      m_OriginalName: Canvas
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: -5848
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 0
       m_ClientGUIView: {fileID: 9}
     m_SearchString: 
@@ -631,19 +631,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/!Scenes/Specials
+    - Assets/Textures&Sprites/UI
   m_ViewMode: 1
   m_StartGridSize: 46
   m_LastFolders:
-  - Assets/!Scenes/Specials
+  - Assets/Textures&Sprites/UI
   m_LastFoldersGridSize: 46
   m_LastProjectPath: C:\Users\User\Desktop\Hard Endless Runner GIT\HardEndlessRunner
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 90290000
-    m_LastClickedID: 10640
-    m_ExpandedIDs: 000000000c250000dc2600001827000098270000d2290000d6290000a22b00007c2c0000242d000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 502}
+    m_SelectedIDs: b82b0000
+    m_LastClickedID: 11192
+    m_ExpandedIDs: 000000000c250000dc2600001827000098270000e0290000e4290000b02b00008a2c0000322d000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -671,7 +671,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000000c250000dc2600001827000098270000d2290000d6290000a22b00007c2c0000242d0000
+    m_ExpandedIDs: 000000000c250000dc2600001827000098270000e0290000e4290000b02b00008a2c0000322d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
