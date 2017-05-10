@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/!Scenes/Specials/Lava Special.unity
+- path: Assets/!Scenes/ART TEST copy.unity
   isLoaded: 1
   isActive: 1
