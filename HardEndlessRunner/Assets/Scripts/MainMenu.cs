@@ -31,6 +31,33 @@ public class MainMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Unlocks
+        if (PlayerPrefs.GetInt("lavaNum") == 0)
+        {
+            print("LOCKED");
+        }
+        else
+        {
+            print("UNLOCKED");
+        }
+
+        if (PlayerPrefs.GetInt("sawNum") == 0)
+        {
+            print("Saw Locked");
+        }
+        else
+        {
+            print("Saw UnLocked");
+        }
+
+        if (PlayerPrefs.GetInt("upSideNum") == 0)
+        {
+            print("UpSideDwn Locked");
+        }
+        else
+        {
+            print("UpSideDwn UnLocked");
+        }
 
     }
 
