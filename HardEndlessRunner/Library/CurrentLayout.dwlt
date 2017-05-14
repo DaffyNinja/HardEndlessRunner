@@ -258,7 +258,7 @@ MonoBehaviour:
   m_MinSize: {x: 336, y: 271}
   m_MaxSize: {x: 14006, y: 10021}
   vertical: 0
-  controlID: 96
+  controlID: 97
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -302,8 +302,8 @@ MonoBehaviour:
     y: 0
     width: 555
     height: 276
-  m_MinSize: {x: 104, y: 121}
-  m_MaxSize: {x: 4004, y: 4021}
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -382,10 +382,10 @@ MonoBehaviour:
     - {x: 312.40002, y: 370.00003}
     - {x: 312.40002, y: 370.00003}
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: 7359988f8b94cfd4fbf1bae7a09618e9,
+  m_AnimatorController: {fileID: 9100000, guid: 27d68e17d0709a844a9433f9cfa049f7,
     type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 1107438246628943404, guid: 7359988f8b94cfd4fbf1bae7a09618e9,
+  - m_Target: {fileID: 1107795652364184366, guid: 27d68e17d0709a844a9433f9cfa049f7,
       type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
@@ -503,9 +503,9 @@ MonoBehaviour:
     height: 650
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: 86f4ffffd8fbffff00000000
+    m_SelectedIDs: 8e93ffff
+    m_LastClickedID: -27762
+    m_ExpandedIDs: 7698ffffb89dffff2ea3ffff4ca7ffff5ab0ffffecbaffffa4f5ffffd8fbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -524,7 +524,7 @@ MonoBehaviour:
       m_ClientGUIView: {fileID: 9}
     m_SearchString: 
   m_ExpandedScenes:
-  - Main Game IOS
+  - Lava Special IOS
   m_CurrenRootInstanceID: 0
   m_Locked: 0
   m_CurrentSortingName: TransformSorting
@@ -555,14 +555,14 @@ MonoBehaviour:
     width: 354
     height: 650
   m_SceneLighting: 0
-  lastFramingTime: 17.485615111392033
+  lastFramingTime: 1202.8044829425937
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 943.8, y: 12.1, z: 0}
+    m_Target: {x: 889, y: 10, z: 0}
     speed: 2
-    m_Value: {x: 943.8, y: 12.1, z: 0}
+    m_Value: {x: 889, y: 10, z: 0}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -589,9 +589,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 121.25848
+    m_Target: 4.955403
     speed: 2
-    m_Value: 121.25848
+    m_Value: 4.955403
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -639,33 +639,33 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/!Scenes
+    - Assets/!Scenes/IOS
   m_ViewMode: 1
   m_StartGridSize: 46
   m_LastFolders:
-  - Assets/!Scenes
+  - Assets/!Scenes/IOS
   m_LastFoldersGridSize: 46
   m_LastProjectPath: C:\Users\User\Desktop\Hard Endless Runner GIT\HardEndlessRunner
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 3c270000
-    m_LastClickedID: 10044
+    m_SelectedIDs: e4290000
+    m_LastClickedID: 10724
     m_ExpandedIDs: 000000000c250000fc2600003c270000c02700000e2a0000122a0000f22b0000d22c00007e2d000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Android
+      m_OriginalName: Android
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 10698
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_SearchString: 
@@ -786,7 +786,7 @@ MonoBehaviour:
     y: 92
     width: 433
     height: 926
-  m_ScrollPosition: {x: 0, y: 0}
+  m_ScrollPosition: {x: 0, y: 592.9551}
   m_InspectorMode: 0
   m_PreviewResizer:
     m_CachedPref: 100
