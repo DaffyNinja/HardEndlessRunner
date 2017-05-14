@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -15,6 +16,11 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenuPanel;
     public GameObject settingsPanel;
     public GameObject specialTracksPanel;
+
+    [Header("Special Levels Menu")]
+    public Button lavaButon;
+    public Button sawButton;
+    public Button upSideDwnButton;
 
     // Use this for initialization
     void Start()
@@ -34,29 +40,41 @@ public class MainMenu : MonoBehaviour
         // Unlocks
         if (PlayerPrefs.GetInt("lavaNum") == 0)
         {
-            print("LOCKED");
+           // print("LOCKED");
+
+            lavaButon.interactable = false;
         }
         else
         {
-            print("UNLOCKED");
+            //print("UNLOCKED");
+
+            lavaButon.interactable = true;
         }
 
         if (PlayerPrefs.GetInt("sawNum") == 0)
         {
-            print("Saw Locked");
+            //print("Saw Locked");
+
+            sawButton.interactable = false;
         }
         else
         {
-            print("Saw UnLocked");
+           // print("Saw UnLocked");
+
+            sawButton.interactable = true;
         }
 
         if (PlayerPrefs.GetInt("upSideNum") == 0)
         {
-            print("UpSideDwn Locked");
+           // print("UpSideDwn Locked");
+
+            upSideDwnButton.interactable = false;
         }
         else
         {
-            print("UpSideDwn UnLocked");
+           // print("UpSideDwn UnLocked");
+
+            upSideDwnButton.interactable = true;
         }
 
     }
@@ -89,6 +107,21 @@ public class MainMenu : MonoBehaviour
         specialTracksButton.SetBool("isHidden", true);
         playTracksButton.SetBool("isHidden", true);
         settingsTracksButton.SetBool("isHidden", true);
+    }
+
+    public void LavaButton()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void SawButton()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void UpsideDownButton()
+    {
+        SceneManager.LoadScene(4);
     }
 }
 
