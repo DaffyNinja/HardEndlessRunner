@@ -25,13 +25,13 @@ public class MainMenu : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        mainMenuPanel.SetActive(true);  
+        mainMenuPanel.SetActive(true);
         settingsPanel.SetActive(false);
         specialTracksPanel.SetActive(false);
 
         specialTracksButton.SetBool("isHidden", false);
         playTracksButton.SetBool("isHidden", false);
-        settingsTracksButton.SetBool("isHidden", false); 
+        settingsTracksButton.SetBool("isHidden", false);
     }
 
     // Update is called once per frame
@@ -40,40 +40,32 @@ public class MainMenu : MonoBehaviour
         // Unlocks
         if (PlayerPrefs.GetInt("lavaNum") == 0)
         {
-           // print("LOCKED");
 
             lavaButon.interactable = false;
         }
         else
         {
-            //print("UNLOCKED");
 
             lavaButon.interactable = true;
         }
 
         if (PlayerPrefs.GetInt("sawNum") == 0)
         {
-            //print("Saw Locked");
 
             sawButton.interactable = false;
         }
         else
         {
-           // print("Saw UnLocked");
 
             sawButton.interactable = true;
         }
 
         if (PlayerPrefs.GetInt("upSideNum") == 0)
         {
-           // print("UpSideDwn Locked");
-
             upSideDwnButton.interactable = false;
         }
         else
         {
-           // print("UpSideDwn UnLocked");
-
             upSideDwnButton.interactable = true;
         }
 
@@ -90,7 +82,7 @@ public class MainMenu : MonoBehaviour
 
         mainMenuPanel.SetActive(false);
         settingsPanel.SetActive(false);
-        
+
 
         specialTracksButton.SetBool("isHidden", true);
         playTracksButton.SetBool("isHidden", true);
@@ -107,6 +99,19 @@ public class MainMenu : MonoBehaviour
         specialTracksButton.SetBool("isHidden", true);
         playTracksButton.SetBool("isHidden", true);
         settingsTracksButton.SetBool("isHidden", true);
+    }
+
+    public void SpecialBackButton()
+    {
+        mainMenuPanel.SetActive(true);
+
+        specialTracksPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+
+        specialTracksButton.SetBool("isHidden", true);
+        playTracksButton.SetBool("isHidden", true);
+        settingsTracksButton.SetBool("isHidden", true);
+
     }
 
     public void LavaButton()
