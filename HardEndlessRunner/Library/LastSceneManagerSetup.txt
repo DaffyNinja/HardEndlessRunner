@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/!Scenes/ART TEST copy.unity
+- path: Assets/!Scenes/IOS/Lava Special IOS.unity
   isLoaded: 1
   isActive: 1

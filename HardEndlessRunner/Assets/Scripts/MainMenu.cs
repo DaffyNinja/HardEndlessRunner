@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
@@ -16,21 +17,57 @@ public class MainMenu : MonoBehaviour
     public GameObject settingsPanel;
     public GameObject specialTracksPanel;
 
+    [Header("Special Levels Menu")]
+    public Button lavaButon;
+    public Button sawButton;
+    public Button upSideDwnButton;
+
     // Use this for initialization
     void Start()
     {
-        mainMenuPanel.SetActive(true);  
+        mainMenuPanel.SetActive(true);
         settingsPanel.SetActive(false);
         specialTracksPanel.SetActive(false);
 
         specialTracksButton.SetBool("isHidden", false);
         playTracksButton.SetBool("isHidden", false);
-        settingsTracksButton.SetBool("isHidden", false); 
+        settingsTracksButton.SetBool("isHidden", false);
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Unlocks
+        if (PlayerPrefs.GetInt("lavaNum") == 0)
+        {
+
+            lavaButon.interactable = false;
+        }
+        else
+        {
+
+            lavaButon.interactable = true;
+        }
+
+        if (PlayerPrefs.GetInt("sawNum") == 0)
+        {
+
+            sawButton.interactable = false;
+        }
+        else
+        {
+
+            sawButton.interactable = true;
+        }
+
+        if (PlayerPrefs.GetInt("upSideNum") == 0)
+        {
+            upSideDwnButton.interactable = false;
+        }
+        else
+        {
+            upSideDwnButton.interactable = true;
+        }
 
     }
 
@@ -45,7 +82,7 @@ public class MainMenu : MonoBehaviour
 
         mainMenuPanel.SetActive(false);
         settingsPanel.SetActive(false);
-        
+
 
         specialTracksButton.SetBool("isHidden", true);
         playTracksButton.SetBool("isHidden", true);
@@ -62,6 +99,34 @@ public class MainMenu : MonoBehaviour
         specialTracksButton.SetBool("isHidden", true);
         playTracksButton.SetBool("isHidden", true);
         settingsTracksButton.SetBool("isHidden", true);
+    }
+
+    public void SpecialBackButton()
+    {
+        mainMenuPanel.SetActive(true);
+
+        specialTracksPanel.SetActive(false);
+        settingsPanel.SetActive(false);
+
+        specialTracksButton.SetBool("isHidden", true);
+        playTracksButton.SetBool("isHidden", true);
+        settingsTracksButton.SetBool("isHidden", true);
+
+    }
+
+    public void LavaButton()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void SawButton()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void UpsideDownButton()
+    {
+        SceneManager.LoadScene(4);
     }
 }
 

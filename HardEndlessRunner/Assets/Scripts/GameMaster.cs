@@ -19,7 +19,6 @@ public class GameMaster : MonoBehaviour
     public bool isMedium;
     public bool isHard;
 
-
     [Space(5)]
     public bool isGameOver;
 
@@ -39,6 +38,16 @@ public class GameMaster : MonoBehaviour
     public bool isLavaSpecial;
 
     Vector2 playerObjStartPos;
+
+    [Header("Level Unlock")]
+    public bool lavaUnlock;
+    public bool sawUnlock;
+    public bool upsideDownUnlock;
+
+    int lavaNum;
+    int sawNum;
+    int upSideNum;
+
 
     // Use this for initialization
     void Awake()
@@ -78,8 +87,7 @@ public class GameMaster : MonoBehaviour
                 touchButtonCanvas.SetActive(true);
             }
 
-        }
-
+        }  
     }
 
     // Update is called once per frame
@@ -155,6 +163,30 @@ public class GameMaster : MonoBehaviour
             gOverhighScoreUI.text = currentHighScore.ToString();
         }
 
+    }
+
+    void LevelUnlocks()
+    {
+        if (isMainGame)
+        {
+            if (score >= 100 || highScore >= 100)
+            {
+                lavaNum = 1;
+                // Lava
+                PlayerPrefs.SetInt("lavaNum", 1);
+
+            }
+            else if (score >= 200)
+            {
+                // Saw OnLY
+                PlayerPrefs.SetInt("sawNum", 1);
+            }
+            else if (score >= 300)
+            {
+                // Upside down Cam
+                PlayerPrefs.SetInt("upSideNum", 1);
+            }
+        }
     }
 
     void PhoneInput()
