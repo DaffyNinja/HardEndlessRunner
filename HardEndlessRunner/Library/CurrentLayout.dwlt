@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 3}
-  m_MinSize: {x: 950, y: 542}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -69,7 +69,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 950, y: 542}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &4
 MonoBehaviour:
@@ -258,7 +258,7 @@ MonoBehaviour:
   m_MinSize: {x: 336, y: 271}
   m_MaxSize: {x: 14006, y: 10021}
   vertical: 0
-  controlID: 102
+  controlID: 150
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -503,9 +503,9 @@ MonoBehaviour:
     height: 650
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: 58fbffff00000000
+    m_SelectedIDs: 422e0000
+    m_LastClickedID: 11842
+    m_ExpandedIDs: dafbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -555,14 +555,14 @@ MonoBehaviour:
     width: 354
     height: 650
   m_SceneLighting: 0
-  lastFramingTime: 1202.8044829425937
+  lastFramingTime: 159.6576760876879
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 889, y: 10, z: 0}
+    m_Target: {x: 400, y: 240, z: 0}
     speed: 2
-    m_Value: {x: 889, y: 10, z: 0}
+    m_Value: {x: 400, y: 240, z: 0}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -589,9 +589,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 4.955403
+    m_Target: 22
     speed: 2
-    m_Value: 4.955403
+    m_Value: 22
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -601,7 +601,7 @@ MonoBehaviour:
   m_ReplacementShader: {fileID: 0}
   m_ReplacementString: 
   m_LastLockedObject: {fileID: 0}
-  m_ViewIsLockedToObject: 0
+  m_ViewIsLockedToObject: 1
 --- !u!114 &19
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -648,10 +648,10 @@ MonoBehaviour:
   m_LastProjectPath: C:\Users\User\Desktop\Hard Endless Runner GIT\HardEndlessRunner
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 182a0000
-    m_LastClickedID: 10776
-    m_ExpandedIDs: 0000000058250000402700008027000002280000422a0000462a00001e2c0000ea2c0000942d000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 120}
+    m_SelectedIDs: cc290000
+    m_LastClickedID: 10700
+    m_ExpandedIDs: 00000000ee240000e426000024270000a8270000f6290000fa290000da2b0000ba2c0000662d000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -679,7 +679,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000058250000402700008027000002280000422a0000462a00001e2c0000ea2c0000942d0000
+    m_ExpandedIDs: 00000000ee240000e426000024270000a8270000f6290000fa290000da2b0000ba2c0000662d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
