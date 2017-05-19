@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class IOSGameMaster : MonoBehaviour
 {
@@ -15,10 +16,12 @@ public class IOSGameMaster : MonoBehaviour
     [Space(5)]
     public bool isGameOver;
 
-    public Text scoreUI;
-    public Text highScoreUI;
-    public Text gOverScoreUI;
-    public Text gOverHighScoreUI;
+    public TMP_Text scoreUI;
+    public TMP_Text highScoreUI;
+
+    public TMP_Text gOverScoreUI;
+    public TMP_Text gOverHighScoreUI;
+
     [Space(5)]
     public GameObject inGameCanvas;
     public GameObject touchButtonCanvas;
