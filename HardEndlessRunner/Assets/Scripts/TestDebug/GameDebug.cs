@@ -15,6 +15,7 @@ public class GameDebug : MonoBehaviour
     public GameMaster gMaster;
 
 
+
     // Use this for initialization
     void Start()
     {

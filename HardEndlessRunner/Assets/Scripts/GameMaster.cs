@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+//using TMPro;
 
 
 public class GameMaster : MonoBehaviour
 {
-
 
     public float score;
     public int highScore;
@@ -52,6 +52,7 @@ public class GameMaster : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+       
         isGameOver = false;
 
         inGameCanvas.SetActive(true);

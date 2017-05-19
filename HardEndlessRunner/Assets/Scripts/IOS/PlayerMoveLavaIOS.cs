@@ -37,7 +37,7 @@ public class PlayerMoveLavaIOS : MonoBehaviour {
     Vector2 touchPos;
 
     [Space(5)]
-    public GameMaster gMaster;
+    public IOSGameMaster gMaster;
     [Space(10)]
     public bool isPC;
 
@@ -56,7 +56,7 @@ public class PlayerMoveLavaIOS : MonoBehaviour {
 
         rig = GetComponent<Rigidbody2D>();
 
-        gMaster = gMaster.GetComponent<GameMaster>();
+        //gMaster = gMaster.GetComponent<GameMaster>();
 
         anMate = GetComponent<Animator>();
 

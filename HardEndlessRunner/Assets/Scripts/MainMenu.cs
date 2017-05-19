@@ -21,6 +21,9 @@ public class MainMenu : MonoBehaviour
     public Button lavaButon;
     public Button sawButton;
     public Button upSideDwnButton;
+    [Space(5)]
+    public bool isDebug;
+
 
     // Use this for initialization
     void Start()
@@ -38,37 +41,35 @@ public class MainMenu : MonoBehaviour
     void Update()
     {
         // Unlocks
-        if (PlayerPrefs.GetInt("lavaNum") == 0)
+        if (!isDebug)
         {
+            if (PlayerPrefs.GetInt("lavaNum") == 0)
+            {
+                lavaButon.interactable = false;
+            }
+            else
+            {
+                lavaButon.interactable = true;
+            }
 
-            lavaButon.interactable = false;
+            if (PlayerPrefs.GetInt("sawNum") == 0)
+            {
+                sawButton.interactable = false;
+            }
+            else
+            {
+                sawButton.interactable = true;
+            }
+
+            if (PlayerPrefs.GetInt("upSideNum") == 0)
+            {
+                upSideDwnButton.interactable = false;
+            }
+            else
+            {
+                upSideDwnButton.interactable = true;
+            }
         }
-        else
-        {
-
-            lavaButon.interactable = true;
-        }
-
-        if (PlayerPrefs.GetInt("sawNum") == 0)
-        {
-
-            sawButton.interactable = false;
-        }
-        else
-        {
-
-            sawButton.interactable = true;
-        }
-
-        if (PlayerPrefs.GetInt("upSideNum") == 0)
-        {
-            upSideDwnButton.interactable = false;
-        }
-        else
-        {
-            upSideDwnButton.interactable = true;
-        }
-
     }
 
     public void PlayButton()

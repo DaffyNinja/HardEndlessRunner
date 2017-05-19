@@ -26,7 +26,10 @@ public class IOSGameMaster : MonoBehaviour
     [Space(5)]
     public GameObject playerObj;
     [Space(5)]
+    public bool isLava;
+    [Space(5)]
     public bool boostFrameRate;
+
 
     Vector2 playerObjStartPos;
 
@@ -46,13 +49,28 @@ public class IOSGameMaster : MonoBehaviour
         currentHighScore = PlayerPrefs.GetInt("highScore");
 
         // Deactivates the players  menu of the 
-        if (playerObj.GetComponent<PlayerMoveIOS>().isTouch == true)
+        if (!isLava)
         {
-            touchButtonCanvas.SetActive(false);
+            if (playerObj.GetComponent<PlayerMoveIOS>().isTouch == true)
+            {
+                touchButtonCanvas.SetActive(false);
+            }
+            else if (playerObj.GetComponent<PlayerMoveIOS>().isButtons == true)
+            {
+                touchButtonCanvas.SetActive(true);
+            }
         }
-        else if (playerObj.GetComponent<PlayerMoveIOS>().isButtons == true)
+        else
         {
-            touchButtonCanvas.SetActive(true);
+            if (playerObj.GetComponent<PlayerMoveLavaIOS>().isTouch == true)
+            {
+                touchButtonCanvas.SetActive(false);
+            }
+            else if (playerObj.GetComponent<PlayerMoveLavaIOS>().isButtons == true)
+            {
+                touchButtonCanvas.SetActive(true);
+            }
+
         }
 
     }
@@ -84,13 +102,16 @@ public class IOSGameMaster : MonoBehaviour
             if (playerObj.transform.position.x > playerObjStartPos.x)
             {
                 // Increases the players score based on time
-                if (playerObj.GetComponent<PlayerMoveIOS>().obtainedBoost == false)   // Normal
+                if (!isLava)
                 {
-                    score += Time.deltaTime * 3;
-                }
-                else   // Boost
-                {
-                    score += Time.deltaTime * 4;
+                    if (playerObj.GetComponent<PlayerMoveIOS>().obtainedBoost == false)   // Normal
+                    {
+                        score += Time.deltaTime * 3;
+                    }
+                    else   // Boost
+                    {
+                        score += Time.deltaTime * 4;
+                    }
                 }
             }
         }
