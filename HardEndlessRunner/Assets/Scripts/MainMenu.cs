@@ -32,9 +32,19 @@ public class MainMenu : MonoBehaviour
         settingsPanel.SetActive(false);
         specialTracksPanel.SetActive(false);
 
-        specialTracksButton.SetBool("isHidden", false);
-        playTracksButton.SetBool("isHidden", false);
-        settingsTracksButton.SetBool("isHidden", false);
+        if (doAnimation)
+        {
+            specialTracksButton.SetBool("isHidden", false);
+            playTracksButton.SetBool("isHidden", false);
+            settingsTracksButton.SetBool("isHidden", false);
+        }
+        else
+        {
+            specialTracksButton.enabled = false;
+            playTracksButton.enabled = false;
+            settingsTracksButton.enabled = false;
+        }
+
     }
 
     // Update is called once per frame
@@ -84,10 +94,13 @@ public class MainMenu : MonoBehaviour
         mainMenuPanel.SetActive(false);
         settingsPanel.SetActive(false);
 
+        if (doAnimation)
+        {
+            specialTracksButton.SetBool("isHidden", true);
+            playTracksButton.SetBool("isHidden", true);
+            settingsTracksButton.SetBool("isHidden", true);
+        }
 
-        specialTracksButton.SetBool("isHidden", true);
-        playTracksButton.SetBool("isHidden", true);
-        settingsTracksButton.SetBool("isHidden", true);
     }
 
     public void SettingsButton()
@@ -97,9 +110,13 @@ public class MainMenu : MonoBehaviour
         mainMenuPanel.SetActive(false);
         specialTracksPanel.SetActive(false);
 
-        specialTracksButton.SetBool("isHidden", true);
-        playTracksButton.SetBool("isHidden", true);
-        settingsTracksButton.SetBool("isHidden", true);
+        if (doAnimation)
+        {
+            specialTracksButton.SetBool("isHidden", true);
+            playTracksButton.SetBool("isHidden", true);
+            settingsTracksButton.SetBool("isHidden", true);
+        }
+
     }
 
     public void SpecialBackButton()
@@ -109,9 +126,12 @@ public class MainMenu : MonoBehaviour
         specialTracksPanel.SetActive(false);
         settingsPanel.SetActive(false);
 
-        specialTracksButton.SetBool("isHidden", true);
-        playTracksButton.SetBool("isHidden", true);
-        settingsTracksButton.SetBool("isHidden", true);
+        if (doAnimation)
+        {
+            specialTracksButton.SetBool("isHidden", false);
+            playTracksButton.SetBool("isHidden", false);
+            settingsTracksButton.SetBool("isHidden", false);
+        }
 
     }
 
