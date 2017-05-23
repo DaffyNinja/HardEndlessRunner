@@ -17,7 +17,9 @@ public class CameraMove : MonoBehaviour {
     public float killNum;
 
     public Transform playerTrans;
+
     PlayerMove pMove;
+    PlayerMoveLava pMoveLava;
 
     public bool isMainGame;
 
@@ -40,6 +42,11 @@ public class CameraMove : MonoBehaviour {
         {
             pMove = playerTrans.GetComponent<PlayerMove>();
         }
+        else
+        {
+            pMoveLava = playerTrans.GetComponent<PlayerMoveLava>();
+        }
+
     }
 
     // Update is called once per frame
@@ -61,7 +68,7 @@ public class CameraMove : MonoBehaviour {
         {
             transform.Translate(moveSpeed, 0, 0);
         }
-
+      
         Vector3 viewPos = GetComponent<Camera>().WorldToViewportPoint(playerTrans.position);
 
         // If the player moves out of camera's left view, the game is over

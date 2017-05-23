@@ -86,6 +86,12 @@ public class PlayerMoveLava : MonoBehaviour {
         Vector2 moveQuality = new Vector2(rightSpeed, 0);
         rig.velocity = new Vector2(moveQuality.x, rig.velocity.y);
 
+        if (gMaster.isGameOver == true)
+        {
+            rightSpeed = 0;
+
+        }
+
 
         // Input
         if (isPC)  // PC Controls
@@ -124,7 +130,7 @@ public class PlayerMoveLava : MonoBehaviour {
 
 
         }
-        else if (isPC == false)
+        else if (isPC == false)  // Mobile
         {
             {
                 // Buttons
