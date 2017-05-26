@@ -16,6 +16,7 @@ public class IOSGameMaster : MonoBehaviour
     [Space(5)]
     public bool isGameOver;
 
+    // Pro text
     public TMP_Text scoreUI;
     public TMP_Text highScoreUI;
 
@@ -32,6 +33,10 @@ public class IOSGameMaster : MonoBehaviour
     public bool isLava;
     [Space(5)]
     public bool boostFrameRate;
+    [Space(5)]
+    public bool isEasy;
+    public bool isMedium;
+    public bool isHard;
 
 
     Vector2 playerObjStartPos;
@@ -119,6 +124,7 @@ public class IOSGameMaster : MonoBehaviour
             }
         }
 
+        // Debug
         if (Input.GetKey(KeyCode.R))
         {
             SceneManager.LoadScene(0);
@@ -144,7 +150,6 @@ public class IOSGameMaster : MonoBehaviour
             PlayerPrefs.SetInt("highScore", highScore);
             highScoreUI.text = currentHighScore.ToString();
             gOverHighScoreUI.text = currentHighScore.ToString();
-
         }
         else
         {
