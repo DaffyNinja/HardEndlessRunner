@@ -33,10 +33,10 @@ public class IOSGameMaster : MonoBehaviour
     public bool isLava;
     [Space(5)]
     public bool boostFrameRate;
-    [Space(5)]
-    public bool isEasy;
-    public bool isMedium;
-    public bool isHard;
+    //[Space(5)]
+    //public bool isEasy;
+    //public bool isMedium;
+    //public bool isHard;
 
 
     Vector2 playerObjStartPos;

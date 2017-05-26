@@ -12,7 +12,9 @@ public class GameDebugIOS : MonoBehaviour {
 
     public GameObject uiDebugPanel;
 
-    public IOSGameMaster gMaster;
+    public TrackCreaterManager tManager;
+
+   // public IOSGameMaster gMaster;
 
 
 
@@ -40,18 +42,18 @@ public class GameDebugIOS : MonoBehaviour {
             framesPerSecondTxt.text = "FPS: " + Mathf.Round(FPS).ToString();
 
             //Difficulty
-            //if (gMaster.isEasy)
-            //{
-            //    difficultyText.text = "Easy";
-            //}
-            //else if (gMaster.isMedium)
-            //{
-            //    difficultyText.text = "Medium";
-            //}
-            //else if (gMaster.isHard)
-            //{
-            //    difficultyText.text = "Hard";
-            //}
+            if (tManager.isEasyIOS)
+            {
+                difficultyText.text = "EASY";
+            }
+            else if (tManager.isMediumIOS)
+            {
+                difficultyText.text = "MEDIUM";
+            }
+            else if (tManager.isHardIOS)
+            {
+                difficultyText.text = "HARD";
+            }
 
 
         }

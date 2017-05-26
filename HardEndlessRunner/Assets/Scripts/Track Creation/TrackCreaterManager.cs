@@ -66,8 +66,13 @@ public class TrackCreaterManager : MonoBehaviour
     [Header("Player")]
     public Transform playerTrans;
     Vector2 playerPos;
-    [Space(5)]
+    [Space(5)]  // IOS
     public bool isIOS;
+
+    [HideInInspector]
+    public bool isEasyIOS;
+    public bool isMediumIOS;
+    public bool isHardIOS;
 
     GameMaster gMaster;
     IOSGameMaster gMasterIOS;
@@ -230,20 +235,41 @@ public class TrackCreaterManager : MonoBehaviour
                 gMaster.isEasy = false;
             }
         }
-        else
+        else  // IOS
         {
             if (gMasterIOS.score < mediumNum)   //Easy
             {
+                //print("Easy IOS");
+
                 trackDifficultyMan.Easy();
+
+                isEasyIOS = true;
+
+                isMediumIOS = false;
+                isHardIOS = false;
 
             }
             else if (gMasterIOS.score >= mediumNum && gMasterIOS.score < hardNum) // Medium
             {
+                //print("Medium IOS");
+
                 trackDifficultyMan.Medium();
+
+                isMediumIOS = true;
+
+                isEasyIOS = false;
+                isHardIOS = false;
             }
             else    // Hard
             {
+               // print("Hard IOS");
+
                 trackDifficultyMan.Hard();
+
+                isHardIOS = true;
+
+                isMediumIOS = false;
+                isEasyIOS = false;
             }
         }
 
