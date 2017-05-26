@@ -28,6 +28,8 @@ public class GameMaster : MonoBehaviour
     public TMP_Text gOverscoreUI;
     public TMP_Text gOverhighScoreUI;
 
+    public TMP_Text gOverText;
+
     [Space(5)]
     public GameObject inGameCanvas;
     public GameObject touchButtonCanvas;
@@ -50,6 +52,8 @@ public class GameMaster : MonoBehaviour
     int sawNum;
     int upSideNum;
 
+    [HideInInspector]
+    public bool camD;
 
     // Use this for initialization
     void Awake()
@@ -90,7 +94,9 @@ public class GameMaster : MonoBehaviour
                 touchButtonCanvas.SetActive(true);
             }
 
-        }  
+        }
+
+        camD = false;
     }
 
     // Update is called once per frame
@@ -164,6 +170,20 @@ public class GameMaster : MonoBehaviour
         else
         {
             gOverhighScoreUI.text = currentHighScore.ToString();
+        }
+
+        // Game Over Text
+        if (playerObj.GetComponent<PlayerMove>().sawD == true)
+        {
+            gOverText.text = "BUUZZZZZZZ!";
+        }
+        else if (playerObj.GetComponent<PlayerMove>().spikeD == true)
+        {
+            gOverText.text = "Swiss Cheese!";
+        }
+        else if (camD == true)
+        {
+            gOverText.text = "Run Faster!!!";
         }
 
     }

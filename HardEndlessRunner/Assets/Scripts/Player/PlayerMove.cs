@@ -93,6 +93,11 @@ public class PlayerMove : MonoBehaviour
     bool jumpUp;
     bool jumpPressed;
 
+    [HideInInspector]
+    public bool sawD;
+    [HideInInspector]
+    public bool spikeD;
+
     // Use this for initialization
     void Awake()
     {
@@ -131,6 +136,8 @@ public class PlayerMove : MonoBehaviour
 
         playLandSound = false;
 
+        sawD = false;
+        spikeD = false;
 
 
     }
@@ -434,6 +441,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (col.gameObject.tag == "Saw" && obtainedShield == false && obtainedBoost == false)   // Game Over
         {
+            sawD = true;
             gMaster.isGameOver = true;
         }
         else if (col.gameObject.tag == "Saw" && obtainedShield == true || col.gameObject.tag == "Saw" && obtainedBoost == true)
@@ -443,6 +451,7 @@ public class PlayerMove : MonoBehaviour
 
         if (col.gameObject.tag == "Spike" && obtainedShield == false && obtainedBoost == false)
         {
+            spikeD = true;
             gMaster.isGameOver = true;
         }
         else if (col.gameObject.tag == "Spike" && obtainedShield == true || col.gameObject.tag == "Spike" && obtainedBoost == true)
@@ -484,16 +493,16 @@ public class PlayerMove : MonoBehaviour
             playLandSound = false;
         }
 
-        if (col.gameObject.tag == "Dart" && obtainedShield == false)
-        {
-            print("Dart");
+        //if (col.gameObject.tag == "Dart" && obtainedShield == false)
+        //{
+        //    print("Dart");
 
-            gMaster.isGameOver = true;
-        }
-        else if (col.gameObject.tag == "Dart" && obtainedShield == true || col.gameObject.tag == "Dart" && obtainedBoost == true)
-        {
-            Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        }
+        //    gMaster.isGameOver = true;
+        //}
+        //else if (col.gameObject.tag == "Dart" && obtainedShield == true || col.gameObject.tag == "Dart" && obtainedBoost == true)
+        //{
+        //    Physics2D.IgnoreCollision(col.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+        //}
 
         if (col.gameObject.tag == "Platform" && obtainedBoost == true || col.gameObject.tag == "Track" && obtainedBoost == true)
         {

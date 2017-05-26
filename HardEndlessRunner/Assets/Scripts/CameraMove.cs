@@ -73,7 +73,8 @@ public class CameraMove : MonoBehaviour {
 
         // If the player moves out of camera's left view, the game is over
         if (viewPos.x <= killNum)
-        {              
+        {
+            gMaster.camD = true;
             gMaster.isGameOver = true;
         }
 
