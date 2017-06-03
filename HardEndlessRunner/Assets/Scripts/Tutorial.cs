@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Tutorial : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class Tutorial : MonoBehaviour
 
     public bool isJump;
     public bool isSlide;
+
+    [Header("UI")]
+    public TMP_Text tutText;
+    public string jumptext;
+    public string slideText;
 
 
     GameMaster gMaster;
@@ -32,7 +38,6 @@ public class Tutorial : MonoBehaviour
     void Awake()
     {
         trackMan = GetComponent<TrackCreaterManager>();
-
 
         if (runTutorial)
         {
@@ -78,6 +83,8 @@ public class Tutorial : MonoBehaviour
 
                 if (isJump == true)
                 {
+                    tutText.text = jumptext;
+
                     trackMan.trackPiece1 = 0;
                     trackMan.trackPiece2 = 0;
                     trackMan.trackPiece3 = 0;
@@ -85,6 +92,8 @@ public class Tutorial : MonoBehaviour
                 }
                 else if (isSlide == true)
                 {
+                    tutText.text = slideText;
+
                     trackMan.trackPiece1 = 0;
                     trackMan.trackPiece2 = 0;
                     trackMan.trackPiece3 = 0;
@@ -103,7 +112,8 @@ public class Tutorial : MonoBehaviour
                 }
                 else if (timer >= slideTime)
                 {
-                    print("TUT END");
+                    //print("TUT END");
+
                     isSlide = false;
                     trackMan.isTutorial = false;
                     runTutorial = false;

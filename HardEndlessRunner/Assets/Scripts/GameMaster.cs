@@ -22,6 +22,7 @@ public class GameMaster : MonoBehaviour
     [Space(5)]
     public bool isGameOver;
 
+    [Space(5)]
     public TMP_Text scoreUI;
     public TMP_Text highScoreUI;
          
@@ -34,6 +35,8 @@ public class GameMaster : MonoBehaviour
     public GameObject inGameCanvas;
     public GameObject touchButtonCanvas;
     public GameObject gOverCanvas;
+    public GameObject tutorialCanvas;
+
     [Space(5)]
     public GameObject playerObj;
 
@@ -55,13 +58,23 @@ public class GameMaster : MonoBehaviour
     [HideInInspector]
     public bool camD;
 
+    public bool isTutorial;
+
     // Use this for initialization
     void Awake()
     {
        
         isGameOver = false;
 
-        inGameCanvas.SetActive(true);
+        if (isTutorial == false)
+        {
+            inGameCanvas.SetActive(false);
+        }
+        else
+        {
+            inGameCanvas.SetActive(true);
+        }
+
 
         gOverCanvas.SetActive(false);
 
@@ -102,6 +115,16 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (isTutorial == false)
+        {
+            inGameCanvas.SetActive(false);
+        }
+        else
+        {
+            inGameCanvas.SetActive(true);
+        }
+
+
         // Difficulty
 
 
