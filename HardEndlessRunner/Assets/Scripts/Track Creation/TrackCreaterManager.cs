@@ -66,7 +66,9 @@ public class TrackCreaterManager : MonoBehaviour
     [Header("Player")]
     public Transform playerTrans;
     Vector2 playerPos;
-    [Space(5)]  // IOS
+
+    // IOS
+    [Space(5)]
     public bool isIOS;
 
     [HideInInspector]
@@ -78,6 +80,9 @@ public class TrackCreaterManager : MonoBehaviour
     IOSGameMaster gMasterIOS;
 
     TrackDifficultyManager trackDifficultyMan;
+
+    [Space(5)]
+    public bool isTutorial;
 
     // Use this for initialization
     void Awake()
@@ -180,7 +185,7 @@ public class TrackCreaterManager : MonoBehaviour
             }
         }
 
-        if (create)
+        if (create)  // NO TUTORIAL
         {
             tr1 = Instantiate(tracksList[trackPiece1], trackPos1, Quaternion.identity);
             tr2 = Instantiate(tracksList[trackPiece2], trackPos2, Quaternion.identity);
@@ -194,82 +199,98 @@ public class TrackCreaterManager : MonoBehaviour
 
             MediumTracksAdjust();
 
-
-
             create = false;
 
         }
+        //else if (create && isTutorial == true)  // TUTORIAL
+        //{
+        //    tr1 = Instantiate(tracksList[trackPiece1], trackPos1, Quaternion.identity);
+        //    tr2 = Instantiate(tracksList[trackPiece2], trackPos2, Quaternion.identity);
+        //    tr3 = Instantiate(tracksList[trackPiece3], trackPos3, Quaternion.identity);
+        //    tr4 = Instantiate(tracksList[trackPiece4], trackPos4, Quaternion.identity);
+
+        //    tr1.transform.parent = trackParent;
+        //    tr2.transform.parent = trackParent;
+        //    tr3.transform.parent = trackParent;
+        //    tr4.transform.parent = trackParent;
+
+        //      create = false;
+
+        //}
     }
 
     // Alters the tracks difficulty by changing it in the DifficultyManager script
     void Difficulty()
     {
-        if (isIOS == false)
+        if (isTutorial == false)
         {
-            if (gMaster.score < mediumNum)   //Easy
+            if (isIOS == false)
             {
-                trackDifficultyMan.Easy();
+                if (gMaster.score < mediumNum)   //Easy
+                {
+                    trackDifficultyMan.Easy();
 
-                gMaster.isEasy = true;
+                    gMaster.isEasy = true;
 
-                gMaster.isMedium = false;
-                gMaster.isHard = false;
+                    gMaster.isMedium = false;
+                    gMaster.isHard = false;
 
+                }
+                else if (gMaster.score >= mediumNum && gMaster.score < hardNum) // Medium
+                {
+                    trackDifficultyMan.Medium();
+
+                    gMaster.isMedium = true;
+
+                    gMaster.isEasy = false;
+                    gMaster.isHard = false;
+                }
+                else    // Hard
+                {
+                    trackDifficultyMan.Hard();
+
+                    gMaster.isHard = true;
+
+                    gMaster.isMedium = false;
+                    gMaster.isEasy = false;
+                }
             }
-            else if (gMaster.score >= mediumNum && gMaster.score < hardNum) // Medium
+            else  // IOS
             {
-                trackDifficultyMan.Medium();
+                if (gMasterIOS.score < mediumNum)   //Easy
+                {
+                    //print("Easy IOS");
 
-                gMaster.isMedium = true;
+                    trackDifficultyMan.Easy();
 
-                gMaster.isEasy = false;
-                gMaster.isHard = false;
-            }
-            else    // Hard
-            {
-                trackDifficultyMan.Hard();
+                    isEasyIOS = true;
 
-                gMaster.isHard = true;
+                    isMediumIOS = false;
+                    isHardIOS = false;
 
-                gMaster.isMedium = false;
-                gMaster.isEasy = false;
-            }
-        }
-        else  // IOS
-        {
-            if (gMasterIOS.score < mediumNum)   //Easy
-            {
-                //print("Easy IOS");
+                }
+                else if (gMasterIOS.score >= mediumNum && gMasterIOS.score < hardNum) // Medium
+                {
+                    //print("Medium IOS");
 
-                trackDifficultyMan.Easy();
+                    trackDifficultyMan.Medium();
 
-                isEasyIOS = true;
+                    isMediumIOS = true;
 
-                isMediumIOS = false;
-                isHardIOS = false;
+                    isEasyIOS = false;
+                    isHardIOS = false;
+                }
+                else    // Hard
+                {
+                    // print("Hard IOS");
 
-            }
-            else if (gMasterIOS.score >= mediumNum && gMasterIOS.score < hardNum) // Medium
-            {
-                //print("Medium IOS");
+                    trackDifficultyMan.Hard();
 
-                trackDifficultyMan.Medium();
+                    isHardIOS = true;
 
-                isMediumIOS = true;
-
-                isEasyIOS = false;
-                isHardIOS = false;
-            }
-            else    // Hard
-            {
-               // print("Hard IOS");
-
-                trackDifficultyMan.Hard();
-
-                isHardIOS = true;
-
-                isMediumIOS = false;
-                isEasyIOS = false;
+                    isMediumIOS = false;
+                    isEasyIOS = false;
+                }
             }
         }
 
