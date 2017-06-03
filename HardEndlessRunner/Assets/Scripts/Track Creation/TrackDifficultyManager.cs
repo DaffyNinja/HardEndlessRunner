@@ -7,10 +7,13 @@ public class TrackDifficultyManager : MonoBehaviour
 
     TrackCreaterManager trackMan;
 
-  
+
     int easyRanNum;
     int mediumRanNum;
     int hardRanNum;
+
+    [HideInInspector]
+    public bool isTutorial;
 
     // Use this for initialization
     void Awake()
@@ -30,7 +33,6 @@ public class TrackDifficultyManager : MonoBehaviour
     // The easy track sets numbers 
     public void Easy()
     {
-
         switch (easyRanNum)
         {
             case 0:
@@ -79,6 +81,7 @@ public class TrackDifficultyManager : MonoBehaviour
                 print("EASY ERROR!!");
                 break;
         }
+
 
     }
 

@@ -19,6 +19,7 @@ public class Tutorial : MonoBehaviour
     GameMaster gMaster;
     IOSGameMaster gMasterIOS;
     TrackCreaterManager trackMan;
+    TrackDifficultyManager trackDifficult;
 
     [Space(5)]
     public bool debug;
@@ -32,6 +33,7 @@ public class Tutorial : MonoBehaviour
     {
         trackMan = GetComponent<TrackCreaterManager>();
 
+
         if (runTutorial)
         {
             isJump = true;
@@ -39,6 +41,10 @@ public class Tutorial : MonoBehaviour
 
             if (isAndroid)
             {
+                trackDifficult = GetComponent<TrackDifficultyManager>();
+
+                trackDifficult.isTutorial = true;
+
                 gMaster = GetComponent<GameMaster>();
 
             }
@@ -69,21 +75,6 @@ public class Tutorial : MonoBehaviour
             {
                 timer += Time.deltaTime;
 
-                if (timer <= jumpTime)
-                {
-                    isJump = true;
-                    isSlide = false;
-                }
-                else if (timer >= jumpTime && timer <= slideTime)
-                {
-                    isJump = false;
-                    isSlide = true;
-                }
-                else if (timer >= slideTime)
-                {
-                    print("TUT END");
-                    runTutorial = false;
-                }
 
                 if (isJump == true)
                 {
@@ -100,6 +91,24 @@ public class Tutorial : MonoBehaviour
                     trackMan.trackPiece4 = 24;
                 }
 
+                if (timer <= jumpTime)
+                {
+                    isJump = true;
+                    isSlide = false;
+                }
+                else if (timer >= jumpTime && timer <= slideTime)
+                {
+                    isJump = false;
+                    isSlide = true;
+                }
+                else if (timer >= slideTime)
+                {
+                    print("TUT END");
+                    isSlide = false;
+                    trackMan.isTutorial = false;
+                    runTutorial = false;
+
+                }
 
             }
 
@@ -133,6 +142,10 @@ public class Tutorial : MonoBehaviour
 
             }
 
+
+        }
+        else
+        {
 
         }
 
