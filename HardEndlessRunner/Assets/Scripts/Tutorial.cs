@@ -39,7 +39,7 @@ public class Tutorial : MonoBehaviour
     {
         trackMan = GetComponent<TrackCreaterManager>();
 
-        if (runTutorial)
+        if (runTutorial && debug == false)
         {
             isJump = true;
             trackMan.isTutorial = true;
@@ -59,11 +59,13 @@ public class Tutorial : MonoBehaviour
                 gMasterIOS = GetComponent<IOSGameMaster>();
             }
 
-            if (debug == true)
-            {
-                trackTest = GetComponent<TrackTester>();
-            }
 
+        }
+        else if (debug == true)
+        {
+            trackTest = GetComponent<TrackTester>();
+            isJump = true;
+           
         }
         else
         {
@@ -75,7 +77,7 @@ public class Tutorial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (runTutorial)
+        if (runTutorial && debug == false)
         {
             if (isAndroid)
             {
