@@ -59,6 +59,7 @@ public class GameMaster : MonoBehaviour
     public bool camD;
     [Space(5)]
     public bool isTutorial;
+    public bool isPaused;
 
     // Use this for initialization
     void Awake()
@@ -110,12 +111,31 @@ public class GameMaster : MonoBehaviour
 
         }
 
+        if (isPaused == true)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+
         camD = false;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        // Pause
+        if (isPaused == true)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+
         if (isTutorial == false)
         {
             tutorialCanvas.SetActive(false);
@@ -238,11 +258,11 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-    void PhoneInput()
+    void PhoneInput()  // Android
     {
         if (Input.GetKey(KeyCode.Escape))
         {
-            Application.Quit();
+            SceneManager.LoadScene(0);
         }
     }
 
@@ -255,6 +275,11 @@ public class GameMaster : MonoBehaviour
     public void QuitButton()
     {
         SceneManager.LoadScene(0);
+    }
+
+   public void PauseButtonActivate()
+    {
+        isPaused = !isPaused;
     }
 
 }
