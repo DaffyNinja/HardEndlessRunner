@@ -57,22 +57,23 @@ public class GameMaster : MonoBehaviour
 
     [HideInInspector]
     public bool camD;
-
+    [Space(5)]
     public bool isTutorial;
 
     // Use this for initialization
     void Awake()
     {
-       
         isGameOver = false;
 
         if (isTutorial == false)
         {
-            inGameCanvas.SetActive(false);
+            tutorialCanvas.SetActive(false);
+            inGameCanvas.SetActive(true);
         }
         else
         {
-            inGameCanvas.SetActive(true);
+            tutorialCanvas.SetActive(true);
+            inGameCanvas.SetActive(false);
         }
 
 
@@ -117,11 +118,13 @@ public class GameMaster : MonoBehaviour
     {
         if (isTutorial == false)
         {
-            inGameCanvas.SetActive(false);
+            tutorialCanvas.SetActive(false);
+            inGameCanvas.SetActive(true);
         }
         else
         {
-            inGameCanvas.SetActive(true);
+            tutorialCanvas.SetActive(true);
+            inGameCanvas.SetActive(false);
         }
 
 

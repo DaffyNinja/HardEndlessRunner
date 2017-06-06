@@ -32,11 +32,14 @@ public class PlayerMove : MonoBehaviour
     // The players colliders when they slide and are not sliding
     public float colBoxXSize;
     public float colBoxYSize;
+    public Vector2 boxColPos;
     public float colCirRadius;
+  
 
     float startBoxXSize;
     float startBoxYSize;
     float startCircRadius;
+    public Vector2 boxColStartPos;
 
     BoxCollider2D boxCol;
     CircleCollider2D circCol;
@@ -129,6 +132,8 @@ public class PlayerMove : MonoBehaviour
         startBoxYSize = boxCol.size.y;
 
         startCircRadius = circCol.radius;
+
+        boxColStartPos = boxCol.offset;
 
         aSource = GetComponent<AudioSource>();
 
@@ -238,9 +243,8 @@ public class PlayerMove : MonoBehaviour
                     sprRend.sprite = slideSpr;
 
                     boxCol.size = new Vector2(boxCol.size.x + colBoxXSize, boxCol.size.y - colBoxYSize);
+                    boxCol.offset = boxColPos;
                     circCol.radius = colCirRadius;
-
-
 
                     rightSpeed = slideSpeed;
 
@@ -258,6 +262,7 @@ public class PlayerMove : MonoBehaviour
                     anMate.enabled = true;
 
                     boxCol.size = new Vector2(startBoxXSize, startBoxYSize);
+                    boxCol.offset = boxColStartPos;
                     circCol.radius = startCircRadius;
 
                     sprRend.sprite = normSpr;

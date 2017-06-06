@@ -51,6 +51,7 @@ public class Tutorial : MonoBehaviour
                 trackDifficult.isTutorial = true;
 
                 gMaster = GetComponent<GameMaster>();
+                gMaster.isTutorial = true;
 
             }
             else
@@ -110,12 +111,14 @@ public class Tutorial : MonoBehaviour
                     isJump = false;
                     isSlide = true;
                 }
-                else if (timer >= slideTime)
+                else if (timer >= slideTime) // tutorial END
                 {
                     //print("TUT END");
 
                     isSlide = false;
                     trackMan.isTutorial = false;
+                    gMaster.isTutorial = false;
+
                     runTutorial = false;
 
                 }
@@ -152,10 +155,6 @@ public class Tutorial : MonoBehaviour
 
             }
 
-
-        }
-        else
-        {
 
         }
 
