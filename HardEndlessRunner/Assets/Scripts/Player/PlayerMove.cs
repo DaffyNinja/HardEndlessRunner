@@ -7,7 +7,8 @@ public class PlayerMove : MonoBehaviour
 
     bool canMove;
     public float rightSpeed;
-    float startingRightSpeed;
+    [HideInInspector]
+    public float startingRightSpeed;
 
     Animator anMate;
 
@@ -34,7 +35,7 @@ public class PlayerMove : MonoBehaviour
     public float colBoxYSize;
     public Vector2 boxColPos;
     public float colCirRadius;
-  
+
 
     float startBoxXSize;
     float startBoxYSize;
@@ -104,6 +105,8 @@ public class PlayerMove : MonoBehaviour
     // Use this for initialization
     void Awake()
     {
+        startingRightSpeed = rightSpeed;
+
         groundCheckTran = transform.Find("GroundCheck");
 
         rig = GetComponent<Rigidbody2D>();
@@ -118,8 +121,6 @@ public class PlayerMove : MonoBehaviour
         shieldObj.SetActive(false);
         shieldColour = shieldObj.GetComponent<SpriteRenderer>().color;
         shieldColourStartingAlpha = shieldColour.a;
-
-        startingRightSpeed = rightSpeed;
 
         sprRend = GetComponent<SpriteRenderer>();
 
@@ -592,7 +593,7 @@ public class PlayerMove : MonoBehaviour
 
                 if (shieldTimer >= shieldTime / 1.3f) // Mkaes the stuter go faster
                 {
-                    t += 6 * Time.deltaTime; 
+                    t += 6 * Time.deltaTime;
                 }
             }
 

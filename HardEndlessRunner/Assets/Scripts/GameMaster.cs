@@ -59,7 +59,6 @@ public class GameMaster : MonoBehaviour
     public bool camD;
     [Space(5)]
     public bool isTutorial;
-    public bool isPaused;
 
     // Use this for initialization
     void Awake()
@@ -111,14 +110,7 @@ public class GameMaster : MonoBehaviour
 
         }
 
-        if (isPaused == true)
-        {
-            Time.timeScale = 0;
-        }
-        else
-        {
-            Time.timeScale = 1;
-        }
+       
 
         camD = false;
     }
@@ -126,15 +118,7 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        // Pause
-        if (isPaused == true)
-        {
-            Time.timeScale = 0;
-        }
-        else
-        {
-            Time.timeScale = 1;
-        }
+      
 
         if (isTutorial == false)
         {
@@ -275,11 +259,6 @@ public class GameMaster : MonoBehaviour
     public void QuitButton()
     {
         SceneManager.LoadScene(0);
-    }
-
-   public void PauseButtonActivate()
-    {
-        isPaused = !isPaused;
     }
 
 }
