@@ -36,6 +36,7 @@ public class GameMaster : MonoBehaviour
     public GameObject touchButtonCanvas;
     public GameObject gOverCanvas;
     public GameObject tutorialCanvas;
+    public GameObject pauseCanvas;
 
     [Space(5)]
     public GameObject playerObj;
@@ -59,6 +60,8 @@ public class GameMaster : MonoBehaviour
     public bool camD;
     [Space(5)]
     public bool isTutorial;
+
+    PauseCode pauseCS;
 
     // Use this for initialization
     void Awake()
@@ -84,6 +87,8 @@ public class GameMaster : MonoBehaviour
         playerObjStartPos = playerObj.transform.position;
 
         currentHighScore = PlayerPrefs.GetInt("highScore");
+
+        pauseCS = GetComponent<PauseCode>();
 
         // Deactivates the players  menu of the 
         if (isMainGame)
@@ -118,7 +123,7 @@ public class GameMaster : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-      
+           
 
         if (isTutorial == false)
         {
@@ -130,8 +135,6 @@ public class GameMaster : MonoBehaviour
             tutorialCanvas.SetActive(true);
             inGameCanvas.SetActive(false);
         }
-
-
         // Difficulty
 
 
