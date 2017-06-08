@@ -61,8 +61,6 @@ public class GameMaster : MonoBehaviour
     [Space(5)]
     public bool isTutorial;
 
-    PauseCode pauseCS;
-
     // Use this for initialization
     void Awake()
     {
@@ -87,8 +85,6 @@ public class GameMaster : MonoBehaviour
         playerObjStartPos = playerObj.transform.position;
 
         currentHighScore = PlayerPrefs.GetInt("highScore");
-
-        pauseCS = GetComponent<PauseCode>();
 
         // Deactivates the players  menu of the 
         if (isMainGame)

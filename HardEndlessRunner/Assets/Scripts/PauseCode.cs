@@ -24,7 +24,6 @@ public class PauseCode : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (isPaused)
         {
             gMaster.pauseCanvas.SetActive(true);
@@ -37,11 +36,7 @@ public class PauseCode : MonoBehaviour
             gMaster.pauseCanvas.SetActive(false);
             gMaster.inGameCanvas.SetActive(true);
             Time.timeScale = 1;
-
-
         }
-
-
     }
 
     public void PauseButton()

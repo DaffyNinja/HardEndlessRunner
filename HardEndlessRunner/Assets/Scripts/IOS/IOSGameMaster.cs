@@ -27,6 +27,8 @@ public class IOSGameMaster : MonoBehaviour
     public GameObject inGameCanvas;
     public GameObject touchButtonCanvas;
     public GameObject gOverCanvas;
+    public GameObject pauseCanvas;
+    public GameObject tutorialCanvas;
     [Space(5)]
     public GameObject playerObj;
     [Space(5)]
@@ -40,6 +42,8 @@ public class IOSGameMaster : MonoBehaviour
 
 
     Vector2 playerObjStartPos;
+
+    public bool isTutorial;
 
     // Use this for initialization
     void Awake()
@@ -93,6 +97,18 @@ public class IOSGameMaster : MonoBehaviour
         else
         {
             Application.targetFrameRate = -1;
+        }
+
+
+        if (isTutorial == false)
+        {
+            tutorialCanvas.SetActive(false);
+            inGameCanvas.SetActive(true);
+        }
+        else
+        {
+            tutorialCanvas.SetActive(true);
+            inGameCanvas.SetActive(false);
         }
 
         if (isGameOver) // If the game is over reload the scene the player is on if the player presses enter 

@@ -57,6 +57,7 @@ public class Tutorial : MonoBehaviour
             else
             {
                 gMasterIOS = GetComponent<IOSGameMaster>();
+                gMasterIOS.isTutorial = true;
             }
 
 
@@ -120,6 +121,53 @@ public class Tutorial : MonoBehaviour
                     isSlide = false;
                     trackMan.isTutorial = false;
                     gMaster.isTutorial = false;
+
+                    runTutorial = false;
+
+                }
+
+            }
+            else
+            {
+                timer += Time.deltaTime;
+
+
+                if (isJump == true)
+                {
+                    tutText.text = jumptext;
+
+                    trackMan.trackPiece1 = 0;
+                    trackMan.trackPiece2 = 0;
+                    trackMan.trackPiece3 = 0;
+                    trackMan.trackPiece4 = 2;
+                }
+                else if (isSlide == true)
+                {
+                    tutText.text = slideText;
+
+                    trackMan.trackPiece1 = 0;
+                    trackMan.trackPiece2 = 0;
+                    trackMan.trackPiece3 = 0;
+                    trackMan.trackPiece4 = 24;
+                }
+
+                if (timer <= jumpTime)
+                {
+                    isJump = true;
+                    isSlide = false;
+                }
+                else if (timer >= jumpTime && timer <= slideTime)
+                {
+                    isJump = false;
+                    isSlide = true;
+                }
+                else if (timer >= slideTime) // tutorial END
+                {
+                    //print("TUT END");
+
+                    isSlide = false;
+                    trackMan.isTutorial = false;
+                    gMasterIOS.isTutorial = false;
 
                     runTutorial = false;
 
