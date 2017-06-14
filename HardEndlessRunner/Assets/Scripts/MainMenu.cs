@@ -24,6 +24,9 @@ public class MainMenu : MonoBehaviour
     [Space(5)]
     public bool isDebug;
 
+    //[Header("Settings")]
+    //public static bool startWithTutorial;
+
 
     // Use this for initialization
     void Start()
@@ -44,6 +47,8 @@ public class MainMenu : MonoBehaviour
             playTracksButton.enabled = false;
             settingsTracksButton.enabled = false;
         }
+
+       
 
     }
 
@@ -79,6 +84,18 @@ public class MainMenu : MonoBehaviour
             {
                 upSideDwnButton.interactable = true;
             }
+        }
+    }
+
+    public void TutButton(bool startWithTutorial)
+    {
+        if (startWithTutorial)
+        {
+            GameMaster.runTutorialNum = 1;
+        }
+        else
+        {
+            GameMaster.runTutorialNum = 0;
         }
     }
 
@@ -134,6 +151,8 @@ public class MainMenu : MonoBehaviour
         }
 
     }
+
+    
 
     public void LavaButton()
     {
