@@ -7,7 +7,7 @@ using TMPro;
 
 public class IOSGameMaster : MonoBehaviour
 {
-
+    [Header("Score & Highscore")]
     public float score;
     public int highScore;
     int currentHighScore;
@@ -16,20 +16,20 @@ public class IOSGameMaster : MonoBehaviour
     [Space(5)]
     public bool isGameOver;
 
-    // Pro text
+    [Header("UI")]
     public TMP_Text scoreUI;
     public TMP_Text highScoreUI;
 
     public TMP_Text gOverScoreUI;
     public TMP_Text gOverHighScoreUI;
 
-    [Space(5)]
+    [Space(10)]
     public GameObject inGameCanvas;
     public GameObject touchButtonCanvas;
     public GameObject gOverCanvas;
     public GameObject pauseCanvas;
     public GameObject tutorialCanvas;
-    [Space(5)]
+    [Space(10)]
     public GameObject playerObj;
     [Space(5)]
     public bool isLava;
@@ -39,7 +39,6 @@ public class IOSGameMaster : MonoBehaviour
     //public bool isEasy;
     //public bool isMedium;
     //public bool isHard;
-
 
     Vector2 playerObjStartPos;
 
@@ -98,7 +97,6 @@ public class IOSGameMaster : MonoBehaviour
         {
             Application.targetFrameRate = -1;
         }
-
 
         if (isTutorial == false)
         {
