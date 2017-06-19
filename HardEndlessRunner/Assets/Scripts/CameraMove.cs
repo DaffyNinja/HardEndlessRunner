@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour {
 
+    [Header("Speed")]
     public float moveSpeed;
     public float boostSpeed;
 
-    [Header("Screen Size & Pos")]
+    [Header("Screen Size & Position")]
     public float xPos;
     public float yPos;
     float screenWidth;

@@ -73,7 +73,9 @@ public class TrackCreaterManager : MonoBehaviour
 
     [HideInInspector]
     public bool isEasyIOS;
+    [HideInInspector]
     public bool isMediumIOS;
+    [HideInInspector]
     public bool isHardIOS;
 
     GameMaster gMaster;

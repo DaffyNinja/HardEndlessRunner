@@ -27,7 +27,7 @@ public class Tutorial : MonoBehaviour
     TrackCreaterManager trackMan;
     TrackDifficultyManager trackDifficult;
 
-    [Space(5)]
+    [Space(10)]
     public bool debug;
 
     TrackTester trackTest;

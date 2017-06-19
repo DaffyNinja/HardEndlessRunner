@@ -8,13 +8,13 @@ using TMPro;
 
 public class GameMaster : MonoBehaviour
 {
-
+    [Header("Score & Highscore")]
     public float score;
     public int highScore;
     int currentHighScore;
     string highScoreKey = "HighScore";
 
-    [Space(5)]
+    [Header("Difficulty")]
     public bool isEasy;
     public bool isMedium;
     public bool isHard;
@@ -22,7 +22,7 @@ public class GameMaster : MonoBehaviour
     [Space(5)]
     public bool isGameOver;
 
-    [Space(5)]
+    [Header("UI")]
     public TMP_Text scoreUI;
     public TMP_Text highScoreUI;
 
@@ -37,9 +37,6 @@ public class GameMaster : MonoBehaviour
     public GameObject gOverCanvas;
     public GameObject tutorialCanvas;
     public GameObject pauseCanvas;
-
-    [Space(5)]
-    public GameObject playerObj;
 
     [Header("Game Type")]
     public bool isMainGame;
@@ -60,6 +57,9 @@ public class GameMaster : MonoBehaviour
     public bool camD;
     [Space(5)]
     public bool isTutorial;
+    [Space(5)]
+    public GameObject playerObj;
+
     [HideInInspector]
     public static int runTutorialNum;
 
@@ -68,8 +68,7 @@ public class GameMaster : MonoBehaviour
     void Awake()
     {
         isGameOver = false;
-
-        
+     
         if (runTutorialNum == 1)
         {
             isTutorial = true;
@@ -78,7 +77,6 @@ public class GameMaster : MonoBehaviour
         {
             isTutorial = false;
         }
-
 
    
         if (isTutorial == false)
