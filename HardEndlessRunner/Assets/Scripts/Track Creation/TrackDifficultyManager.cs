@@ -77,6 +77,12 @@ public class TrackDifficultyManager : MonoBehaviour
                 trackMan.trackPiece3 = trackMan.tNumListEasy[6].trackNum3;
                 trackMan.trackPiece4 = trackMan.tNumListEasy[6].trackNum4;
                 break;
+            case 7:
+                trackMan.trackPiece1 = trackMan.tNumListEasy[7].trackNum1;
+                trackMan.trackPiece2 = trackMan.tNumListEasy[7].trackNum2;
+                trackMan.trackPiece3 = trackMan.tNumListEasy[7].trackNum3;
+                trackMan.trackPiece4 = trackMan.tNumListEasy[7].trackNum4;
+                break;                                       
             default:
                 print("EASY ERROR!!");
                 break;
