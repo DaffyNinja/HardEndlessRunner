@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+//using TMPro;
 
 public class Tutorial : MonoBehaviour
 {
@@ -17,7 +17,7 @@ public class Tutorial : MonoBehaviour
     public bool isSlide;
 
     [Header("UI")]
-    public TMP_Text tutText;
+    //public TMP_Text tutText;
     public string jumptext;
     public string slideText;
 
@@ -87,7 +87,7 @@ public class Tutorial : MonoBehaviour
 
                 if (isJump == true)
                 {
-                    tutText.text = jumptext;
+                   // tutText.text = jumptext;
 
                     trackMan.trackPiece1 = 0;
                     trackMan.trackPiece2 = 0;
@@ -96,7 +96,7 @@ public class Tutorial : MonoBehaviour
                 }
                 else if (isSlide == true)
                 {
-                    tutText.text = slideText;
+                   // tutText.text = slideText;
 
                     trackMan.trackPiece1 = 0;
                     trackMan.trackPiece2 = 0;
@@ -134,7 +134,7 @@ public class Tutorial : MonoBehaviour
 
                 if (isJump == true)
                 {
-                    tutText.text = jumptext;
+                    //tutText.text = jumptext;
 
                     trackMan.trackPiece1 = 0;
                     trackMan.trackPiece2 = 0;
@@ -143,7 +143,7 @@ public class Tutorial : MonoBehaviour
                 }
                 else if (isSlide == true)
                 {
-                    tutText.text = slideText;
+                   // tutText.text = slideText;
 
                     trackMan.trackPiece1 = 0;
                     trackMan.trackPiece2 = 0;

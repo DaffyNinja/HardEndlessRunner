@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
+//using TMPro;
 
 
 public class GameMaster : MonoBehaviour
@@ -23,13 +23,13 @@ public class GameMaster : MonoBehaviour
     public bool isGameOver;
 
     [Header("UI")]
-    public TMP_Text scoreUI;
-    public TMP_Text highScoreUI;
+    //public TMP_Text scoreUI;
+    //public TMP_Text highScoreUI;
 
-    public TMP_Text gOverscoreUI;
-    public TMP_Text gOverhighScoreUI;
+    //public TMP_Text gOverscoreUI;
+    //public TMP_Text gOverhighScoreUI;
 
-    public TMP_Text gOverText;
+    //public TMP_Text gOverText;
 
     [Space(5)]
     public GameObject inGameCanvas;
@@ -186,8 +186,8 @@ public class GameMaster : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
-        scoreUI.text = Mathf.RoundToInt(score).ToString();
-        highScoreUI.text = currentHighScore.ToString();
+        //scoreUI.text = Mathf.RoundToInt(score).ToString();
+        //highScoreUI.text = currentHighScore.ToString();
 
     }
 
@@ -197,34 +197,34 @@ public class GameMaster : MonoBehaviour
 
         inGameCanvas.SetActive(false);
 
-        gOverscoreUI.text = Mathf.RoundToInt(score).ToString();
+       // gOverscoreUI.text = Mathf.RoundToInt(score).ToString();
 
         // Highscore
         if (score > currentHighScore)
         {
             highScore = Mathf.RoundToInt(score);
             PlayerPrefs.SetInt("highScore", highScore);
-            highScoreUI.text = currentHighScore.ToString();
-            gOverhighScoreUI.text = currentHighScore.ToString();
+            //highScoreUI.text = currentHighScore.ToString();
+            //gOverhighScoreUI.text = currentHighScore.ToString();
 
         }
         else
         {
-            gOverhighScoreUI.text = currentHighScore.ToString();
+           // gOverhighScoreUI.text = currentHighScore.ToString();
         }
 
         // Game Over Text
         if (playerObj.GetComponent<PlayerMove>().sawD == true)
         {
-            gOverText.text = "BUUZZZZZZZ!";
+            //gOverText.text = "BUUZZZZZZZ!";
         }
         else if (playerObj.GetComponent<PlayerMove>().spikeD == true)
         {
-            gOverText.text = "Swiss Cheese!";
+           // gOverText.text = "Swiss Cheese!";
         }
         else if (camD == true)
         {
-            gOverText.text = "Run Faster!!!";
+           // gOverText.text = "Run Faster!!!";
         }
 
     }

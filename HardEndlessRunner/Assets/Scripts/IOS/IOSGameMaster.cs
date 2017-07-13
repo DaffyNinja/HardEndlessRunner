@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
+//using TMPro;
 
 public class IOSGameMaster : MonoBehaviour
 {
@@ -17,11 +17,11 @@ public class IOSGameMaster : MonoBehaviour
     public bool isGameOver;
 
     [Header("UI")]
-    public TMP_Text scoreUI;
-    public TMP_Text highScoreUI;
+    //public TMP_Text scoreUI;
+    //public TMP_Text highScoreUI;
 
-    public TMP_Text gOverScoreUI;
-    public TMP_Text gOverHighScoreUI;
+    //public TMP_Text gOverScoreUI;
+    //public TMP_Text gOverHighScoreUI;
 
     [Space(10)]
     public GameObject inGameCanvas;
@@ -144,8 +144,8 @@ public class IOSGameMaster : MonoBehaviour
             SceneManager.LoadScene(0);
         }
 
-        scoreUI.text = Mathf.RoundToInt(score).ToString();
-        highScoreUI.text = currentHighScore.ToString();
+        //scoreUI.text = Mathf.RoundToInt(score).ToString();
+        //highScoreUI.text = currentHighScore.ToString();
 
     }
 
@@ -155,19 +155,19 @@ public class IOSGameMaster : MonoBehaviour
 
         inGameCanvas.SetActive(false);
 
-        gOverScoreUI.text = Mathf.RoundToInt(score).ToString();
+        //gOverScoreUI.text = Mathf.RoundToInt(score).ToString();
 
         // Highscore
         if (score > currentHighScore)
         {
             highScore = Mathf.RoundToInt(score);
             PlayerPrefs.SetInt("highScore", highScore);
-            highScoreUI.text = currentHighScore.ToString();
-            gOverHighScoreUI.text = currentHighScore.ToString();
+            //highScoreUI.text = currentHighScore.ToString();
+            //gOverHighScoreUI.text = currentHighScore.ToString();
         }
         else
         {
-            gOverHighScoreUI.text = currentHighScore.ToString();
+           // gOverHighScoreUI.text = currentHighScore.ToString();
         }
 
     }
