@@ -26,8 +26,8 @@ public class GameMaster : MonoBehaviour
     public TMP_Text scoreUI;
     public TMP_Text highScoreUI;
 
-    public TMP_Text gOverscoreUI;
-    public TMP_Text gOverhighScoreUI;
+    public TMP_Text gOverScoreUI;
+    public TMP_Text gOverHighScoreUI;
 
     public TMP_Text gOverText;
 
@@ -197,7 +197,7 @@ public class GameMaster : MonoBehaviour
 
         inGameCanvas.SetActive(false);
 
-        gOverscoreUI.text = Mathf.RoundToInt(score).ToString();
+        gOverScoreUI.text = Mathf.RoundToInt(score).ToString();
 
         // Highscore
         if (score > currentHighScore)
@@ -205,12 +205,12 @@ public class GameMaster : MonoBehaviour
             highScore = Mathf.RoundToInt(score);
             PlayerPrefs.SetInt("highScore", highScore);
             highScoreUI.text = currentHighScore.ToString();
-            gOverhighScoreUI.text = currentHighScore.ToString();
+            gOverHighScoreUI.text = currentHighScore.ToString();
 
         }
         else
         {
-            gOverhighScoreUI.text = currentHighScore.ToString();
+            gOverHighScoreUI.text = currentHighScore.ToString();
         }
 
         // Game Over Text
