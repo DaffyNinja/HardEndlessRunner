@@ -87,7 +87,7 @@ public class Tutorial : MonoBehaviour
 
                 if (isJump == true)
                 {
-                    tutText.text = jumptext;
+                   tutText.text = jumptext;
 
                     trackMan.trackPiece1 = 0;
                     trackMan.trackPiece2 = 0;
