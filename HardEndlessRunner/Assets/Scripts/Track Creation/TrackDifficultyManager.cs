@@ -7,7 +7,6 @@ public class TrackDifficultyManager : MonoBehaviour
 
     TrackCreaterManager trackMan;
 
-
     int easyRanNum;
     int mediumRanNum;
     int hardRanNum;
@@ -21,7 +20,7 @@ public class TrackDifficultyManager : MonoBehaviour
         trackMan = GetComponent<TrackCreaterManager>();
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         // Random numbers that change between track sets
         easyRanNum = Random.Range(0, trackMan.tNumListEasy.Count);
@@ -214,6 +213,12 @@ public class TrackDifficultyManager : MonoBehaviour
                 trackMan.trackPiece2 = trackMan.tNumListHard[6].trackNum2;
                 trackMan.trackPiece3 = trackMan.tNumListHard[6].trackNum3;
                 trackMan.trackPiece4 = trackMan.tNumListHard[6].trackNum4;
+                break;
+            case 7:
+                trackMan.trackPiece1 = trackMan.tNumListHard[7].trackNum1;
+                trackMan.trackPiece2 = trackMan.tNumListHard[7].trackNum2;
+                trackMan.trackPiece3 = trackMan.tNumListHard[7].trackNum3;
+                trackMan.trackPiece4 = trackMan.tNumListHard[7].trackNum4;
                 break;
             default:
                 print("HARD ERROR!!!");

@@ -86,6 +86,10 @@ public class TrackCreaterManager : MonoBehaviour
     [Space(5)]
     public bool isTutorial;
 
+    [Space(5)]
+    public GameDebug gDebug;
+    public bool isDebug;
+
     // Use this for initialization
     void Awake()
     {
@@ -99,10 +103,18 @@ public class TrackCreaterManager : MonoBehaviour
             gMasterIOS = GetComponent<IOSGameMaster>();
         }
 
+        if (gDebug)
+        {
+            isDebug = true;
+        }
+        else
+        {
+            isDebug = false;
+        }   
+
         trackDifficultyMan = GetComponent<TrackDifficultyManager>();
         playerPos = playerTrans.position;
         startSpecialNum = specialAppearNum;
-
     }
 
     // Update is called once per frame
@@ -200,6 +212,7 @@ public class TrackCreaterManager : MonoBehaviour
             tr4.transform.parent = trackParent;
 
             MediumTracksAdjust();
+            HardTracksAdjust();
 
             create = false;
 
@@ -226,7 +239,7 @@ public class TrackCreaterManager : MonoBehaviour
     {
         if (isTutorial == false)
         {
-            if (isIOS == false)
+            if (isIOS == false) // Android
             {
                 if (gMaster.score < mediumNum)   //Easy
                 {
@@ -318,6 +331,16 @@ public class TrackCreaterManager : MonoBehaviour
 
     void HardTracksAdjust()
     {
+        if (tr1.name == "Saw Move (Horizontal) Track(Clone)" && tr3.name == "Saw Move (Horizontal) Track(Clone)")
+        {
+            print("Move Saws");
+
+            //tr1.GetComponentInChildren<SawArmRotate>().isRandom = false;
+            //tr3.GetComponentInChildren<SawArmRotate>().isRandom = false;
+
+            //tr1.GetComponentInChildren<SawArmRotate>().isClockwise = true;
+            //tr3.GetComponentInChildren<SawArmRotate>().isClockwise = true;
+        }
     }
 
 

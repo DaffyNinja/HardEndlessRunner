@@ -60,6 +60,10 @@ public class GameMaster : MonoBehaviour
     [Space(5)]
     public GameObject playerObj;
 
+    [Header("Debug")]
+    public bool isDebug;
+    public GameDebug debugScript;
+
     [HideInInspector]
     public static int runTutorialNum;
 
@@ -68,6 +72,15 @@ public class GameMaster : MonoBehaviour
     void Awake()
     {
         isGameOver = false;
+
+        if (debugScript.debugOn)
+        {
+            isDebug = true;
+        }
+        else
+        {
+            isDebug = false;
+        }
      
         if (runTutorialNum == 1)
         {
@@ -143,8 +156,6 @@ public class GameMaster : MonoBehaviour
             tutorialCanvas.SetActive(true);
             inGameCanvas.SetActive(false);
         }
-        // Difficulty
-
 
         if (isGameOver) // If the game is over reload the scene the player is on if the player presses enter 
         {
@@ -181,7 +192,7 @@ public class GameMaster : MonoBehaviour
         }
 
         // Debug
-        if (Input.GetKey(KeyCode.R))
+        if (Input.GetKey(KeyCode.R) && isDebug)
         {
             SceneManager.LoadScene(0);
         }
