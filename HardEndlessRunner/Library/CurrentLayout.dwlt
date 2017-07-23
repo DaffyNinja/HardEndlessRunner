@@ -109,7 +109,7 @@ MonoBehaviour:
   m_MinSize: {x: 687, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 118
+  controlID: 159
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_MinSize: {x: 410, y: 492}
   m_MaxSize: {x: 14006, y: 14042}
   vertical: 1
-  controlID: 119
+  controlID: 160
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_MinSize: {x: 410, y: 221}
   m_MaxSize: {x: 12010, y: 4021}
   vertical: 0
-  controlID: 120
+  controlID: 161
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -259,7 +259,7 @@ MonoBehaviour:
   m_MinSize: {x: 336, y: 271}
   m_MaxSize: {x: 14006, y: 10021}
   vertical: 0
-  controlID: 142
+  controlID: 57
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -466,14 +466,14 @@ MonoBehaviour:
     width: 914
     height: 650
   m_SceneLighting: 0
-  lastFramingTime: 296.48573535475276
+  lastFramingTime: 1463.3538477048342
   m_2DMode: 1
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 1104.2855, y: 8.180002, z: 0}
+    m_Target: {x: 1813.8225, y: 13022.05, z: 0}
     speed: 2
-    m_Value: {x: 1104.2855, y: 8.180002, z: 0}
+    m_Value: {x: 1813.8225, y: 13022.05, z: 0}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -500,9 +500,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 19.397469
+    m_Target: 24.202232
     speed: 2
-    m_Value: 19.397469
+    m_Value: 24.202232
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -541,20 +541,20 @@ MonoBehaviour:
     height: 650
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 128dfeff
+    m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 8ca3feff2ed5ffff0adffffffce8ffff3aeaffff1afcffff00000000ba43000092440000
+    m_ExpandedIDs: 1afcffff0000000012330000ea330000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: GearV2 (8)
-      m_OriginalName: GearV2 (8)
+      m_Name: Platform Small Track
+      m_OriginalName: Platform Small Track
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: -10996
+      m_UserData: -6620
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -562,7 +562,7 @@ MonoBehaviour:
       m_ClientGUIView: {fileID: 10}
     m_SearchString: 
   m_ExpandedScenes:
-  - 1Main Game
+  - TEST
   m_CurrenRootInstanceID: 0
   m_Locked: 1
   m_CurrentSortingName: TransformSorting
@@ -660,19 +660,19 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets/!Scenes/Android
+    - Assets/Textures&Sprites/!New Art Style
   m_ViewMode: 1
   m_StartGridSize: 54
   m_LastFolders:
-  - Assets/!Scenes/Android
+  - Assets/Textures&Sprites/!New Art Style
   m_LastFoldersGridSize: 54
   m_LastProjectPath: C:\Users\User\Desktop\Hard Endless Runner GIT\HardEndlessRunner
   m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 22}
-    m_SelectedIDs: d22c0000
-    m_LastClickedID: 11474
-    m_ExpandedIDs: 000000003e2700009c290000482a0000142d0000182d00001c2d000042300000f8300000b8420000ba42000000ca9a3bffffff7f
+    scrollPos: {x: 0, y: 502}
+    m_SelectedIDs: 9a290000
+    m_LastClickedID: 10650
+    m_ExpandedIDs: 000000003e2700009c290000482a00001c2d0000202d0000242d00004e30000008310000ac460000ae46000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -700,7 +700,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000003e2700009c290000482a0000142d0000182d00001c2d000042300000f8300000b8420000ba420000
+    m_ExpandedIDs: 000000003e2700009c290000482a00001c2d0000202d0000242d00004e30000008310000ac460000ae460000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
