@@ -34,7 +34,7 @@ public class InOutSpikes : MonoBehaviour
         }
         else
         {
-            deactivePos = new Vector2(spikeTran.position.x, spikeTran.position.y + 1);
+            activePos = new Vector2(spikeTran.position.x, spikeTran.position.y + 1);
         }
     }
 

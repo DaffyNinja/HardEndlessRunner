@@ -51,7 +51,7 @@ public class SpikePoll : MonoBehaviour
         //    print("MIN HEIGHT");
         //}
 
-        if (spikeCS.timer >= spikeCS.inOutTime/2 && spikeCS.isActive) // Down
+        if (spikeCS.timer >= spikeCS.inOutTime /2 && spikeCS.isActive) // Down
         {
             moveUp = false;
             moveDown = true;
