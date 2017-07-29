@@ -5,7 +5,7 @@ using UnityEngine;
 public class InOutSpikes : MonoBehaviour
 {
     public float inOutTime;
-    float timer;
+    public float timer;
 
     public bool isGround;
 
@@ -27,7 +27,6 @@ public class InOutSpikes : MonoBehaviour
         spikeTran = transform.GetChild(0);
 
         startPos = spikeTran.position;
-
 
         if (isGround)
         {

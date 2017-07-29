@@ -9,6 +9,9 @@ public class GameDebug : MonoBehaviour
 
     public Text framesPerSecondTxt;
     public Text difficultyText;
+    public Text debugText;
+
+    public string debugString;
 
     public GameObject uiDebugPanel;
 
@@ -22,6 +25,8 @@ public class GameDebug : MonoBehaviour
         if (debugOn)
         {
             uiDebugPanel.SetActive(true);
+
+            print("DEBUG ON!");
         }
         else
         {
@@ -53,6 +58,8 @@ public class GameDebug : MonoBehaviour
                 difficultyText.text = "Hard";
             }
 
+            // Text
+            debugText.text = debugString;
 
         }
     }
