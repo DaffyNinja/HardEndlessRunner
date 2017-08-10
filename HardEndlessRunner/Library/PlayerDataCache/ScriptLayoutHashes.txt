@@ -146,7 +146,7 @@ bc68edb0af574bf79f9550ead8ebae5c UnityEngine.HoloLens.dll:UnityEngine.Audio.Audi
 c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.SpatialMappingCollider
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.SpatialMappingRenderer
 50a0fa002cfc67638c87a901e46b763e Assembly-CSharp.dll:TMPro.Examples.TMP_TextSelector_B
-c2735441faf0bbebef4d10ff5f1b79d8 Assembly-CSharp.dll:.GameDebug
+de2ebd15c44a835f9b2916a9bc5a388d Assembly-CSharp.dll:.GameDebug
 e70a7aae0c89c53c181bf7373005dfbe Assembly-CSharp.dll:.IOSGameMaster
 562bd39ea3af6a8521d4894f95a91556 Assembly-CSharp.dll:.MovementRotate
 020550babdb991365f61c5bffe1f4f52 Assembly-CSharp.dll:TMPro.Examples.Benchmark03
@@ -188,6 +188,7 @@ a1dab9b9c0ca6d78b6033a75c4d6c0b3 Assembly-CSharp.dll:.TrackDifficultyManager
 8a50d3d11bf0cc541f5c35347dd25633 Assembly-CSharp.dll:TMPro.Examples.ShaderPropAnimator
 dd5481137759597d614818793c90a7fe Assembly-CSharp.dll:.NeedleMove
 afa43812ff51a0395abdb904ed206213 Assembly-CSharp.dll:.CrankShaftSizeChange
+e0d443d37fcbdcd00f037693ed79681d Assembly-CSharp.dll:.SpikePoll
 87e82ef2626ec83a166e1db31ee3a017 Assembly-CSharp.dll:.Tutorial
 76015de5fcb247eeb8df66c001d5a22d Assembly-CSharp.dll:TMPro.Examples.TMP_FrameRateCounter
 f608bc21e25d2773aabde2daaf07303e Assembly-CSharp.dll:.CrankShaft
@@ -225,7 +226,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.VR.WSA.SpatialMappingRenderer
 1cd4893b18ef6c9e1612214d23ea08a3 Assembly-CSharp.dll:.ChatController
 9cfa3e0b31044fe7eff7d75cd73f6719 Assembly-CSharp.dll:.MusicMaster
-2a05041a914263df56b8bbac7312e68f Assembly-CSharp.dll:.InOutSpikes
+c000df4bee9dceb1e3b2f604446e0054 Assembly-CSharp.dll:.InOutSpikes
 48a9dee325686d1924a2646b71c83f08 Assembly-CSharp.dll:TMPro.Examples.Benchmark01
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:TMPro.Examples.TextConsoleSimulator
 1206a843dc46dc02e02d2396193e9532 Assembly-CSharp.dll:.Flamethrower
