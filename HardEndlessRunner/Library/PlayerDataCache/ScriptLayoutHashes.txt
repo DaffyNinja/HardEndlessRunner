@@ -118,7 +118,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 627adc724b314658715d1650a854b9c6 Assembly-CSharp.dll:.MovingSaw
 1957a9369e72d2661ae9d0de26e7d064 Assembly-CSharp.dll:TMPro.Examples.WarpTextExample
-dca2ec595d9daf9193aabd0f0e74d1c5 Assembly-CSharp.dll:.MainMenu
+c17c1ecee1c909b822bbf3800237507b Assembly-CSharp.dll:.MainMenu
 f0bdc1041dee6504f25216b38b2bb3cb TextMeshPro-1.0.55.2017.1.0b11.dll:TMPro.InlineGraphic
 cd5f66d713a060bf891e329290b64cc4 TextMeshPro-1.0.55.2017.1.0b11.dll:TMPro.InlineGraphicManager
 f4bd1aee67eeef7953cce6c44588b3d7 TextMeshPro-1.0.55.2017.1.0b11.dll:TMPro.TextContainer
