@@ -16,6 +16,7 @@ public class MainMenu : MonoBehaviour
     public GameObject mainMenuPanel;
     public GameObject settingsPanel;
     public GameObject specialTracksPanel;
+    public GameObject creditsPanel;
 
     [Header("Special Levels Menu")]
     public Button lavaButon;
@@ -34,7 +35,9 @@ public class MainMenu : MonoBehaviour
         mainMenuPanel.SetActive(true);
         settingsPanel.SetActive(false);
         specialTracksPanel.SetActive(false);
+        creditsPanel.SetActive(false);
 
+        // Buttons Animation
         if (doAnimation)
         {
             specialTracksButton.SetBool("isHidden", false);
@@ -110,6 +113,7 @@ public class MainMenu : MonoBehaviour
 
         mainMenuPanel.SetActive(false);
         settingsPanel.SetActive(false);
+        creditsPanel.SetActive(false);
 
         if (doAnimation)
         {
@@ -126,6 +130,7 @@ public class MainMenu : MonoBehaviour
 
         mainMenuPanel.SetActive(false);
         specialTracksPanel.SetActive(false);
+        creditsPanel.SetActive(false);
 
         if (doAnimation)
         {
@@ -142,6 +147,7 @@ public class MainMenu : MonoBehaviour
 
         specialTracksPanel.SetActive(false);
         settingsPanel.SetActive(false);
+        creditsPanel.SetActive(false);
 
         if (doAnimation)
         {
@@ -152,7 +158,19 @@ public class MainMenu : MonoBehaviour
 
     }
 
-    
+    public void CreditsButton()
+    {
+        creditsPanel.SetActive(true);
+
+        settingsPanel.SetActive(false);
+        mainMenuPanel.SetActive(false);
+        specialTracksPanel.SetActive(false);
+
+    }
+
+
+
+
 
     public void LavaButton()
     {
